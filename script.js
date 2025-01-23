@@ -1,5 +1,4 @@
-// Substitua com a sua chave pública do Mercado Pago
-const mp = new MercadoPago("SUA_CHAVE_PUBLICA", {
+const mp = new MercadoPago("APP_USR-2558136151487812-012311-08dd4e15416784773f715f16a694e92f-220300097", {
     locale: "pt-BR"
 });
 
@@ -16,7 +15,7 @@ function processarPagamento(valor, descricao) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer SUA_CHAVE_PRIVADA"
+            "Authorization": "Bearer APP_USR-2558136151487812-012311-08dd4e154167847737f151f6a694e92f-220300097"
         },
         body: JSON.stringify({
             transaction_amount: valor,
