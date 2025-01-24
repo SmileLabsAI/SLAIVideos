@@ -1,5 +1,5 @@
 // Inicializa o Mercado Pago com a Public Key
-const mp = new MercadoPago(APP_USR-7a366cc9-b73c-409f-a12a-c4f978c4b569, { locale: "pt-BR" });
+const mp = new MercadoPago("APP_USR-7a366cc9-b73c-409f-a12a-c4f978c4b569", { locale: "pt-BR" });
 
 async function iniciarPagamento(titulo, preco) {
     console.log(`Iniciando pagamento: ${titulo} - R$ ${preco}`);
@@ -37,3 +37,6 @@ async function iniciarPagamento(titulo, preco) {
         alert("Erro ao processar o pagamento. Tente novamente.");
     }
 }
+
+// Garante que a função seja acessível no HTML
+window.iniciarPagamento = iniciarPagamento;
