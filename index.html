@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLAI VIDEOS</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- SDK do Mercado Pago -->
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLAI Videos - Pagamento</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script> <!-- SDK do Mercado Pago -->
+    <script defer src="script.js"></script> <!-- Script separado -->
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; }
+    </style>
 </head>
 <body>
-  <header>
     <h1>SLAI VIDEOS</h1>
-    <p>Venda de pacotes de vídeos educativos odontológicos</p>
-  </header>
+    <h3>Venda de pacotes de vídeos educativos odontológicos</h3>
 
-  <main>
-    <section class="product">
-      <h3>Pack de 5 Vídeos</h3>
-      <p>R$ 100,00</p>
-      <button id="checkout-button-5">Comprar</button>
-    </section>
+    <div>
+        <h2>Pack de 5 Vídeos</h2>
+        <p>R$ 100,00</p>
+        <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
+    </div>
 
-    <section class="product">
-      <h3>Pack de 10 Vídeos</h3>
-      <p>R$ 180,00</p>
-      <button id="checkout-button-10">Comprar</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 SLAI VIDEOS. Todos os direitos reservados.</p>
-  </footer>
-
-  <!-- Importa o JavaScript corrigido -->
-  <script src="script.js"></script>
+    <div>
+        <h2>Pack de 10 Vídeos</h2>
+        <p>R$ 180,00</p>
+        <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
+    </div>
 </body>
 </html>
