@@ -1,34 +1,27 @@
-const mp = new MercadoPago("APP_USR-7a366cc9-b73c-409f-a12a-c4f978c4b569", { locale: "pt-BR" });
+async function iniciarPagamento(pack) {
+    console.log(`Iniciando pagamento para ${pack} - R$ ${pack === "pack5" ? 100 : 180}`);
 
-// Adiciona eventos aos botões de compra
-document.getElementById("checkout-button-5").addEventListener("click", () => {
-    iniciarPagamento("pack5", 100.00); // Corrigi o preço para reais (R$ 100,00)
-});
-
-document.getElementById("checkout-button-10").addEventListener("click", () => {
-    iniciarPagamento("pack10", 180.00); // Corrigi o preço para reais (R$ 180,00)
-});
-
-// Função para criar a preferência no backend
-async function iniciarPagamento(pack, price) {
     try {
-        console.log(`Iniciando pagamento para ${pack} - R$ ${price}`);
-
-        const response = await fetch("https://slaivideos-backend.onrender.com/api/payment/checkout", {
+        const response = await fetch("https://slaivideos-backend.onrender.com/api/checkout/create_preference", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
                 title: pack, 
-                price: price
+                price: pack === "pack5" ? 100.00 : 180.00 
             })
         });
 
-        if (!response.ok) {
-            throw new Error(`Erro ao criar preferência: ${response.status} - ${response.statusText}`);
-        }
+        const text = await response.text(); // Obtém o texto da resposta
+        console.log("Resposta do backend:", text);
 
-        const data = await response.json();
-        console.log("Resposta do backend:", data);
+        let data;
+        try {
+            data = JSON.parse(text); // Tenta converter para JSON
+        } catch (error) {
+            console.error("Erro ao converter resposta para JSON:", error);
+            alert("Erro ao criar a preferência de pagamento. Resposta inválida.");
+            return;
+        }
 
         if (data.id) {
             mp.checkout({
@@ -42,6 +35,6 @@ async function iniciarPagamento(pack, price) {
         }
     } catch (error) {
         console.error("Erro ao iniciar pagamento:", error);
-        alert("Erro ao processar o pagamento. Tente novamente.");
+        alert("Falha na comunicação com o servidor.");
     }
 }
