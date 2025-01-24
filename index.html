@@ -32,50 +32,7 @@
     <p>&copy; 2025 SLAI VIDEOS. Todos os direitos reservados.</p>
   </footer>
 
-  <script>
-    // Inicializa o Mercado Pago com sua Public Key
-    const mp = new MercadoPago('APP_USR-7a366cc9-b73c-409f-a12a-c4f978c4b569', { locale: 'pt-BR' });
-
-    // Função para criar a preferência de pagamento
-    async function createPreference(pack) {
-      try {
-        const response = await fetch('https://seu-backend.onrender.com/create_preference', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ pack: pack }),
-        });
-
-        const preference = await response.json();
-        return preference.id;
-      } catch (error) {
-        console.error('Erro ao criar a preferência:', error);
-      }
-    }
-
-    // Função para iniciar o checkout
-    async function startCheckout(pack) {
-      const preferenceId = await createPreference(pack);
-
-      if (preferenceId) {
-        mp.checkout({
-          preference: {
-            id: preferenceId,
-          },
-          autoOpen: true, // Abre o Checkout Pro automaticamente
-        });
-      }
-    }
-
-    // Adiciona eventos aos botões de compra
-    document.getElementById('checkout-button-5').addEventListener('click', () => {
-      startCheckout('pack5');
-    });
-
-    document.getElementById('checkout-button-10').addEventListener('click', () => {
-      startCheckout('pack10');
-    });
-  </script>
+  <!-- Importa o JavaScript corrigido -->
+  <script src="script.js"></script>
 </body>
 </html>
