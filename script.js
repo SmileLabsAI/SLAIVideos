@@ -1,38 +1,36 @@
-const mp = new MercadoPago("APP_USR-2558136151487812-012311-08dd4e15416784773f715f16a694e92f-220300097", {
-    locale: "pt-BR"
+const mp = new MercadoPago("APP_USR-7a366cc9-b73c-409f-a12a-c4f978c4b569", { locale: "pt-BR" });
+
+// Adiciona eventos aos botões de compra
+document.getElementById("checkout-button-5").addEventListener("click", () => {
+    iniciarPagamento("pack5");
 });
 
-document.getElementById("btn5").addEventListener("click", function() {
-    processarPagamento(100.00, "Pack de 5 Vídeos");
+document.getElementById("checkout-button-10").addEventListener("click", () => {
+    iniciarPagamento("pack10");
 });
 
-document.getElementById("btn10").addEventListener("click", function() {
-    processarPagamento(180.00, "Pack de 10 Vídeos");
-});
+// Função para criar a preferência no backend
+async function iniciarPagamento(pack) {
+    try {
+        const response = await fetch("https://slaivideos-backend.onrender.com", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ pack: pack })
+        });
 
-function processarPagamento(valor, descricao) {
-    fetch("https://api.mercadopago.com/v1/payments", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer APP_USR-2558136151487812-012311-08dd4e154167847737f151f6a694e92f-220300097"
-        },
-        body: JSON.stringify({
-            transaction_amount: valor,
-            description: descricao,
-            payment_method_id: "pix",
-            payer: {
-                email: "comprador@email.com"
-            }
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "approved") {
-            alert("Pagamento aprovado! Você receberá seus vídeos em breve.");
+        const data = await response.json();
+
+        if (data.id) {
+            mp.checkout({
+                preference: {
+                    id: data.id
+                },
+                autoOpen: true
+            });
         } else {
-            alert("Erro no pagamento. Tente novamente.");
+            alert("Erro ao criar a preferência de pagamento.");
         }
-    })
-    .catch(error => console.error("Erro ao processar pagamento:", error));
+    } catch (error) {
+        console.error("Erro ao iniciar pagamento:", error);
+    }
 }
