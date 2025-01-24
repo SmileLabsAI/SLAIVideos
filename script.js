@@ -12,10 +12,13 @@ document.getElementById("checkout-button-10").addEventListener("click", () => {
 // Função para criar a preferência no backend
 async function iniciarPagamento(pack) {
     try {
-        const response = await fetch("https://slaivideos-backend.onrender.com", {
+        const response = await fetch("https://slaivideos-backend.onrender.com/api/checkout/create_preference", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ pack: pack })
+            body: JSON.stringify({ 
+                title: pack, 
+                price: pack === "pack5" ? 5.00 : 10.00 // Define o preço com base no pack
+            })
         });
 
         const data = await response.json();
