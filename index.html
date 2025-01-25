@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLAI Videos - Pagamento</title>
+    <title>SLAI Videos - Catálogo</title>
 
     <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
@@ -36,15 +36,24 @@
             height: 50px;
         }
 
-        .navbar a {
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
             color: white;
             text-decoration: none;
             font-size: 18px;
-            margin-left: 20px;
             transition: 0.3s;
         }
 
-        .navbar a:hover {
+        .navbar ul li a:hover {
             color: #e50914;
         }
 
@@ -112,6 +121,14 @@
         button:hover {
             background-color: #b20710;
         }
+
+        footer {
+            margin-top: 20px;
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
     </style>
 </head>
 <body>
@@ -119,11 +136,12 @@
 <!-- Navbar -->
 <div class="navbar">
     <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/LogoSemfundo.png" alt="SLAI Videos">
-    <div>
-        <a href="#">Início</a>
-        <a href="#">Catálogo</a>
-        <a href="#">Contato</a>
-    </div>
+    <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="login.html" id="menu-login">Login</a></li>
+    </ul>
 </div>
 
 <!-- Hero Section -->
@@ -152,6 +170,11 @@
         <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
     </div>
 </div>
+
+<!-- Rodapé -->
+<footer>
+    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
+</footer>
 
 </body>
 </html>
