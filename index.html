@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLAI Videos - Pagamento</title>
-    
+
     <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script defer src="script.js"></script>
@@ -116,42 +116,42 @@
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/Logo-removebg-preview.png" alt="SLAI Videos">
-        <div>
-            <a href="#">Início</a>
-            <a href="#">Catálogo</a>
-            <a href="#">Contato</a>
-        </div>
+<!-- Navbar -->
+<div class="navbar">
+    <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/LogoSemfundo.png" alt="SLAI Videos">
+    <div>
+        <a href="#">Início</a>
+        <a href="#">Catálogo</a>
+        <a href="#">Contato</a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Assista aos melhores vídeos Odontológicos</h1>
+    <p>Escolha seu pacote e tenha acesso a conteúdos exclusivos!</p>
+</div>
+
+<!-- Pacotes -->
+<div class="container">
+    <!-- Pack 1 -->
+    <div class="pack">
+        <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/Capa%20Pack1.webp"
+             alt="Capa Pack 5 Vídeos">
+        <h2>Pack de 5 Vídeos</h2>
+        <p>R$ 100,00</p>
+        <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
     </div>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Assista aos melhores vídeos Odontológicos</h1>
-        <p>Escolha seu pacote e tenha acesso a conteúdos exclusivos!</p>
+    <!-- Pack 2 -->
+    <div class="pack">
+        <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/Capa%20Pack2.webp"
+             alt="Capa Pack 10 Vídeos">
+        <h2>Pack de 10 Vídeos</h2>
+        <p>R$ 180,00</p>
+        <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
     </div>
-
-    <!-- Pacotes -->
-    <div class="container">
-        <!-- Pack 1 -->
-        <div class="pack">
-            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-25%2010.02.14%20-%20A%20cinematic%20and%20highly%20detailed%20movie%20poster-style%20image%20depicting%20a%20futuristic%20high-tech%20dental%20clinic%20filled%20with%20numerous%20floating%20TV%20screens.%20The%20.webp" 
-                 alt="Capa Pack 5 Vídeos">
-            <h2>Pack de 5 Vídeos</h2>
-            <p>R$ 100,00</p>
-            <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
-        </div>
-
-        <!-- Pack 2 -->
-        <div class="pack">
-            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-25%2010.02.58%20-%20A%20cinematic%20and%20highly%20detailed%20movie%20poster-style%20image%20depicting%20a%20futuristic%20high-tech%20dental%20clinic%20filled%20with%20numerous%20floating%20TV%20screens.%20The%20.webp" 
-                 alt="Capa Pack 10 Vídeos">
-            <h2>Pack de 10 Vídeos</h2>
-            <p>R$ 180,00</p>
-            <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
-        </div>
-    </div>
+</div>
 
 </body>
 </html>
