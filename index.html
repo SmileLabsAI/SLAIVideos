@@ -21,21 +21,47 @@
         body {
             background-color: #141414;
             color: white;
+        }
+
+        /* Navbar estilo Netflix */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 50px;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .navbar img {
+            height: 50px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #e50914;
+        }
+
+        .hero {
             text-align: center;
-            padding: 50px;
+            padding: 60px 20px;
         }
 
-        h1 {
-            font-size: 36px;
+        .hero h1 {
+            font-size: 48px;
             font-weight: bold;
-            margin-bottom: 10px;
         }
 
-        h3 {
+        .hero p {
             font-size: 20px;
-            font-weight: lighter;
-            margin-bottom: 30px;
             color: #b3b3b3;
+            margin-top: 10px;
         }
 
         .container {
@@ -43,6 +69,7 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         .pack {
@@ -89,25 +116,39 @@
 </head>
 <body>
 
-    <h1>SLAI VIDEOS</h1>
-    <h3>Pacotes de vídeos Odontológicos</h3>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/Logo-removebg-preview.png" alt="SLAI Videos">
+        <div>
+            <a href="#">Início</a>
+            <a href="#">Catálogo</a>
+            <a href="#">Contato</a>
+        </div>
+    </div>
 
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Assista aos melhores vídeos Odontológicos</h1>
+        <p>Escolha seu pacote e tenha acesso a conteúdos exclusivos!</p>
+    </div>
+
+    <!-- Pacotes -->
     <div class="container">
-        <!-- Pack 1 (Agora com a imagem do Pack 2) -->
+        <!-- Pack 1 -->
         <div class="pack">
             <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-25%2010.02.14%20-%20A%20cinematic%20and%20highly%20detailed%20movie%20poster-style%20image%20depicting%20a%20futuristic%20high-tech%20dental%20clinic%20filled%20with%20numerous%20floating%20TV%20screens.%20The%20.webp" 
                  alt="Capa Pack 5 Vídeos">
             <h2>Pack de 5 Vídeos</h2>
-            <p>R$ 80,00</p>
+            <p>R$ 100,00</p>
             <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
         </div>
 
-        <!-- Pack 2 (Agora com a imagem do Pack 1) -->
+        <!-- Pack 2 -->
         <div class="pack">
             <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-25%2010.02.58%20-%20A%20cinematic%20and%20highly%20detailed%20movie%20poster-style%20image%20depicting%20a%20futuristic%20high-tech%20dental%20clinic%20filled%20with%20numerous%20floating%20TV%20screens.%20The%20.webp" 
                  alt="Capa Pack 10 Vídeos">
             <h2>Pack de 10 Vídeos</h2>
-            <p>R$ 150,00</p>
+            <p>R$ 180,00</p>
             <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
         </div>
     </div>
