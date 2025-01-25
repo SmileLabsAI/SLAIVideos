@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área de Membros - SLAI Videos</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="membros.js"></script>
+  <style>
+    body {
+      background-color: #141414;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .navbar img {
+      height: 50px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      margin-left: 20px;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #e50914;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      padding: 20px;
+      flex-grow: 1; /* Mantém o conteúdo no centro */
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #b3b3b3;
+      text-align: justify;
+    }
+
+    .btn-login {
+      padding: 12px 20px;
+      font-size: 18px;
+      background-color: #e50914;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: none; /* Só aparece se o usuário não estiver logado */
+    }
+
+    .btn-login:hover {
+      background-color: #b20710;
+    }
+
+    /* Seção de Conteúdo para Membros */
+    .member-content {
+      display: none; /* Oculta se não estiver logado */
+    }
+
+    /* Rodapé fixo */
+    .footer {
+      text-align: center;
+      padding: 12px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #b3b3b3;
+      width: 100%;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/LogoSemfundo.png" alt="SLAI Videos">
+  <div>
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+    <a href="membros.html">Área de Membros</a>
+  </div>
+</div>
+
+<!-- Conteúdo da Página de Membros -->
+<div class="container">
+  <h1>Bem-vindo à Área de Membros</h1>
+  <p id="message">Acesse conteúdos exclusivos sendo um membro da Smile Labs AI.</p>
+
+  <!-- Seção de login -->
+  <button id="btn-login" class="btn-login" onclick="window.location.href='login.html'">Fazer Login</button>
+
+  <!-- Conteúdo exclusivo para membros logados -->
+  <div class="member-content" id="member-content">
+    <h2>Conteúdo Exclusivo</h2>
+    <p>Aqui você terá acesso a vídeos premium, materiais complementares e novidades exclusivas.</p>
+  </div>
+</div>
+
+<!-- Rodapé fixo -->
+<div class="footer">
+  <p>© 2025 Smile Labs Videos - Todos os direitos reservados</p>
+</div>
+
+<script>
+  // Simulação de login (substituir por autenticação real)
+  const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+
+  if (isLoggedIn) {
+    document.getElementById("member-content").style.display = "block";
+    document.getElementById("message").style.display = "none";
+  } else {
+    document.getElementById("btn-login").style.display = "inline-block";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SLAI Videos</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="login.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #141414;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 270px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+        }
+        .login-container h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .login-container label {
+            display: block;
+            font-size: 11px;
+            text-align: left;
+            margin: 4px 15% 4px 15%;
+        }
+        .login-container input {
+            width: 75%;
+            padding: 7px;
+            margin-bottom: 6px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .login-container input#password {
+            margin-bottom: 15px;
+        }
+        .login-container button {
+            width: 75%;
+            padding: 7px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 5px;
+        }
+        .login-container button:hover {
+            background-color: #b20710;
+        }
+        .social-login {
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .social-login button {
+            width: 75%;
+            padding: 7px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            margin-top: 5px;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .social-login button img {
+            width: 13px; /* Reduzi o ícone em 30% */
+            height: 13px;
+            position: absolute;
+            left: 8px; /* Movi o ícone mais para a esquerda */
+        }
+        .social-login button:hover {
+            background-color: #f0f0f0;
+        }
+        .login-container p {
+            margin-top: 20px;
+            font-size: 10px;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #b3b3b3;
+            text-align: center;
+            font-size: 14px;
+            padding: 12px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Entrar</h2>
+    <form id="login-form">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required>
+
+        <label for="password">Senha</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <button onclick="window.location.href='index.html'">Continuar</button>
+
+    <div class="social-login">
+        <button id="google-login">
+            <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
+            Entrar com Google
+        </button>
+    </div>
+
+    <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const loginForm = document.getElementById("login-form");
+
+        if (loginForm) {
+            loginForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                localStorage.setItem("userLoggedIn", "true");
+                window.location.href = "membros.html";
+            });
+        }
+
+        const googleLoginBtn = document.getElementById("google-login");
+        googleLoginBtn.addEventListener("click", () => {
+            alert("Funcionalidade de login com Google em desenvolvimento!");
+        });
+    });
+</script>
+
+</body>
+</html>
