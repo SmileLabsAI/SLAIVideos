@@ -7,7 +7,7 @@
     
     <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script defer src="script.js"></script> <!-- Script separado -->
+    <script defer src="script.js"></script>
 
     <!-- Estilos -->
     <style>
@@ -59,6 +59,12 @@
             transform: scale(1.05);
         }
 
+        .pack img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
         p {
             font-size: 18px;
             margin: 10px 0;
@@ -88,12 +94,14 @@
 
     <div class="container">
         <div class="pack">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-25%2010.02.58%20-%20A%20cinematic%20and%20highly%20detailed%20movie%20poster-style%20image%20depicting%20a%20futuristic%20high-tech%20dental%20clinic%20filled%20with%20numerous%20floating%20TV%20screens.%20The%20.webp" alt="Capa Pack 5 Vídeos">
             <h2>Pack de 5 Vídeos</h2>
             <p>R$ 100,00</p>
             <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
         </div>
 
         <div class="pack">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-25%2010.02.58%20-%20A%20cinematic%20and%20highly%20detailed%20movie%20poster-style%20image%20depicting%20a%20futuristic%20high-tech%20dental%20clinic%20filled%20with%20numerous%20floating%20TV%20screens.%20The%20.webp" alt="Capa Pack 10 Vídeos">
             <h2>Pack de 10 Vídeos</h2>
             <p>R$ 180,00</p>
             <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
