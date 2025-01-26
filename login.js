@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("login-form");
-    const logoutButton = document.getElementById("logout-button");
+    const logoutButton = document.getElementById("menu-logout");
     const userLoggedIn = localStorage.getItem("userLoggedIn") === "true";
 
     if (userLoggedIn) {

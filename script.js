@@ -8,6 +8,8 @@ async function iniciarPagamento(titulo, preco) {
             throw new Error("Erro ao obter a chave pública.");
         }
         const keyData = await keyResponse.json();
+        console.log("Chave Pública:", keyData.publicKey);
+
         const mp = new MercadoPago(keyData.publicKey, { locale: "pt-BR" });
 
         // Chama o backend para criar a preferência de pagamento
@@ -25,11 +27,13 @@ async function iniciarPagamento(titulo, preco) {
         }
 
         const data = await response.json();
-        if (!data.id) { // Antes verificava "preferenceId"
+        console.log("Resposta do Backend:", data);
+
+        if (!data.id) {
             throw new Error("Erro: ID de preferência não recebido.");
         }
-        console.log("ID da preferência:", data.id);
 
+        console.log("ID da preferência:", data.id);
 
         // Abre o Checkout Pro do Mercado Pago
         mp.checkout({
