@@ -25,11 +25,11 @@ async function iniciarPagamento(titulo, preco) {
         }
 
         const data = await response.json();
-        if (!data.id) { // Alterado de "preferenceId" para "id"
+        if (!data.id) { // Antes verificava "preferenceId"
             throw new Error("Erro: ID de preferência não recebido.");
         }
-
         console.log("ID da preferência:", data.id);
+
 
         // Abre o Checkout Pro do Mercado Pago
         mp.checkout({
