@@ -1,26 +1,31 @@
-// Inicializa o Mercado Pago com a Public Key
-const mp = new MercadoPago("APP_USR-7a366cc9-b73c-409f-a12a-c4f978c4b569", { locale: "pt-BR" });
-
 async function iniciarPagamento(titulo, preco) {
     console.log(`Iniciando pagamento: ${titulo} - R$ ${preco}`);
 
     try {
+        // Obtém a chave pública do backend
+        const keyResponse = await fetch("https://slaivideos-backend-1.onrender.com/api/payment/public-key");
+        if (!keyResponse.ok) {
+            throw new Error("Erro ao obter a chave pública.");
+        }
+        const keyData = await keyResponse.json();
+        const mp = new MercadoPago(keyData.publicKey, { locale: "pt-BR" });
+
         // Chama o backend para criar a preferência de pagamento
-        const response = await fetch("https://slaivideos-backend.onrender.com/api/payment/checkout", {
+        const response = await fetch("https://slaivideos-backend-1.onrender.com/api/payment/process", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title: titulo, price: preco })
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({ title: titulo, amount: preco }) // Garante que "amount" seja reconhecido
         });
 
         if (!response.ok) {
             throw new Error(`Erro na criação da preferência: ${response.status} - ${response.statusText}`);
         }
 
-        // Obtém a resposta em JSON
         const data = await response.json();
-
-        // Verifica se recebeu um ID válido
-        if (!data.id) {
+        if (!data.id) { // Alterado de "preferenceId" para "id"
             throw new Error("Erro: ID de preferência não recebido.");
         }
 
@@ -29,7 +34,7 @@ async function iniciarPagamento(titulo, preco) {
         // Abre o Checkout Pro do Mercado Pago
         mp.checkout({
             preference: { id: data.id },
-            autoOpen: true // Abre automaticamente o checkout
+            autoOpen: true
         });
 
     } catch (error) {
