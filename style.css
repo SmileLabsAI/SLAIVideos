@@ -48,6 +48,100 @@ body {
     color: #e50914;
 }
 
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #b3b3b3;
+    margin-top: 10px;
+}
+
+/* Catálogo de vídeos estilo Netflix */
+.catalogo {
+    padding: 20px 50px;
+}
+
+.catalogo h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Estiliza os vídeos para ficarem em rolagem horizontal */
+.videos-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #e50914 #141414;
+}
+
+/* Estiliza os pacotes */
+.pack {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out;
+    min-width: 250px;
+    text-align: center;
+}
+
+.pack:hover {
+    transform: scale(1.05);
+}
+
+.pack img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Botões */
+button {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #b20710;
+    transform: scale(1.05);
+}
+
+/* Botão Google */
+.social-login button {
+    font-size: 12px;
+}
+
+.social-login button img {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    position: relative;
+    left: -5px;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .navbar {
@@ -64,7 +158,7 @@ body {
     .hero p {
         font-size: 18px;
     }
-    .container {
+    .videos-container {
         flex-direction: column;
         align-items: center;
     }

@@ -8,7 +8,7 @@
     <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script defer src="script.js"></script>
-    <script defer src="login.js"></script> <!-- Adicionado para gerenciar login/logout -->
+    <script defer src="login.js"></script>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
@@ -34,22 +34,25 @@
     <p>Escolha seu pacote e tenha acesso a conteúdos exclusivos!</p>
 </div>
 
-<!-- Pacotes -->
-<div class="container">
-    <!-- Pack 1 -->
-    <div class="pack">
-        <img src="imagens/Capa Pack1.webp" alt="Capa Pack 5 Vídeos">
-        <h2>Pack de 5 Vídeos</h2>
-        <p>R$ 100,00</p>
-        <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
-    </div>
+<!-- Catálogo de Vídeos -->
+<div class="catalogo">
+    <h2>Catálogo de Vídeos</h2>
+    <div class="videos-container">
+        <!-- Pack 1 -->
+        <div class="pack">
+            <img src="imagens/Capa Pack1.webp" alt="Capa Pack 5 Vídeos">
+            <h3>Pack de 5 Vídeos</h3>
+            <p>R$ 100,00</p>
+            <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
+        </div>
 
-    <!-- Pack 2 -->
-    <div class="pack">
-        <img src="imagens/Capa Pack2.webp" alt="Capa Pack 10 Vídeos">
-        <h2>Pack de 10 Vídeos</h2>
-        <p>R$ 180,00</p>
-        <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
+        <!-- Pack 2 -->
+        <div class="pack">
+            <img src="imagens/Capa Pack2.webp" alt="Capa Pack 10 Vídeos">
+            <h3>Pack de 10 Vídeos</h3>
+            <p>R$ 180,00</p>
+            <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
+        </div>
     </div>
 </div>
 
