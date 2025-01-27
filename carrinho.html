@@ -3,65 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Carrinho - SLAI Videos</title>
-
+    <title>Carrinho de Compras</title>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-    <img src="imagens/LogoSemfundo.png" alt="SLAI Videos">
-    <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="membros.html">Área de Membros</a></li>
-        <li><a href="login.html" id="menu-login">Login</a></li>
-    </ul>
-</div>
+<h1>Seu Carrinho</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Produto</th>
+        <th>Preço Unitário</th>
+        <th>Quantidade</th>
+        <th>Subtotal</th>
+        <th>Remover</th>
+    </tr>
+    </thead>
+    <tbody id="itens-carrinho"></tbody>
+</table>
 
-<!-- Container do Carrinho -->
-<div class="carrinho-container">
-    <h1>Seu Carrinho</h1>
+<p>Total: <span id="total-carrinho">R$ 0,00</span></p>
 
-    <div class="carrinho-itens">
-        <table>
-            <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-                <th>Total</th>
-                <th>Ação</th>
-            </tr>
-            </thead>
-            <tbody id="itens-carrinho">
-            <!-- Itens do carrinho serão carregados aqui -->
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Resumo do Pedido -->
-    <div class="resumo-pedido">
-        <h2>Total da Compra</h2>
-        <h3><span id="total-carrinho">R$ 0,00</span></h3>
-
-        <button onclick="finalizarCompra()">💳 Checkout now</button>
-        <button onclick="voltarCatalogo()">⬅️ Back to shopping</button>
-    </div>
-</div>
-
-<!-- Rodapé -->
-<footer>
-    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
-</footer>
+<button onclick="finalizarCompra()">Finalizar Compra</button>
+<button onclick="window.location.href='index.html'">Continuar Comprando</button>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        carregarCarrinho();
-    });
+    document.addEventListener('DOMContentLoaded', carregarCarrinho);
 </script>
 
 </body>
