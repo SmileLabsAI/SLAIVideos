@@ -1,5 +1,6 @@
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
+// ✅ Adiciona um item ao carrinho e atualiza o contador
 function adicionarAoCarrinho(id, nome, preco) {
     preco = parseFloat(preco);
 
@@ -25,6 +26,7 @@ function adicionarAoCarrinho(id, nome, preco) {
     atualizarContadorCarrinho();
 }
 
+// ✅ Atualiza o contador do carrinho na navbar
 function atualizarContadorCarrinho() {
     const contadorElement = document.getElementById('contador-carrinho');
     if (contadorElement) {
@@ -32,6 +34,7 @@ function atualizarContadorCarrinho() {
     }
 }
 
+// ✅ Carrega os itens do carrinho na página "carrinho.html"
 function carregarCarrinho() {
     const tabela = document.getElementById('itens-carrinho');
     const totalElement = document.getElementById('total-carrinho');
@@ -62,6 +65,7 @@ function carregarCarrinho() {
     totalElement.textContent = `R$ ${total.toFixed(2)}`;
 }
 
+// ✅ Modifica a quantidade de itens no carrinho (aumenta/diminui)
 function alterarQuantidade(index, delta) {
     if (carrinho[index].quantidade + delta > 0) {
         carrinho[index].quantidade += delta;
@@ -72,16 +76,19 @@ function alterarQuantidade(index, delta) {
     carregarCarrinho();
 }
 
+// ✅ Remove um item do carrinho
 function removerItem(index) {
     carrinho.splice(index, 1);
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     carregarCarrinho();
 }
 
+// ✅ Voltar para o catálogo de vídeos
 function voltarCatalogo() {
     window.location.href = "index.html";
 }
 
+// ✅ Finalizar a compra e enviar para Mercado Pago
 async function finalizarCompra() {
     if (carrinho.length === 0) {
         alert('🛒 Carrinho vazio! Adicione itens antes de continuar.');
@@ -124,6 +131,7 @@ async function finalizarCompra() {
     }
 }
 
+// ✅ Inicializa o contador do carrinho ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     atualizarContadorCarrinho();
 });
