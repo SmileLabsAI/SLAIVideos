@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLAI Videos - Catálogo</title>
 
-    <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script defer src="script.js"></script>
     <script defer src="login.js"></script>
-
-    <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,7 +22,8 @@
         <li><a href="membros.html">Área de Membros</a></li>
         <li><a href="login.html" id="menu-login">Login</a></li>
         <li><button id="menu-logout" style="display: none;">Logout</button></li>
-        <li><a href="#" onclick="abrirCarrinho()">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
+        <li><a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
+
     </ul>
 </div>
 
@@ -54,17 +52,6 @@
             <p>R$ 180,00</p>
             <button onclick="adicionarAoCarrinho(2, 'Pack de 10 Vídeos', 180.00)">Comprar</button>
         </div>
-    </div>
-</div>
-
-<!-- Modal do Carrinho -->
-<div id="modal-carrinho" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="fecharCarrinho()">&times;</span>
-        <h2>Seu Carrinho</h2>
-        <ul id="lista-carrinho"></ul>
-        <p id="total-carrinho">Total: R$ 0,00</p>
-        <button onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
 </div>
 

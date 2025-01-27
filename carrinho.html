@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Carrinho - SLAI Videos</title>
+
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <img src="imagens/LogoSemfundo.png" alt="SLAI Videos">
+    <ul>
+
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="membros.html">Área de Membros</a></li>
+        <li><a href="login.html" id="menu-login">Login</a></li>
+        <li><button id="menu-logout" style="display: none;">Logout</button></li>
+    </ul>
+</div>
+
+<!-- Título -->
+<h1 style="text-align: center;">Seu Carrinho</h1>
+
+<!-- Tabela do Carrinho -->
+<div class="carrinho-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody id="itens-carrinho">
+        <!-- Itens do carrinho serão carregados aqui -->
+        </tbody>
+    </table>
+
+    <h2>Total do Carrinho: <span id="total-carrinho">R$ 0,00</span></h2>
+
+    <button onclick="voltarCatalogo()">🛒 Continuar Comprando</button>
+    <button onclick="finalizarCompra()">💳 Finalizar Compra</button>
+</div>
+
+<!-- Rodapé -->
+<footer>
+    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        carregarCarrinho();
+    });
+</script>
+
+</body>
+</html>

@@ -1,8 +1,13 @@
-// script.js - Adicionado suporte ao carrinho no modal
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-// Adiciona um item ao carrinho com 1 unidade
 function adicionarAoCarrinho(id, nome, preco) {
+    preco = parseFloat(preco);
+
+    if (!id || !nome || isNaN(preco)) {
+        console.error("Erro ao adicionar ao carrinho: Parâmetros inválidos", { id, nome, preco });
+        return;
+    }
+
     const itemExistente = carrinho.find(item => item.id === id);
 
     if (itemExistente) {
@@ -11,51 +16,72 @@ function adicionarAoCarrinho(id, nome, preco) {
         carrinho.push({
             id: id,
             nome: nome,
-            preco: parseFloat(preco),
+            preco: preco,
             quantidade: 1
         });
     }
 
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     atualizarContadorCarrinho();
-    alert(`✅ "${nome}" foi adicionado ao carrinho!`);
 }
 
-// Atualiza o contador do carrinho na interface
 function atualizarContadorCarrinho() {
     const contadorElement = document.getElementById('contador-carrinho');
-
     if (contadorElement) {
         contadorElement.textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0).toString();
     }
 }
 
-// Abre o modal do carrinho
-function abrirCarrinho() {
-    const modal = document.getElementById('modal-carrinho');
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
+function carregarCarrinho() {
+    const tabela = document.getElementById('itens-carrinho');
+    const totalElement = document.getElementById('total-carrinho');
+    if (!tabela || !totalElement) {
+        console.error("Erro: Elementos do carrinho não encontrados no DOM");
+        return;
+    }
 
-    listaCarrinho.innerHTML = "";
+    tabela.innerHTML = "";
     let total = 0;
 
-    carrinho.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
-        listaCarrinho.appendChild(li);
+    carrinho.forEach((item, index) => {
+        const row = tabela.insertRow();
+        row.innerHTML = `
+            <td>${item.nome}</td>
+            <td>R$ ${item.preco.toFixed(2)}</td>
+            <td>
+                <button onclick="alterarQuantidade(${index}, -1)">➖</button>
+                ${item.quantidade}
+                <button onclick="alterarQuantidade(${index}, 1)">➕</button>
+            </td>
+            <td>R$ ${(item.preco * item.quantidade).toFixed(2)}</td>
+            <td><button onclick="removerItem(${index})">❌ Remover</button></td>
+        `;
         total += item.preco * item.quantidade;
     });
 
-    totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
-    modal.style.display = "block";
+    totalElement.textContent = `R$ ${total.toFixed(2)}`;
 }
 
-// Fecha o modal do carrinho
-function fecharCarrinho() {
-    document.getElementById('modal-carrinho').style.display = "none";
+function alterarQuantidade(index, delta) {
+    if (carrinho[index].quantidade + delta > 0) {
+        carrinho[index].quantidade += delta;
+    } else {
+        carrinho.splice(index, 1);
+    }
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    carregarCarrinho();
 }
 
-// Envia os itens do carrinho ao backend para processar o pagamento
+function removerItem(index) {
+    carrinho.splice(index, 1);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    carregarCarrinho();
+}
+
+function voltarCatalogo() {
+    window.location.href = "index.html";
+}
+
 async function finalizarCompra() {
     if (carrinho.length === 0) {
         alert('🛒 Carrinho vazio! Adicione itens antes de continuar.');
@@ -79,8 +105,11 @@ async function finalizarCompra() {
         });
 
         const data = await response.json();
-        if (!data.init_point) {
-            alert("Erro ao processar pagamento.");
+        console.log("✅ Resposta do Backend:", data);
+
+        if (!response.ok || !data.init_point) {
+            console.error("⚠️ Erro: 'init_point' não encontrado na resposta da API.", data);
+            alert(`Erro ao processar pagamento. O backend não retornou a URL correta.`);
             return;
         }
 
@@ -90,11 +119,11 @@ async function finalizarCompra() {
         window.location.href = data.init_point;
 
     } catch (error) {
+        console.error("❌ Erro no pagamento:", error.message);
         alert(`Erro ao processar pagamento: ${error.message}`);
     }
 }
 
-// Inicializa o contador do carrinho ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     atualizarContadorCarrinho();
 });
