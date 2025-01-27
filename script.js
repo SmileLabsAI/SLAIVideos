@@ -1,5 +1,7 @@
+// Recupera o carrinho do localStorage ou inicia um vazio
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
+// Adiciona um item ao carrinho e atualiza o localStorage
 function adicionarAoCarrinho(id, nome, preco) {
     preco = parseFloat(preco);
     if (!id || !nome || isNaN(preco)) {
@@ -53,6 +55,11 @@ function carregarCarrinho() {
 
 // Remove um item do carrinho e atualiza a interface
 function removerDoCarrinho(index) {
+    if (index < 0 || index >= carrinho.length) {
+        console.error("Índice inválido ao remover item do carrinho.");
+        return;
+    }
+
     carrinho.splice(index, 1);
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     carregarCarrinho();
@@ -66,16 +73,29 @@ async function finalizarCompra() {
         return;
     }
 
+    const apiUrl = "https://slaivideos-backend-1.onrender.com/api/payment/process";
+
     try {
-        const response = await fetch("https://slaivideos-backend-1.onrender.com/api/payment/process", {
+        const response = await fetch(apiUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify({ items: carrinho.map(item => ({ title: item.nome, unit_price: item.preco, quantity: item.quantidade })) })
+            body: JSON.stringify({
+                items: carrinho.map(item => ({
+                    title: item.nome,
+                    unit_price: item.preco,
+                    quantity: item.quantidade
+                }))
+            })
         });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Erro ao processar pagamento: ${errorText}`);
+        }
 
         const data = await response.json();
 
-        if (!response.ok || !data.init_point) {
+        if (!data.init_point) {
             alert("Erro ao processar pagamento.");
             return;
         }
@@ -83,6 +103,7 @@ async function finalizarCompra() {
         localStorage.removeItem('carrinho');
         window.location.href = data.init_point;
     } catch (error) {
+        console.error("Erro ao processar pagamento:", error);
         alert(`Erro ao processar pagamento: ${error.message}`);
     }
 }
