@@ -10,8 +10,6 @@ async function iniciarPagamento(titulo, preco) {
         const keyData = await keyResponse.json();
         console.log("Chave Pública:", keyData.publicKey);
 
-        const mp = new MercadoPago(keyData.publicKey, { locale: "pt-BR" });
-
         // Chama o backend para criar a preferência de pagamento
         const response = await fetch("https://slaivideos-backend-1.onrender.com/api/payment/process", {
             method: "POST",
@@ -19,7 +17,7 @@ async function iniciarPagamento(titulo, preco) {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({ title: titulo, amount: preco }) // Garante que "amount" seja reconhecido
+            body: JSON.stringify({ title: titulo, amount: preco })
         });
 
         if (!response.ok) {
@@ -29,17 +27,14 @@ async function iniciarPagamento(titulo, preco) {
         const data = await response.json();
         console.log("Resposta do Backend:", data);
 
-        if (!data.id) {
-            throw new Error("Erro: ID de preferência não recebido.");
+        if (!data.init_point) {
+            throw new Error("Erro: Link de pagamento não recebido.");
         }
 
-        console.log("ID da preferência:", data.id);
+        console.log("Redirecionando para:", data.init_point);
 
-        // Abre o Checkout Pro do Mercado Pago
-        mp.checkout({
-            preference: { id: data.id },
-            autoOpen: true
-        });
+        // ✅ Abre o checkout do Mercado Pago em uma nova aba para evitar bloqueios de cookies
+        window.location.href = data.init_point;
 
     } catch (error) {
         console.error("Erro ao iniciar pagamento:", error);
