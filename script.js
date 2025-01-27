@@ -1,47 +1,82 @@
-async function iniciarPagamento(titulo, preco) {
-    console.log(`Iniciando pagamento: ${titulo} - R$ ${preco}`);
+// script.js - Correções aplicadas
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+// Função para adicionar ao carrinho
+function adicionarAoCarrinho(id, nome, preco) {
+    const itemExistente = carrinho.find(item => item.id === id);
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({
+            id: id,
+            nome: nome,
+            preco: parseFloat(preco),
+            quantidade: 1
+        });
+    }
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    atualizarContadorCarrinho();
+}
+
+// Atualiza o contador do carrinho
+function atualizarContadorCarrinho() {
+    document.getElementById('contador-carrinho').textContent =
+        carrinho.reduce((acc, item) => acc + item.quantidade, 0).toString();
+}
+
+// Função de pagamento revisada
+async function iniciarPagamento() {
+    if (carrinho.length === 0) {
+        alert('Carrinho vazio!');
+        return;
+    }
 
     try {
-        // Obtém a chave pública do backend
-        const keyResponse = await fetch("https://slaivideos-backend-1.onrender.com/api/payment/public-key");
-        if (!keyResponse.ok) {
-            throw new Error("Erro ao obter a chave pública.");
-        }
-        const keyData = await keyResponse.json();
-        console.log("Chave Pública:", keyData.publicKey);
-
-        // Chama o backend para criar a preferência de pagamento
         const response = await fetch("https://slaivideos-backend-1.onrender.com/api/payment/process", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({ title: titulo, amount: preco })
+            body: JSON.stringify({
+                items: carrinho.map(item => ({
+                    title: item.nome,
+                    unit_price: item.preco,
+                    quantity: item.quantidade
+                }))
+            })
         });
 
         if (!response.ok) {
-            throw new Error(`Erro na criação da preferência: ${response.status} - ${response.statusText}`);
+            const errorData = await response.json();
+            throw new Error(errorData.error || `Erro HTTP: ${response.status}`);
         }
 
         const data = await response.json();
-        console.log("Resposta do Backend:", data);
 
         if (!data.init_point) {
-            throw new Error("Erro: Link de pagamento não recebido.");
+            console.error("Erro: init_point não encontrado na resposta da API.");
+            return alert("Erro ao processar pagamento. Tente novamente mais tarde.");
         }
 
-        console.log("Redirecionando para:", data.init_point);
+        // Limpa o carrinho após o pagamento
+        localStorage.removeItem('carrinho');
+        carrinho = [];
+        atualizarContadorCarrinho();
 
-        // ✅ Abre o checkout do Mercado Pago em uma nova aba para evitar bloqueios de cookies
-        window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${data.id}`;
-        ;
+        // Redirecionamento correto para o Mercado Pago
+        window.location.href = data.init_point;
 
     } catch (error) {
-        console.error("Erro ao iniciar pagamento:", error);
-        alert("Erro ao processar o pagamento. Tente novamente.");
+        console.error("Erro no pagamento:", error.message);
+        alert(`Erro ao processar pagamento: ${error.message}`);
     }
 }
 
-// Garante que a função seja acessível no HTML
-window.iniciarPagamento = iniciarPagamento;
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    atualizarContadorCarrinho();
+    window.iniciarPagamento = iniciarPagamento;
+});
