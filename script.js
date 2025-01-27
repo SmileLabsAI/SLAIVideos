@@ -1,4 +1,4 @@
-// script.js - Atualizado para adicionar ao carrinho antes de pagar
+// script.js - Adicionado suporte ao carrinho no modal
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
 // Adiciona um item ao carrinho com 1 unidade
@@ -6,13 +6,13 @@ function adicionarAoCarrinho(id, nome, preco) {
     const itemExistente = carrinho.find(item => item.id === id);
 
     if (itemExistente) {
-        itemExistente.quantidade += 1;  // ✅ Aumenta a quantidade se já estiver no carrinho
+        itemExistente.quantidade += 1;
     } else {
         carrinho.push({
             id: id,
             nome: nome,
             preco: parseFloat(preco),
-            quantidade: 1  // ✅ Sempre começa com 1 unidade
+            quantidade: 1
         });
     }
 
@@ -28,6 +28,31 @@ function atualizarContadorCarrinho() {
     if (contadorElement) {
         contadorElement.textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0).toString();
     }
+}
+
+// Abre o modal do carrinho
+function abrirCarrinho() {
+    const modal = document.getElementById('modal-carrinho');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinho = document.getElementById('total-carrinho');
+
+    listaCarrinho.innerHTML = "";
+    let total = 0;
+
+    carrinho.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        listaCarrinho.appendChild(li);
+        total += item.preco * item.quantidade;
+    });
+
+    totalCarrinho.textContent = `Total: R$ ${total.toFixed(2)}`;
+    modal.style.display = "block";
+}
+
+// Fecha o modal do carrinho
+function fecharCarrinho() {
+    document.getElementById('modal-carrinho').style.display = "none";
 }
 
 // Envia os itens do carrinho ao backend para processar o pagamento
@@ -54,29 +79,17 @@ async function finalizarCompra() {
         });
 
         const data = await response.json();
-        console.log("✅ Resposta do Backend:", data); // Debug
-
-        if (!response.ok) {
-            alert(`Erro no pagamento: ${data.error || `HTTP ${response.status}`}`);
-            return;
-        }
-
         if (!data.init_point) {
-            console.error("⚠️ Erro: 'init_point' não encontrado na resposta da API.", data);
-            alert("Erro ao processar pagamento. O backend não retornou a URL do Mercado Pago.");
+            alert("Erro ao processar pagamento.");
             return;
         }
 
-        // ✅ Limpa o carrinho após iniciar o pagamento
         localStorage.removeItem('carrinho');
         carrinho = [];
         atualizarContadorCarrinho();
-
-        // ✅ Redireciona para o Mercado Pago
         window.location.href = data.init_point;
 
     } catch (error) {
-        console.error("❌ Erro no pagamento:", error.message);
         alert(`Erro ao processar pagamento: ${error.message}`);
     }
 }
@@ -84,5 +97,4 @@ async function finalizarCompra() {
 // Inicializa o contador do carrinho ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     atualizarContadorCarrinho();
-    window.finalizarCompra = finalizarCompra;
 });

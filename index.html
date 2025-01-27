@@ -25,7 +25,7 @@
         <li><a href="membros.html">Área de Membros</a></li>
         <li><a href="login.html" id="menu-login">Login</a></li>
         <li><button id="menu-logout" style="display: none;">Logout</button></li>
-        <li><a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
+        <li><a href="#" onclick="abrirCarrinho()">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
     </ul>
 </div>
 
@@ -57,9 +57,15 @@
     </div>
 </div>
 
-<!-- Botão de Finalizar Compra -->
-<div class="finalizar-compra-container">
-    <button onclick="finalizarCompra()">Finalizar Compra</button>
+<!-- Modal do Carrinho -->
+<div id="modal-carrinho" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharCarrinho()">&times;</span>
+        <h2>Seu Carrinho</h2>
+        <ul id="lista-carrinho"></ul>
+        <p id="total-carrinho">Total: R$ 0,00</p>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
 </div>
 
 <!-- Rodapé -->
