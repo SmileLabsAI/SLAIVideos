@@ -34,7 +34,8 @@ async function iniciarPagamento(titulo, preco) {
         console.log("Redirecionando para:", data.init_point);
 
         // ✅ Abre o checkout do Mercado Pago em uma nova aba para evitar bloqueios de cookies
-        window.location.href = data.init_point;
+        window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${data.id}`;
+        ;
 
     } catch (error) {
         console.error("Erro ao iniciar pagamento:", error);
