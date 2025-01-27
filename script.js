@@ -1,7 +1,7 @@
-// script.js - Correções aplicadas
+// script.js - Correções finais
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-// Função para adicionar ao carrinho
+// Função para adicionar ao carrinho (remova se não estiver sendo usada no HTML)
 function adicionarAoCarrinho(id, nome, preco) {
     const itemExistente = carrinho.find(item => item.id === id);
 
@@ -22,14 +22,19 @@ function adicionarAoCarrinho(id, nome, preco) {
 
 // Atualiza o contador do carrinho
 function atualizarContadorCarrinho() {
-    document.getElementById('contador-carrinho').textContent =
-        carrinho.reduce((acc, item) => acc + item.quantidade, 0).toString();
+    const contadorElement = document.getElementById('contador-carrinho');
+
+    if (contadorElement) {
+        contadorElement.textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0).toString();
+    } else {
+        console.warn("⚠️ Elemento '#contador-carrinho' não encontrado no DOM.");
+    }
 }
 
 // Função de pagamento revisada
 async function iniciarPagamento() {
     if (carrinho.length === 0) {
-        alert('Carrinho vazio!');
+        alert('🛒 Carrinho vazio! Adicione itens antes de continuar.');
         return;
     }
 
@@ -49,16 +54,19 @@ async function iniciarPagamento() {
             })
         });
 
+        const data = await response.json();
+        console.log("✅ Resposta do Backend:", data); // 🔥 Mostra a resposta da API para debug
+
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || `Erro HTTP: ${response.status}`);
+            alert(`Erro no pagamento: ${data.error || `HTTP ${response.status}`}`);
+            return;
         }
 
-        const data = await response.json();
-
+        // 🔥 Verifica se 'init_point' realmente existe antes de tentar usar
         if (!data.init_point) {
-            console.error("Erro: init_point não encontrado na resposta da API.");
-            return alert("Erro ao processar pagamento. Tente novamente mais tarde.");
+            console.error("⚠️ Erro: 'init_point' não encontrado na resposta da API.", data);
+            alert("Erro ao processar pagamento. O backend não retornou a URL do Mercado Pago.");
+            return;
         }
 
         // Limpa o carrinho após o pagamento
@@ -66,16 +74,16 @@ async function iniciarPagamento() {
         carrinho = [];
         atualizarContadorCarrinho();
 
-        // Redirecionamento correto para o Mercado Pago
+        // ✅ Redirecionamento correto para o Mercado Pago
         window.location.href = data.init_point;
 
     } catch (error) {
-        console.error("Erro no pagamento:", error.message);
+        console.error("❌ Erro no pagamento:", error.message);
         alert(`Erro ao processar pagamento: ${error.message}`);
     }
 }
 
-// Inicialização
+// Inicialização do script
 document.addEventListener('DOMContentLoaded', () => {
     atualizarContadorCarrinho();
     window.iniciarPagamento = iniciarPagamento;
