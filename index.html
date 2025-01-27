@@ -25,6 +25,7 @@
         <li><a href="membros.html">Área de Membros</a></li>
         <li><a href="login.html" id="menu-login">Login</a></li>
         <li><button id="menu-logout" style="display: none;">Logout</button></li>
+        <li><a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
     </ul>
 </div>
 
@@ -43,7 +44,7 @@
             <img src="imagens/Capa Pack1.webp" alt="Capa Pack 5 Vídeos">
             <h3>Pack de 5 Vídeos</h3>
             <p>R$ 100,00</p>
-            <button onclick="iniciarPagamento('Pack 5 Vídeos', 100.00)">Comprar</button>
+            <button onclick="adicionarAoCarrinho(1, 'Pack de 5 Vídeos', 100.00)">Comprar</button>
         </div>
 
         <!-- Pack 2 -->
@@ -51,9 +52,14 @@
             <img src="imagens/Capa Pack2.webp" alt="Capa Pack 10 Vídeos">
             <h3>Pack de 10 Vídeos</h3>
             <p>R$ 180,00</p>
-            <button onclick="iniciarPagamento('Pack 10 Vídeos', 180.00)">Comprar</button>
+            <button onclick="adicionarAoCarrinho(2, 'Pack de 10 Vídeos', 180.00)">Comprar</button>
         </div>
     </div>
+</div>
+
+<!-- Botão de Finalizar Compra -->
+<div class="finalizar-compra-container">
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
 </div>
 
 <!-- Rodapé -->
