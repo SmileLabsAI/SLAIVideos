@@ -1,6 +1,11 @@
 // Recupera o carrinho do localStorage ou inicia um vazio
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
+// Instancia o Mercado Pago com a Public Key
+const mp = new MercadoPago('SUA_PUBLIC_KEY', {
+    locale: 'pt-BR'
+});
+
 // Adiciona um item ao carrinho e atualiza o localStorage
 function adicionarAoCarrinho(id, nome, preco) {
     preco = parseFloat(preco);
@@ -31,26 +36,38 @@ function atualizarContadorCarrinho() {
 // Carrega os itens do carrinho na página carrinho.html
 function carregarCarrinho() {
     const carrinhoContainer = document.getElementById('itens-carrinho');
+    const totalCarrinho = document.getElementById('total-carrinho');
+
     if (!carrinhoContainer) {
         console.error("Elemento 'itens-carrinho' não encontrado no carrinho.html");
         return;
     }
 
     carrinhoContainer.innerHTML = "";
+    let total = 0;
 
     if (carrinho.length === 0) {
-        carrinhoContainer.innerHTML = "<p>🛒 Seu carrinho está vazio.</p>";
+        carrinhoContainer.innerHTML = "<tr><td colspan='5'>🛒 Seu carrinho está vazio.</td></tr>";
+        totalCarrinho.textContent = "R$ 0,00";
         return;
     }
 
     carrinho.forEach((item, index) => {
-        const itemElement = document.createElement("div");
+        const subtotal = item.preco * item.quantidade;
+        total += subtotal;
+
+        const itemElement = document.createElement("tr");
         itemElement.innerHTML = `
-            <p><strong>${item.nome}</strong> - R$ ${item.preco.toFixed(2)} x ${item.quantidade}</p>
-            <button onclick="removerDoCarrinho(${index})">🗑 Remover</button>
+            <td>${item.nome}</td>
+            <td>R$ ${item.preco.toFixed(2)}</td>
+            <td>${item.quantidade}</td>
+            <td>R$ ${subtotal.toFixed(2)}</td>
+            <td><button onclick="removerDoCarrinho(${index})">🗑</button></td>
         `;
         carrinhoContainer.appendChild(itemElement);
     });
+
+    totalCarrinho.textContent = `R$ ${total.toFixed(2)}`;
 }
 
 // Remove um item do carrinho e atualiza a interface
@@ -83,7 +100,8 @@ async function finalizarCompra() {
                 items: carrinho.map(item => ({
                     title: item.nome,
                     unit_price: item.preco,
-                    quantity: item.quantidade
+                    quantity: item.quantidade,
+                    currency_id: "BRL"
                 }))
             })
         });
@@ -112,7 +130,6 @@ async function finalizarCompra() {
 document.addEventListener('DOMContentLoaded', () => {
     atualizarContadorCarrinho();
 
-    // Carregar os itens do carrinho apenas na página carrinho.html
     if (window.location.pathname.includes("carrinho.html")) {
         carregarCarrinho();
     }

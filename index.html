@@ -7,12 +7,10 @@
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script defer src="script.js"></script>
-    <script defer src="login.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Navbar -->
 <div class="navbar">
     <img src="imagens/LogoSemfundo.png" alt="SLAI Videos">
     <ul>
@@ -20,24 +18,13 @@
         <li><a href="sobre.html">Sobre</a></li>
         <li><a href="contato.html">Contato</a></li>
         <li><a href="membros.html">Área de Membros</a></li>
-        <li><a href="login.html" id="menu-login">Login</a></li>
-        <li><button id="menu-logout" style="display: none;">Logout</button></li>
         <li><a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
-
     </ul>
 </div>
 
-<!-- Hero Section -->
-<div class="hero">
-    <h1>Assista aos melhores vídeos Odontológicos</h1>
-    <p>Escolha seu pacote e tenha acesso a conteúdos exclusivos!</p>
-</div>
-
-<!-- Catálogo de Vídeos -->
 <div class="catalogo">
     <h2>Catálogo de Packs</h2>
     <div class="videos-container">
-        <!-- Pack 1 -->
         <div class="pack">
             <img src="imagens/Capa Pack1.webp" alt="Capa Pack 5 Vídeos">
             <h3>Pack de 5 Vídeos</h3>
@@ -45,7 +32,6 @@
             <button onclick="adicionarAoCarrinho(1, 'Pack de 5 Vídeos', 100.00)">Comprar</button>
         </div>
 
-        <!-- Pack 2 -->
         <div class="pack">
             <img src="imagens/Capa Pack2.webp" alt="Capa Pack 10 Vídeos">
             <h3>Pack de 10 Vídeos</h3>
@@ -54,29 +40,6 @@
         </div>
     </div>
 </div>
-
-<!-- Rodapé -->
-<footer>
-    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
-</footer>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
-        const loginLink = document.getElementById("menu-login");
-        const logoutButton = document.getElementById("menu-logout");
-
-        if (isLoggedIn) {
-            loginLink.style.display = "none";
-            logoutButton.style.display = "inline-block";
-
-            logoutButton.addEventListener("click", () => {
-                localStorage.removeItem("userLoggedIn");
-                window.location.href = "index.html";
-            });
-        }
-    });
-</script>
 
 </body>
 </html>
