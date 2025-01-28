@@ -1,40 +1,112 @@
-/* Ajustando espaçamento para alinhar os packs ao logo */
-.catalog {
-    padding: 50px 80px; /* Aumentando o espaçamento lateral */
-    text-align: center;
-    margin-top: 40px; /* Criando espaço entre a navbar e os packs */
+/* =========================== */
+/* RESET E CONFIGURAÇÃO GERAL */
+/* =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Mantendo o estilo Netflix nos packs */
+body {
+    background-color: #141414;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================== */
+/* NAVBAR (ESTILO NETFLIX) */
+/* =========================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-left img {
+    height: 50px;
+}
+
+.navbar-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover {
+    color: #e50914;
+}
+
+/* =========================== */
+/* CATÁLOGO DE VÍDEOS */
+/* =========================== */
+.catalog {
+    padding: 80px 100px 50px; /* Margem maior no topo */
+    text-align: center;
+}
+
+/* Título alinhado ao logo */
+.catalog h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* =========================== */
+/* PACOTES DE VÍDEOS */
+/* =========================== */
 .videos-container {
     display: flex;
-    justify-content: center; /* Centralizando os packs */
-    gap: 30px; /* Criando espaçamento entre os packs */
+    justify-content: center;
+    gap: 40px; /* Espaçamento entre os pacotes */
+    margin-top: 30px; /* Espaçamento da navbar */
     flex-wrap: wrap;
 }
 
-/* Ajustando tamanho do título para não ficar gigante */
-.catalog h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-/* Estilo dos pacotes de vídeos */
+/* Estilo dos pacotes */
 .pack {
     background-color: #1f1f1f;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
     text-align: center;
+    max-width: 250px;
     transition: transform 0.3s ease-in-out;
-    max-width: 240px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 .pack:hover {
     transform: scale(1.05);
 }
 
+/* Ajuste das imagens */
 .pack img {
     width: 100%;
     height: auto;
@@ -42,23 +114,41 @@
     margin-bottom: 10px;
 }
 
-/* Ajustando botões para ficarem mais equilibrados */
+/* Ajuste do botão */
 .pack button {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
+    background-color: #e50914;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
 }
 
-/* Responsividade */
+.pack button:hover {
+    background-color: #b20710;
+    transform: scale(1.05);
+}
+
+/* =========================== */
+/* RESPONSIVIDADE */
+/* =========================== */
 @media (max-width: 768px) {
     .catalog {
-        padding: 30px;
+        padding: 60px 30px;
         margin-top: 20px;
     }
 
     .videos-container {
         flex-direction: column;
         align-items: center;
+    }
+
+    .pack {
+        width: 90%;
+        max-width: 280px;
     }
 }
