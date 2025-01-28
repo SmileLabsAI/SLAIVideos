@@ -152,7 +152,7 @@ button:hover {
 }
 
 /* ================================ */
-/* ESTILOS PARA O NOVO CARRINHO */
+/* CARRINHO - ESTILO FARFETCH */
 /* ================================ */
 
 .carrinho-container {
@@ -174,11 +174,11 @@ button:hover {
 .tabela-carrinho th,
 .tabela-carrinho td {
     border-bottom: 1px solid #444;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
 }
 
-/* 🛒 Ajuste da imagem do produto no lado esquerdo */
+/* 🛒 IMAGEM DO PACK NO LADO ESQUERDO */
 .tabela-carrinho td:first-child {
     display: flex;
     align-items: center;
@@ -187,45 +187,45 @@ button:hover {
 }
 
 .tabela-carrinho td img {
-    width: 50px;
+    width: 60px;
     height: auto;
     border-radius: 5px;
 }
 
-/* 🛒 Caixa de quantidade reduzida */
+/* 🛒 QUANTIDADE - BOTÕES MENORES */
 .quantidade-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 3px;
 }
 
 .quantidade-container input {
-    width: 40px;
+    width: 35px;
     text-align: center;
-    padding: 5px;
+    padding: 3px;
     border: 1px solid #444;
-    border-radius: 5px;
+    border-radius: 3px;
     background: #222;
     color: white;
 }
 
-/* 🛒 Botões menores */
+/* 🛒 Botões de + e - bem pequenos */
 .quantidade-container button {
-    width: 25px;
-    height: 25px;
-    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
     padding: 0;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 /* 🛒 Botão remover reduzido */
 .tabela-carrinho td .btn-remover {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
+    width: 25px;
+    height: 25px;
+    font-size: 10px;
     padding: 0;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 /* 🛒 Resumo do carrinho */
@@ -275,7 +275,7 @@ button:hover {
     .tabela-carrinho th,
     .tabela-carrinho td {
         font-size: 14px;
-        padding: 8px;
+        padding: 6px;
     }
 
     .tabela-carrinho td img {
@@ -283,19 +283,19 @@ button:hover {
     }
 
     .quantidade-container input {
-        width: 30px;
+        width: 25px;
     }
 
     .quantidade-container button {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
+        width: 15px;
+        height: 15px;
+        font-size: 8px;
     }
 
     .tabela-carrinho td .btn-remover {
-        width: 25px;
-        height: 25px;
-        font-size: 10px;
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
     }
 
     .resumo-carrinho {
