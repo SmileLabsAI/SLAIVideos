@@ -5,6 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLAI Videos - Catalog</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .catalog {
+            background-color: #121212; /* Fundo preto estilo Netflix */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .videos-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .pack {
+            width: 300px;
+            text-align: center;
+            padding: 10px;
+            background: #1e1e1e; /* Cinza escuro */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .pack img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .pack h3 {
+            margin: 10px 0;
+            color: white;
+        }
+
+        .pack p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff6600; /* Destaque no preço */
+            margin-bottom: 10px;
+        }
+
+        .pack button {
+            background-color: #E50914; /* Vermelho Netflix */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .pack button:hover {
+            background-color: #B20710; /* Tom mais escuro ao passar o mouse */
+        }
+    </style>
 </head>
 <body>
 
