@@ -6,102 +6,149 @@
     <title>SLAI Videos - Catalog</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos gerais */
-        body {
+        /* =========================== */
+        /* RESET E CONFIGURAÇÃO GERAL */
+        /* =========================== */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
-        /* Estilos da barra de navegação */
+        body {
+            background-color: #141414;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* =========================== */
+        /* NAVBAR (ESTILO NETFLIX) */
+        /* =========================== */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
+            padding: 20px 80px;
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .navbar-left img {
             height: 50px;
         }
 
-        .navbar-right {
-            display: flex;
-            align-items: center;
+        .navbar-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
         }
 
-        .navbar-right ul {
-            display: flex;
+        .navbar ul {
             list-style: none;
-            margin: 0;
-            padding: 0;
+            display: flex;
+            gap: 20px;
         }
 
-        .navbar-right li {
-            margin: 0 10px;
+        .navbar ul li {
+            display: inline;
         }
 
-        .navbar-right a {
-            color: #fff;
+        .navbar ul li a {
+            color: white;
             text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease-in-out;
         }
 
-        /* Estilos do ícone do menu hambúrguer */
-        .menu-icon {
+        .navbar ul li a:hover {
+            color: #e50914;
+        }
+
+        /* =========================== */
+        /* MENU HAMBÚRGUER RESPONSIVO */
+        /* =========================== */
+        .hamburger {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .mobile-menu {
             display: none;
             flex-direction: column;
-            cursor: pointer;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            width: 250px;
+            text-align: left;
+            border-radius: 5px;
+            padding: 15px 0;
+            z-index: 999;
         }
 
-        .menu-icon span {
-            background-color: #fff;
-            height: 3px;
-            width: 25px;
-            margin: 4px 0;
-            transition: 0.4s;
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            font-size: 18px;
+            transition: background 0.3s ease-in-out;
         }
 
-        /* Estilos para dispositivos móveis */
+        .mobile-menu a:hover {
+            background-color: #e50914;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
         @media (max-width: 768px) {
-            .navbar-right ul {
+            .navbar ul {
                 display: none;
-                position: fixed;
-                top: 0;
-                right: 0;
-                height: 100%;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                z-index: 1;
             }
 
-            .navbar-right ul.active {
-                display: flex;
+            .hamburger {
+                display: block;
             }
+        }
 
-            .navbar-right li {
-                margin: 20px 0;
-            }
+        /* =========================== */
+        /* ESTILO PARA IMAGENS PACK 3X2 */
+        /* =========================== */
+        .pack img {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-            .menu-icon {
-                display: flex;
-            }
+        /* =========================== */
+        /* RODAPÉ */
+        /* =========================== */
+        .footer {
+            background-color: rgba(0, 0, 0, 1);
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
 
-            /* Animação do ícone do menu */
-            .menu-icon.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-
-            .menu-icon.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-icon.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
+        .footer p {
+            color: white;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -111,28 +158,29 @@
 <div class="navbar">
     <div class="navbar-left">
         <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
+        <span class="navbar-title">SLAI Videos</span>
     </div>
-    <div class="navbar-right">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="members.html">Members Area</a></li>
-        </ul>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="members.html">Members Area</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- Menu Mobile -->
+<div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="members.html">Members Area</a>
 </div>
 
 <!-- Video Packs Catalog -->
 <div class="catalog">
     <h2>Video Packs</h2>
     <div class="videos-container">
-
-        <!-- Pack 1 -->
         <div class="pack">
             <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack1.webp" alt="Pack of 5 Videos">
             <h3>Pack of 5 Videos</h3>
@@ -141,8 +189,6 @@
                 <button>Buy Now</button>
             </a>
         </div>
-
-        <!-- Pack 2 -->
         <div class="pack">
             <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack2.webp" alt="Pack of 10 Videos">
             <h3>Pack of 10 Videos</h3>
@@ -154,12 +200,15 @@
     </div>
 </div>
 
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2025 SLAI Videos. Todos os direitos reservados.</p>
+</div>
+
 <script>
     function toggleMenu() {
-        const menu = document.querySelector('.navbar-right ul');
-        const menuIcon = document.querySelector('.menu-icon');
-        menu.classList.toggle('active');
-        menuIcon.classList.toggle('active');
+        const menu = document.querySelector('.mobile-menu');
+        menu.classList.toggle('open');
     }
 </script>
 
