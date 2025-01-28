@@ -1,37 +1,64 @@
-/* Estilo da Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.navbar-left img {
-    height: 50px;
-}
-
-.navbar-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-}
-
-/* Espaçamento entre os pacotes */
+/* Ajustando espaçamento para alinhar os packs ao logo */
 .catalog {
-    padding: 50px;
+    padding: 50px 80px; /* Aumentando o espaçamento lateral */
     text-align: center;
+    margin-top: 40px; /* Criando espaço entre a navbar e os packs */
 }
 
+/* Mantendo o estilo Netflix nos packs */
 .videos-container {
     display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+    justify-content: center; /* Centralizando os packs */
+    gap: 30px; /* Criando espaçamento entre os packs */
+    flex-wrap: wrap;
+}
+
+/* Ajustando tamanho do título para não ficar gigante */
+.catalog h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Estilo dos pacotes de vídeos */
+.pack {
+    background-color: #1f1f1f;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    max-width: 240px;
+}
+
+.pack:hover {
+    transform: scale(1.05);
+}
+
+.pack img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Ajustando botões para ficarem mais equilibrados */
+.pack button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .catalog {
+        padding: 30px;
+        margin-top: 20px;
+    }
+
+    .videos-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }
