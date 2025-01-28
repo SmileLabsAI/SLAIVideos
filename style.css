@@ -17,16 +17,17 @@ body {
 }
 
 /* =========================== */
-/* NAVBAR (DESKTOP) */
+/* NAVBAR (NORMAL E MOBILE) */
 /* =========================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 80px;
-    background-color: #1e1e1e;
+    padding: 20px 50px;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
+/* Esquerda da Navbar */
 .navbar-left {
     display: flex;
     align-items: center;
@@ -43,6 +44,7 @@ body {
     color: white;
 }
 
+/* Links da Navbar (Desktop) */
 .nav-links {
     list-style: none;
     display: flex;
@@ -67,35 +69,38 @@ body {
 }
 
 /* =========================== */
-/* MENU HAMBÚRGUER (MOBILE) */
+/* BOTÃO HAMBÚRGUER (MOBILE) */
 /* =========================== */
 .hamburger {
-    display: none;
+    display: none; /* Invisível em desktop */
     font-size: 30px;
     cursor: pointer;
     color: white;
+    z-index: 1010; /* Sobre o menu */
 }
 
+/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
 .mobile-menu {
-    display: none;
+    display: none; /* Invisível por padrão */
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 70px;
     right: 20px;
-    background-color: #1e1e1e;
+    background-color: rgba(0, 0, 0, 0.95);
     width: 200px;
     border-radius: 5px;
-    padding: 15px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Sempre acima */
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
 
+/* Estilo dos Links no Menu Mobile */
 .mobile-menu a {
     color: white;
-    text-decoration: none;
     padding: 12px 20px;
-    display: block;
+    text-decoration: none;
     font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: background 0.3s ease-in-out;
 }
 
@@ -103,29 +108,29 @@ body {
     background-color: #e50914;
 }
 
-/* Exibir menu ativo */
+/* EXIBIR MENU MOBILE QUANDO ATIVO */
 .mobile-menu.open {
     display: flex;
 }
 
 /* =========================== */
-/* RESPONSIVIDADE */
+/* RESPONSIVIDADE (PARA MOBILE) */
 /* =========================== */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        display: none; /* Esconde o menu padrão em telas menores */
     }
 
     .hamburger {
-        display: block;
-    }
-
-    .navbar-left img {
-        height: 40px;
+        display: block; /* Exibe o botão hambúrguer */
     }
 
     .navbar {
         padding: 15px 20px;
+    }
+
+    .navbar-left img {
+        height: 40px;
     }
 }
 

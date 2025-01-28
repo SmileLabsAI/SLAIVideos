@@ -122,7 +122,27 @@
     <li><a href="login.html">Login</a></li>
   </ul>
 </div>
-
+<nav class="navbar">
+  <div class="navbar-left">
+    <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="Logo">
+    <h1 class="navbar-title">Título</h1>
+  </div>
+  <div class="navbar-right">
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+    <div class="hamburger">&#9776;</div>
+  </div>
+  <div class="mobile-menu">
+    <a href="#">Home</a>
+    <a href="#">Sobre</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </div>
+</nav>
 <!-- Conteúdo da Página Sobre -->
 <div class="container">
   <h1>Sobre a <span class="highlight">Smile Labs Videos</span></h1>
@@ -154,6 +174,14 @@
 <footer class="footer">
   <p>&copy; 2025 Smile Labs Videos - Todos os direitos reservados.</p>
 </footer>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
 
+  // Alterna a classe 'open' quando o hambúrguer é clicado
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+</script>
 </body>
 </html>

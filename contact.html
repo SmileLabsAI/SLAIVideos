@@ -184,6 +184,14 @@
 <footer class="footer">
   <p>&copy; 2025 Smile Labs Videos - Todos os direitos reservados.</p>
 </footer>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
 
+  // Alterna a classe 'open' quando o hambúrguer é clicado
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+</script>
 </body>
 </html>
