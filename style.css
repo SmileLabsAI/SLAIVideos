@@ -164,3 +164,38 @@ footer {
     outline: 2px dashed #e50914;
     outline-offset: 4px;
 }
+/* =========================== */
+/* BODY */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between; /* Garante que o rodapé esteja no final */
+    background-color: #141414; /* Fundo consistente com as outras páginas */
+}
+
+/* =========================== */
+/* CONTAINER DE CADASTRO */
+.cadastro-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 270px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+    margin: 0 auto; /* Garante que o container seja centralizado */
+    flex-grow: 1; /* Garante que o conteúdo ocupe o espaço disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza os elementos do container */
+}
+
+/* =========================== */
+/* RODAPÉ */
+footer {
+    background-color: #141414; /* Cor do fundo consistente com as outras páginas */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+}
