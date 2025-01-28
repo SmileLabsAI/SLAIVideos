@@ -1,5 +1,5 @@
 /* ================================ */
-/* CARRINHO - ESTILO CUPOM FISCAL */
+/* CARRINHO - NETFLIX STYLE */
 /* ================================ */
 
 .carrinho-container {
@@ -10,84 +10,125 @@
     max-width: 800px;
     margin: auto;
     padding: 20px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
+/* Estilo da tabela do carrinho */
 .tabela-carrinho {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #1f1f1f;
+    color: white;
+    border-radius: 10px;
 }
 
 .tabela-carrinho th,
 .tabela-carrinho td {
     border-bottom: 1px solid #444;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
+    font-size: 16px;
 }
 
-/* 🛒 IMAGEM DO PRODUTO AO LADO DAS INFORMAÇÕES */
+.tabela-carrinho th {
+    background-color: #222;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+/* Imagem do produto ao lado das informações */
 .tabela-carrinho td:first-child {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 15px;
+    text-align: left;
 }
 
 .tabela-carrinho td img {
-    width: 60px;
+    width: 80px;
     height: auto;
     border-radius: 5px;
 }
 
-/* 🛒 ESTILO CUPOM FISCAL */
-.cupom-fiscal {
+/* Estilização dos botões menores */
+.botao-qtd {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 0.3s;
+    width: 30px;
+}
+
+.botao-qtd:hover {
+    background-color: #b20710;
+}
+
+/* Caixa de entrada de quantidade */
+.input-qtd {
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #444;
+    background: #222;
+    color: white;
+}
+
+/* Estilo do resumo da compra no estilo Netflix */
+.resumo-carrinho {
     width: 100%;
     max-width: 400px;
     padding: 20px;
-    background: white;
-    color: black;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
     text-align: center;
-    border: 2px dashed black;
+    border-radius: 8px;
     margin-top: 20px;
-    border-radius: 5px;
-    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
-.cupom-fiscal h2 {
+.resumo-carrinho h2 {
     margin-bottom: 10px;
     font-size: 22px;
 }
 
-.cupom-fiscal p {
+.resumo-carrinho p {
     font-size: 18px;
     margin-bottom: 15px;
 }
 
-/* 🛒 Botão finalizar compra reduzido */
+/* Botão finalizar compra */
 .botao-finalizar {
     width: 100%;
-    padding: 10px;
-    background: #28a745;
+    padding: 12px;
+    background: #e50914;
     color: white;
     border: none;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
 }
 
 .botao-finalizar:hover {
-    background: #218838;
+    background: #b20710;
 }
 
-/* 🛒 Botão continuar */
+/* Botão continuar comprando */
 .botao-continuar {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background: #007bff;
     color: white;
     border: none;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
@@ -103,14 +144,14 @@
     .tabela-carrinho th,
     .tabela-carrinho td {
         font-size: 14px;
-        padding: 6px;
+        padding: 8px;
     }
 
     .tabela-carrinho td img {
-        width: 40px;
+        width: 50px;
     }
 
-    .cupom-fiscal {
+    .resumo-carrinho {
         width: 100%;
     }
 
