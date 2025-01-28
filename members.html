@@ -21,13 +21,13 @@
     /* Navbar */
     .navbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 15px 50px;
+      align-items: center;
+      padding: 10px 20px;  /* Ajuste o padding */
       background-color: rgba(0, 0, 0, 0.9);
     }
 
-    .navbar img {
+    .navbar-left img {
       height: 50px;
     }
 
@@ -99,13 +99,16 @@
 
 <!-- Navbar -->
 <div class="navbar">
-  <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
-  <div>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="members.html">Members Area</a>
+  <div class="navbar-left">
+    <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
   </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="members.html">Members Area</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
 </div>
 
 <!-- Conteúdo da Página de Membros -->
