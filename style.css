@@ -58,7 +58,9 @@ body {
     text-decoration: none;
     font-size: 18px;
     transition: color 0.3s ease-in-out;
-}
+
+        font-weight: bold; /* Mantém a ênfase */
+        letter-spacing: 0.5px; /* Pequeno espaçamento para melhor leitura */}
 
 .navbar ul li a:hover {
     color: #e50914;
