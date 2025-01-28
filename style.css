@@ -134,40 +134,25 @@ body {
     }
 }
 
-//* =========================== */
+/* =========================== */
 /* RODAPÉ */
 /* =========================== */
-footer {
-    background-color: #141414; /* Alterei para o mesmo tom de fundo do body */
-    color: white;
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-    font-size: 14px;
-    position: relative;
-    bottom: 0;
-}
-
-footer p {
-    margin: 0;
-}
-
-footer a {
-    color: #b3b3b3; /* Cor padrão para links */
-    text-decoration: none;
-    font-size: 12px;
-}
-
-footer a:hover {
-    color: #e50914; /* Cor do hover */
-}
-
-/* Adicionando padding ao conteúdo principal para que o rodapé não se sobreponha ao conteúdo */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    justify-content: space-between;
+    justify-content: space-between; /* Garante que o rodapé vai para o fundo */
+}
+
+footer {
+    background-color: #141414; /* Mantém a cor original do rodapé */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 12px;
+    position: relative;
+    margin-top: auto; /* Garante que o rodapé vai para a parte inferior */
 }
 
 
