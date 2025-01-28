@@ -188,6 +188,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centraliza os elementos do container */
+    align-items: center; /* Centraliza os itens horizontalmente */
 }
 
 /* =========================== */
@@ -199,3 +200,4 @@ footer {
     padding: 10px;
     font-size: 12px;
 }
+
