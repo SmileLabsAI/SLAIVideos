@@ -134,26 +134,42 @@ body {
     }
 }
 
-/* =========================== */
+//* =========================== */
 /* RODAPÉ */
 /* =========================== */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.catalog {
-    flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
-}
-
 footer {
-    background-color: #000;
+    background-color: #141414; /* Alterei para o mesmo tom de fundo do body */
     color: white;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     width: 100%;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
 }
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #b3b3b3; /* Cor padrão para links */
+    text-decoration: none;
+    font-size: 12px;
+}
+
+footer a:hover {
+    color: #e50914; /* Cor do hover */
+}
+
+/* Adicionando padding ao conteúdo principal para que o rodapé não se sobreponha ao conteúdo */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
 
 /* =========================== */
 /* ACESSIBILIDADE */
