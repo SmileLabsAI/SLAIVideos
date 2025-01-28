@@ -143,6 +143,15 @@
 
   checkUser();
 </script>
+<button id="logout">Sair</button>
+
+<script>
+  document.getElementById("logout").addEventListener("click", async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/login.html";
+  });
+</script>
+
 <!-- Rodapé fixo -->
 <div class="footer">
   <p>© 2025 Smile Labs Videos - Todos os direitos reservados</p>
