@@ -9,45 +9,24 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-    <img src="imagens/LogoSemfundo.png" alt="SLAI Videos">
-    <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="contato.html">Contato</a></li>
-        <li><a href="membros.html">Área de Membros</a></li>
-        <li><a href="login.html" id="menu-login">Login</a></li>
-        <li><button id="menu-logout" style="display: none;">Logout</button></li>
-        <li><a href="carrinho.html">🛒 Carrinho (<span id="contador-carrinho">0</span>)</a></li>
-    </ul>
-</div>
+<h1>Seu Carrinho</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Produto</th>
+        <th>Preço Unitário</th>
+        <th>Quantidade</th>
+        <th>Subtotal</th>
+        <th>Remover</th>
+    </tr>
+    </thead>
+    <tbody id="itens-carrinho"></tbody>
+</table>
 
-<h1 class="titulo-carrinho">Seu Carrinho</h1>
+<p>Total: <span id="total-carrinho">R$ 0,00</span></p>
 
-<div class="carrinho-container">
-    <!-- Itens do Carrinho -->
-    <table class="tabela-carrinho">
-        <thead>
-        <tr>
-            <th>Produto</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Subtotal</th>
-            <th>Remover</th>
-        </tr>
-        </thead>
-        <tbody id="itens-carrinho"></tbody>
-    </table>
-
-    <!-- Resumo da Compra no estilo Netflix -->
-    <div class="resumo-carrinho">
-        <h2>Resumo da Compra</h2>
-        <p>Total: <span id="total-carrinho">R$ 0,00</span></p>
-        <button class="botao-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
-        <button class="botao-continuar" onclick="window.location.href='index.html'">Continuar Comprando</button>
-    </div>
-</div>
+<button onclick="finalizarCompra()">Finalizar Compra</button>
+<button onclick="window.location.href='index.html'">Continuar Comprando</button>
 
 <script>
     document.addEventListener('DOMContentLoaded', carregarCarrinho);
