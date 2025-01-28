@@ -1,158 +1,5 @@
 /* ================================ */
-/* RESET DE ESTILOS - ESTILO NETFLIX */
-/* ================================ */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #141414;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* ================================ */
-/* NAVBAR ESTILO NETFLIX */
-/* ================================ */
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 50px;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-.navbar img {
-    height: 50px;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.navbar ul li {
-    display: inline;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease-in-out;
-}
-
-.navbar ul li a:hover {
-    color: #e50914;
-}
-
-/* ================================ */
-/* HERO SECTION */
-/* ================================ */
-
-.hero {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.hero h1 {
-    font-size: 36px;
-    font-weight: bold;
-}
-
-.hero p {
-    font-size: 18px;
-    color: #b3b3b3;
-    margin-top: 10px;
-}
-
-/* ================================ */
-/* CATÁLOGO DE VÍDEOS - ESTILO NETFLIX */
-/* ================================ */
-
-.catalogo {
-    padding: 20px 50px;
-}
-
-.catalogo h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-/* Rolagem horizontal dos vídeos */
-.videos-container {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding-bottom: 10px;
-    scrollbar-width: thin;
-    scrollbar-color: #e50914 #141414;
-}
-
-/* Estiliza os pacotes de vídeos */
-.pack {
-    background-color: #1f1f1f;
-    padding: 10px;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    min-width: 220px;
-    max-width: 220px;
-    text-align: center;
-}
-
-.pack {
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-}
-
-.pack:hover {
-    transform: scale(1.05);
-}
-
-/* Ajuste das imagens para proporção 3:2 */
-.pack img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-/* ================================ */
-/* BOTÕES ESTILO NETFLIX */
-/* ================================ */
-
-button {
-    background-color: #e50914;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #b20710;
-    transform: scale(1.05);
-}
-
-/* ================================ */
-/* CARRINHO - ESTILO FARFETCH */
+/* CARRINHO - ESTILO CUPOM FISCAL */
 /* ================================ */
 
 .carrinho-container {
@@ -178,7 +25,7 @@ button:hover {
     text-align: center;
 }
 
-/* 🛒 IMAGEM DO PACK NO LADO ESQUERDO */
+/* 🛒 IMAGEM DO PRODUTO AO LADO DAS INFORMAÇÕES */
 .tabela-carrinho td:first-child {
     display: flex;
     align-items: center;
@@ -192,60 +39,26 @@ button:hover {
     border-radius: 5px;
 }
 
-/* 🛒 QUANTIDADE - BOTÕES MENORES */
-.quantidade-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-}
-
-.quantidade-container input {
-    width: 35px;
-    text-align: center;
-    padding: 3px;
-    border: 1px solid #444;
-    border-radius: 3px;
-    background: #222;
-    color: white;
-}
-
-/* 🛒 Botões de + e - bem pequenos */
-.quantidade-container button {
-    width: 20px;
-    height: 20px;
-    font-size: 10px;
-    padding: 0;
-    border-radius: 3px;
-}
-
-/* 🛒 Botão remover reduzido */
-.tabela-carrinho td .btn-remover {
-    width: 25px;
-    height: 25px;
-    font-size: 10px;
-    padding: 0;
-    border-radius: 3px;
-}
-
-/* 🛒 Resumo do carrinho */
-.resumo-carrinho {
+/* 🛒 ESTILO CUPOM FISCAL */
+.cupom-fiscal {
     width: 100%;
     max-width: 400px;
     padding: 20px;
-    background: #1f1f1f;
+    background: white;
+    color: black;
     text-align: center;
-    border: 1px solid #333;
+    border: 2px dashed black;
     margin-top: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
 }
 
-.resumo-carrinho h2 {
+.cupom-fiscal h2 {
     margin-bottom: 10px;
     font-size: 22px;
 }
 
-.resumo-carrinho p {
+.cupom-fiscal p {
     font-size: 18px;
     margin-bottom: 15px;
 }
@@ -267,10 +80,25 @@ button:hover {
     background: #218838;
 }
 
-/* ================================ */
-/* AJUSTES PARA MOBILE */
-/* ================================ */
+/* 🛒 Botão continuar */
+.botao-continuar {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 10px;
+}
 
+.botao-continuar:hover {
+    background: #0056b3;
+}
+
+/* Ajuste para mobile */
 @media (max-width: 768px) {
     .tabela-carrinho th,
     .tabela-carrinho td {
@@ -282,27 +110,12 @@ button:hover {
         width: 40px;
     }
 
-    .quantidade-container input {
-        width: 25px;
-    }
-
-    .quantidade-container button {
-        width: 15px;
-        height: 15px;
-        font-size: 8px;
-    }
-
-    .tabela-carrinho td .btn-remover {
-        width: 20px;
-        height: 20px;
-        font-size: 8px;
-    }
-
-    .resumo-carrinho {
+    .cupom-fiscal {
         width: 100%;
     }
 
-    .botao-finalizar {
+    .botao-finalizar,
+    .botao-continuar {
         font-size: 14px;
     }
 }
