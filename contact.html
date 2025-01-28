@@ -30,29 +30,80 @@
       background-color: rgba(0, 0, 0, 0.9);
     }
 
-    .navbar img {
-      height: 50px;
+    .navbar-left {
+      display: flex;
+      align-items: center;
     }
 
-    .navbar ul {
+    .navbar img {
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    .nav-links {
       list-style: none;
       display: flex;
       gap: 20px;
     }
 
-    .navbar ul li {
+    .nav-links li {
       display: inline;
     }
 
-    .navbar ul li a {
+    .nav-links li a {
       color: white;
       text-decoration: none;
       font-size: 18px;
       transition: 0.3s;
     }
 
-    .navbar ul li a:hover {
+    .nav-links li a:hover {
       color: #e50914;
+    }
+
+    /* Menu hambúrguer para dispositivos móveis */
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      top: 70px;
+      right: 0;
+      width: 200px;
+      padding: 15px;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px;
+      display: block;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #e50914;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
     }
 
     .container {
@@ -144,16 +195,25 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-  <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
-  <ul>
+<!-- Navbar Única -->
+<nav class="navbar">
+  <div class="navbar-left">
+    <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
+  </div>
+  <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="login.html">Login</a></li>
   </ul>
-</div>
+  <div class="hamburger">&#9776;</div>
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
 
 <!-- Conteúdo da Página de Contato -->
 <div class="container">
@@ -184,14 +244,15 @@
 <footer class="footer">
   <p>&copy; 2025 Smile Labs Videos - Todos os direitos reservados.</p>
 </footer>
+
 <script>
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
 
-  // Alterna a classe 'open' quando o hambúrguer é clicado
   hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
   });
 </script>
+
 </body>
 </html>
