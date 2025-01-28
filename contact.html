@@ -195,8 +195,8 @@
 </head>
 <body>
 
-<!-- Navbar Única -->
-<nav class="navbar">
+<!-- Navbar -->
+<div class="navbar">
   <div class="navbar-left">
     <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
   </div>
@@ -204,15 +204,18 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="login.html">Login</a></li>
+    <li><a href="members.html">Members Area</a></li>
   </ul>
-  <div class="hamburger">&#9776;</div>
-  <div class="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="login.html">Login</a>
-  </div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- Menu Mobile -->
+<div class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="members.html">Members Area</a>
+</div>
 </nav>
 
 <!-- Conteúdo da Página de Contato -->
