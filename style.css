@@ -1,4 +1,182 @@
-/* Estilo para o novo layout do carrinho */
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #141414;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar estilo Netflix */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar img {
+    height: 50px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover {
+    color: #e50914;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #b3b3b3;
+    margin-top: 10px;
+}
+
+/* Catálogo de vídeos estilo Netflix */
+.catalogo {
+    padding: 20px 50px;
+}
+
+.catalogo h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Rolagem horizontal dos vídeos */
+.videos-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #e50914 #141414;
+}
+
+/* Estiliza os pacotes de vídeos */
+.pack {
+    background-color: #1f1f1f;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    min-width: 220px; /* Reduzindo tamanho */
+    max-width: 220px;
+    text-align: center;
+}
+
+.pack {
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+.pack:hover {
+    transform: scale(1.05);
+}
+
+/* Ajuste das imagens para proporção 3:2 (estilo Netflix) */
+.pack img {
+    width: 100%;
+    height: 150px; /* Mantém proporção 3:2 */
+    object-fit: cover; /* Cropping centralizado */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+/* Botões */
+button {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #b20710;
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+    .navbar ul {
+        flex-direction: column;
+        padding-top: 10px;
+    }
+    .hero h1 {
+        font-size: 28px;
+    }
+    .hero p {
+        font-size: 16px;
+    }
+    .videos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .pack {
+        width: 90%;
+        max-width: 90%;
+    }
+    button {
+        font-size: 14px;
+    }
+}
+
+/* Rodapé fixado */
+footer {
+    margin-top: auto;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+/* ================================ */
+/* ESTILOS PARA O NOVO CARRINHO */
+/* ================================ */
+
 .carrinho-container {
     display: flex;
     flex-direction: column;
@@ -9,79 +187,70 @@
     padding: 20px;
 }
 
-.item-carrinho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.tabela-carrinho {
     width: 100%;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    font-size: 16px;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.produto {
-    flex: 2;
-    text-align: left;
+.tabela-carrinho th,
+.tabela-carrinho td {
+    border-bottom: 1px solid #444;
+    padding: 15px;
+    text-align: center;
 }
 
-.quantidade {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.tabela-carrinho th {
+    background-color: #222;
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
-.quantidade button {
-    padding: 5px 10px;
-    border: none;
-    background: #007BFF;
+.tabela-carrinho td img {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.tabela-carrinho td button {
+    background-color: #e50914;
     color: white;
-    font-size: 16px;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: background 0.3s ease-in-out;
 }
 
-.quantidade button:hover {
-    background: #0056b3;
+.tabela-carrinho td button:hover {
+    background-color: #b20710;
 }
 
-.subtotal {
-    flex: 1;
-    text-align: right;
-    font-weight: bold;
-}
-
-.remover {
-    background: none;
-    color: red;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.remover:hover {
-    color: darkred;
-}
-
-.resumo {
+.resumo-carrinho {
     width: 100%;
     max-width: 400px;
     padding: 20px;
-    background: #f9f9f9;
+    background: #1f1f1f;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     margin-top: 20px;
     border-radius: 8px;
 }
 
-.resumo h2 {
+.resumo-carrinho h2 {
     margin-bottom: 10px;
+    font-size: 22px;
 }
 
-.resumo button {
+.resumo-carrinho p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.botao-finalizar {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background: #28a745;
     color: white;
     border: none;
@@ -91,6 +260,23 @@
     transition: 0.3s;
 }
 
-.resumo button:hover {
+.botao-finalizar:hover {
     background: #218838;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+    .tabela-carrinho th,
+    .tabela-carrinho td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .tabela-carrinho td img {
+        width: 50px;
+    }
+
+    .resumo-carrinho {
+        width: 100%;
+    }
 }
