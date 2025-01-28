@@ -35,7 +35,7 @@
 
         .cadastro-container {
             background-color: rgba(0, 0, 0, 0.8);
-            padding: 30px;
+            padding: 20px 15px; /* Reduzido o padding horizontal de 30px para 15px */
             border-radius: 10px;
             text-align: center;
             width: 270px;
@@ -55,15 +55,19 @@
             width: 100%;
         }
 
-        .cadastro-container input {
-            width: 100%; /* Define a largura como 100% para alinhar com os botões */
-            padding: 8px; /* Aumenta o padding para melhor usabilidade */
-            margin-bottom: 10px; /* Ajusta a margem para espaçamento consistente */
+        /* Classe comum para inputs e botões */
+        .full-width {
+            width: 100%;
+            padding: 8px; /* Padding uniforme */
+            margin-bottom: 10px; /* Margem inferior para espaçamento */
             border: none;
             border-radius: 5px;
             font-size: 12px;
             text-align: center;
             box-sizing: border-box; /* Inclui padding na largura total */
+        }
+
+        .cadastro-container input {
             background-color: white; /* Fundo branco para os inputs */
             color: black; /* Texto preto para melhor legibilidade */
         }
@@ -73,12 +77,8 @@
         }
 
         .cadastro-container button {
-            width: 100%; /* Define a largura como 100% para alinhar com os inputs */
-            padding: 8px 0; /* Ajusta o padding para corresponder aos inputs */
             background-color: #e50914;
             color: white;
-            border: none;
-            border-radius: 5px;
             font-size: 12px;
             cursor: pointer;
             transition: background 0.3s;
@@ -99,8 +99,6 @@
         }
 
         .social-login button {
-            width: 100%; /* Define a largura como 100% para alinhar com os inputs */
-            padding: 8px 0; /* Ajusta o padding para corresponder aos inputs */
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 10px;
@@ -116,6 +114,7 @@
             position: relative;
             box-sizing: border-box; /* Inclui padding na largura total */
             height: auto; /* Remove altura fixa para permitir que o padding defina a altura */
+            padding: 8px; /* Padding uniforme */
         }
 
         .social-login button img {
@@ -156,7 +155,7 @@
         @media (max-width: 400px) {
             .cadastro-container {
                 width: 90%; /* Ajusta a largura para telas muito pequenas */
-                padding: 20px;
+                padding: 20px 10px; /* Ajusta o padding horizontal */
             }
         }
     </style>
@@ -169,20 +168,20 @@
         <h2>Cadastrar</h2>
         <form id="cadastro-form">
             <label for="nome">Nome</label>
-            <input type="text" id="nome" placeholder="Digite seu nome" required>
+            <input type="text" id="nome" class="full-width" placeholder="Digite seu nome" required>
 
             <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="Digite seu e-mail" required>
+            <input type="email" id="email" class="full-width" placeholder="Digite seu e-mail" required>
 
             <label for="password">Senha</label>
-            <input type="password" id="password" placeholder="Digite sua senha" required>
+            <input type="password" id="password" class="full-width" placeholder="Digite sua senha" required>
 
             <label for="confirm-password">Confirmar Senha</label>
-            <input type="password" id="confirm-password" placeholder="Confirme sua senha" required>
-        </form>
+            <input type="password" id="confirm-password" class="full-width" placeholder="Confirme sua senha" required>
 
-        <button type="submit">Cadastrar</button>
-        <button onclick="window.location.href='index.html'">Voltar</button>
+            <button type="submit" class="full-width">Cadastrar</button>
+            <button type="button" onclick="window.location.href='index.html'" class="full-width">Voltar</button>
+        </form>
 
         <div class="social-login">
             <button id="google-login">
