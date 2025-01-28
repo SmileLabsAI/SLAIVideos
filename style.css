@@ -218,4 +218,19 @@ footer {
         width: 90%; /* Deixa o container um pouco menor em telas pequenas */
         min-height: auto; /* Ajuste a altura para que o conteúdo não fique limitado */
     }
+    /* Centralizar apenas a página de cadastro */
+    body.cadastro-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Centraliza o container na tela */
+    .cadastro-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
 }
