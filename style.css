@@ -17,14 +17,14 @@ body {
 }
 
 /* =========================== */
-/* NAVBAR (ESTILO NETFLIX) */
+/* NAVBAR (DESKTOP) */
 /* =========================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 80px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: #1e1e1e;
 }
 
 .navbar-left {
@@ -41,11 +41,6 @@ body {
     font-size: 22px;
     font-weight: bold;
     color: white;
-}
-
-.navbar-right {
-    display: flex;
-    align-items: center;
 }
 
 .nav-links {
@@ -72,28 +67,27 @@ body {
 }
 
 /* =========================== */
-/* MENU HAMBÚRGUER RESPONSIVO */
+/* MENU HAMBÚRGUER (MOBILE) */
 /* =========================== */
 .hamburger {
     display: none;
-    font-size: 26px;
+    font-size: 30px;
     cursor: pointer;
     color: white;
 }
 
-/* Menu Mobile */
 .mobile-menu {
     display: none;
     flex-direction: column;
     position: absolute;
     top: 60px;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    right: 20px;
+    background-color: #1e1e1e;
     width: 200px;
-    text-align: left;
     border-radius: 5px;
-    padding: 10px 0;
-    z-index: 999;
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .mobile-menu a {
@@ -109,75 +103,14 @@ body {
     background-color: #e50914;
 }
 
-/* Estilo para ativar o menu */
+/* Exibir menu ativo */
 .mobile-menu.open {
     display: flex;
 }
 
-/* Navbar Styling */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #1e1e1e;
-}
-
-.navbar-left img {
-    height: 40px;
-}
-
-/* Oculta o menu padrão em telas pequenas */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links li {
-    display: inline;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Hamburger button */
-.hamburger {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-}
-
-/* Mobile menu (inicialmente oculto) */
-.mobile-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background: #1e1e1e;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.mobile-menu a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    display: block;
-}
-
-/* Classe para exibir o menu ao clicar */
-.mobile-menu.open {
-    display: flex;
-}
-
-/* Responsividade: esconde nav padrão e exibe hambúrguer */
+/* =========================== */
+/* RESPONSIVIDADE */
+/* =========================== */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -186,28 +119,42 @@ body {
     .hamburger {
         display: block;
     }
-    /* =========================== */
-    /* CORREÇÃO PARA O RODAPÉ FIXADO */
-    /* =========================== */
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
+
+    .navbar-left img {
+        height: 40px;
     }
 
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Garante que o corpo da página ocupe toda a altura */
+    .navbar {
+        padding: 15px 20px;
     }
+}
 
-    .catalog {
-        flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
-    }
+/* =========================== */
+/* RODAPÉ */
+/* =========================== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-    footer {
-        background-color: #000;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        width: 100%;}
+.catalog {
+    flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
+}
+
+footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+/* =========================== */
+/* ACESSIBILIDADE */
+/* =========================== */
+.nav-links li a:focus,
+.mobile-menu a:focus {
+    outline: 2px dashed #e50914;
+    outline-offset: 4px;
+}
