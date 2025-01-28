@@ -187,20 +187,22 @@ body {
         display: block;
     }
     /* =========================== */
-    /* RODAPÉ FIXADO NA PARTE INFERIOR */
+    /* CORREÇÃO PARA O RODAPÉ FIXADO */
     /* =========================== */
     html, body {
         height: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     body {
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
+        min-height: 100vh; /* Garante que o corpo da página ocupe toda a altura */
     }
 
     .catalog {
-        flex-grow: 1; /* Garante que o conteúdo principal ocupe o espaço disponível */
+        flex-grow: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
     }
 
     footer {
@@ -210,8 +212,3 @@ body {
         padding: 10px;
         width: 100%;
     }
-
-}
-
-
-
