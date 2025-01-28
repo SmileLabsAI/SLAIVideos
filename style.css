@@ -1,4 +1,7 @@
-/* Reset de estilos */
+/* ================================ */
+/* RESET DE ESTILOS - ESTILO NETFLIX */
+/* ================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +17,10 @@ body {
     min-height: 100vh;
 }
 
-/* Navbar estilo Netflix */
+/* ================================ */
+/* NAVBAR ESTILO NETFLIX */
+/* ================================ */
+
 .navbar {
     display: flex;
     align-items: center;
@@ -48,7 +54,10 @@ body {
     color: #e50914;
 }
 
-/* Hero Section */
+/* ================================ */
+/* HERO SECTION */
+/* ================================ */
+
 .hero {
     text-align: center;
     padding: 40px 20px;
@@ -65,7 +74,10 @@ body {
     margin-top: 10px;
 }
 
-/* Catálogo de vídeos estilo Netflix */
+/* ================================ */
+/* CATÁLOGO DE VÍDEOS - ESTILO NETFLIX */
+/* ================================ */
+
 .catalogo {
     padding: 20px 50px;
 }
@@ -91,7 +103,7 @@ body {
     padding: 10px;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
-    min-width: 220px; /* Reduzindo tamanho */
+    min-width: 220px;
     max-width: 220px;
     text-align: center;
 }
@@ -104,11 +116,11 @@ body {
     transform: scale(1.05);
 }
 
-/* Ajuste das imagens para proporção 3:2 (estilo Netflix) */
+/* Ajuste das imagens para proporção 3:2 */
 .pack img {
     width: 100%;
-    height: 150px; /* Mantém proporção 3:2 */
-    object-fit: cover; /* Cropping centralizado */
+    height: 150px;
+    object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -118,7 +130,10 @@ p {
     margin: 5px 0;
 }
 
-/* Botões */
+/* ================================ */
+/* BOTÕES ESTILO NETFLIX */
+/* ================================ */
+
 button {
     background-color: #e50914;
     color: white;
@@ -136,7 +151,10 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* Responsividade */
+/* ================================ */
+/* RESPONSIVIDADE */
+/* ================================ */
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -165,7 +183,10 @@ button:hover {
     }
 }
 
-/* Rodapé fixado */
+/* ================================ */
+/* RODAPÉ FIXADO */
+/* ================================ */
+
 footer {
     margin-top: auto;
     background: black;
@@ -173,6 +194,7 @@ footer {
     text-align: center;
     padding: 15px;
 }
+
 /* ================================ */
 /* ESTILOS PARA O NOVO CARRINHO */
 /* ================================ */
