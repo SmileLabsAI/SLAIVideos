@@ -141,11 +141,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    justify-content: space-between; /* Garante que o rodapé vai para o fundo */
+    justify-content: flex-start; /* Garante que o conteúdo ocupe o topo */
 }
 
 footer {
-    background-color: #141414; /* Mantém a cor original do rodapé */
+    background-color: #141414; /* Cor do fundo consistente com as outras páginas */
     color: white;
     text-align: center;
     padding: 10px;
@@ -154,7 +154,6 @@ footer {
     position: relative;
     margin-top: auto; /* Garante que o rodapé vai para a parte inferior */
 }
-
 
 /* =========================== */
 /* ACESSIBILIDADE */
@@ -190,6 +189,7 @@ body {
     justify-content: center; /* Garante que os elementos dentro do container fiquem centralizados */
     align-items: center; /* Alinha os itens horizontalmente */
     position: relative; /* Ajuste para evitar sobreposição */
+    min-height: 400px; /* Define uma altura mínima para o container de cadastro */
 }
 
 /* =========================== */
@@ -216,5 +216,6 @@ footer {
     .cadastro-container {
         padding: 20px; /* Ajuste do padding para telas menores */
         width: 90%; /* Deixa o container um pouco menor em telas pequenas */
+        min-height: auto; /* Ajuste a altura para que o conteúdo não fique limitado */
     }
 }
