@@ -133,7 +133,16 @@
     <p>Aqui você terá acesso a vídeos premium, materiais complementares e novidades exclusivas.</p>
   </div>
 </div>
+<script>
+  async function checkUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      window.location.href = "/login.html"; // Redireciona para login se não estiver autenticado
+    }
+  }
 
+  checkUser();
+</script>
 <!-- Rodapé fixo -->
 <div class="footer">
   <p>© 2025 Smile Labs Videos - Todos os direitos reservados</p>
