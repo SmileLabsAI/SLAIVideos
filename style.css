@@ -181,14 +181,15 @@ body {
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    width: 270px;
+    width: 100%;
+    max-width: 380px; /* Ajuste para centralizar e evitar largura excessiva */
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-    margin: 0 auto; /* Garante que o container seja centralizado */
-    flex-grow: 1; /* Garante que o conteúdo ocupe o espaço disponível */
+    margin: 0 auto; /* Centraliza o container horizontalmente */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza os elementos do container */
-    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Garante que os elementos dentro do container fiquem centralizados */
+    align-items: center; /* Alinha os itens horizontalmente */
+    position: relative; /* Ajuste para evitar sobreposição */
 }
 
 /* =========================== */
@@ -201,3 +202,19 @@ footer {
     font-size: 12px;
 }
 
+/* =========================== */
+/* AJUSTE DO CONTAINER PARA ALINHAMENTO DO FORMULÁRIO */
+.cadastro-container input,
+.cadastro-container button {
+    width: 100%;
+    margin-bottom: 15px; /* Distância entre os campos e botões */
+}
+
+/* =========================== */
+/* RESPONSIVIDADE (PARA MOBILE) */
+@media (max-width: 768px) {
+    .cadastro-container {
+        padding: 20px; /* Ajuste do padding para telas menores */
+        width: 90%; /* Deixa o container um pouco menor em telas pequenas */
+    }
+}
