@@ -6,11 +6,13 @@
   <title>Contato - SLAI Videos</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    * {
+    /* Garante que o html e o body ocupem toda a altura da tela */
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: Arial, sans-serif;{
+
     }
 
     body {
@@ -26,7 +28,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;  /* Ajuste o padding */
+      padding: 20px 10px;  /* Ajuste o padding */
       background-color: rgba(0, 0, 0, 0.9);
     }
 
@@ -186,9 +188,9 @@
     .footer {
       background-color: rgba(0, 0, 0, 0.8);
       color: #b3b3b3;
-      text-align: center;
-      font-size: 12px;
-      padding: 12px;
+      text-align: left;
+      font-size: 10px;
+      padding: 10px;
       margin-top: auto;
     }
   </style>
@@ -247,7 +249,7 @@
 
 <!-- Rodapé -->
 <footer class="footer">
-  <p>&copy; 2025 Smile Labs Videos - Todos os direitos reservados.</p>
+    &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
 <script>
