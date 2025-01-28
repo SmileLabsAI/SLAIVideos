@@ -152,50 +152,6 @@ button:hover {
 }
 
 /* ================================ */
-/* RESPONSIVIDADE */
-/* ================================ */
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-    .navbar ul {
-        flex-direction: column;
-        padding-top: 10px;
-    }
-    .hero h1 {
-        font-size: 28px;
-    }
-    .hero p {
-        font-size: 16px;
-    }
-    .videos-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .pack {
-        width: 90%;
-        max-width: 90%;
-    }
-    button {
-        font-size: 14px;
-    }
-}
-
-/* ================================ */
-/* RODAPÉ FIXADO */
-/* ================================ */
-
-footer {
-    margin-top: auto;
-    background: black;
-    color: white;
-    text-align: center;
-    padding: 15px;
-}
-
-/* ================================ */
 /* ESTILOS PARA O NOVO CARRINHO */
 /* ================================ */
 
@@ -218,37 +174,61 @@ footer {
 .tabela-carrinho th,
 .tabela-carrinho td {
     border-bottom: 1px solid #444;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
 }
 
-.tabela-carrinho th {
-    background-color: #222;
-    font-size: 18px;
-    text-transform: uppercase;
+/* 🛒 Ajuste da imagem do produto no lado esquerdo */
+.tabela-carrinho td:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .tabela-carrinho td img {
-    width: 60px;
+    width: 50px;
     height: auto;
     border-radius: 5px;
 }
 
-.tabela-carrinho td button {
-    background-color: #e50914;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
+/* 🛒 Caixa de quantidade reduzida */
+.quantidade-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.quantidade-container input {
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #444;
     border-radius: 5px;
-    transition: background 0.3s ease-in-out;
+    background: #222;
+    color: white;
 }
 
-.tabela-carrinho td button:hover {
-    background-color: #b20710;
+/* 🛒 Botões menores */
+.quantidade-container button {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+    padding: 0;
+    border-radius: 5px;
 }
 
+/* 🛒 Botão remover reduzido */
+.tabela-carrinho td .btn-remover {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+    padding: 0;
+    border-radius: 5px;
+}
+
+/* 🛒 Resumo do carrinho */
 .resumo-carrinho {
     width: 100%;
     max-width: 400px;
@@ -270,13 +250,14 @@ footer {
     margin-bottom: 15px;
 }
 
+/* 🛒 Botão finalizar compra reduzido */
 .botao-finalizar {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background: #28a745;
     color: white;
     border: none;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
@@ -286,19 +267,42 @@ footer {
     background: #218838;
 }
 
-/* Ajuste para mobile */
+/* ================================ */
+/* AJUSTES PARA MOBILE */
+/* ================================ */
+
 @media (max-width: 768px) {
     .tabela-carrinho th,
     .tabela-carrinho td {
         font-size: 14px;
-        padding: 10px;
+        padding: 8px;
     }
 
     .tabela-carrinho td img {
-        width: 50px;
+        width: 40px;
+    }
+
+    .quantidade-container input {
+        width: 30px;
+    }
+
+    .quantidade-container button {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .tabela-carrinho td .btn-remover {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
     }
 
     .resumo-carrinho {
         width: 100%;
+    }
+
+    .botao-finalizar {
+        font-size: 14px;
     }
 }
