@@ -6,9 +6,23 @@
     <title>SLAI Videos - Catalog</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
+        /* Garante que o html e o body ocupem toda a altura da tela */
+        html, body {
+            height: 100%;
             margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
+        }
+
+        /* Define o body como um contêiner flexível */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* O conteúdo principal deve expandir para ocupar o espaço disponível */
+        .conteudo {
+            flex: 1;
         }
 
         .navbar {
@@ -118,7 +132,6 @@
             color: white;
             text-align: center;
             padding: 10px;
-            margin-top: 20px;
         }
 
         @media (max-width: 768px) {
@@ -138,51 +151,54 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-    <div class="navbar-left">
-        <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
-    </div>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="members.html">Members Area</a></li>
-    </ul>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-</div>
-
-<!-- Menu Mobile -->
-<div class="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="members.html">Members Area</a>
-</div>
-
-<!-- Video Packs Catalog -->
-<div class="catalog">
-    <h2>Video Packs</h2>
-    <div class="videos-container">
-
-        <!-- Pack 1 -->
-        <div class="pack">
-            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack1.webp" alt="Pack of 5 Videos">
-            <h3>Pack of 5 Videos</h3>
-            <p>R$80.00</p>
-            <a href="https://pay.kiwify.com.br/gztt5j3" target="_blank">
-                <button>Buy Now</button>
-            </a>
+<!-- Conteúdo Principal -->
+<div class="conteudo">
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
         </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="members.html">Members Area</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </div>
 
-        <!-- Pack 2 -->
-        <div class="pack">
-            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack2.webp" alt="Pack of 10 Videos">
-            <h3>Pack of 10 Videos</h3>
-            <p>R$120.00</p>
-            <a href="https://pay.kiwify.com.br/lHZ2NEG" target="_blank">
-                <button>Buy Now</button>
-            </a>
+    <!-- Menu Mobile -->
+    <div class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="members.html">Members Area</a>
+    </div>
+
+    <!-- Video Packs Catalog -->
+    <div class="catalog">
+        <h2>Video Packs</h2>
+        <div class="videos-container">
+
+            <!-- Pack 1 -->
+            <div class="pack">
+                <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack1.webp" alt="Pack of 5 Videos">
+                <h3>Pack of 5 Videos</h3>
+                <p>R$80.00</p>
+                <a href="https://pay.kiwify.com.br/gztt5j3" target="_blank">
+                    <button>Buy Now</button>
+                </a>
+            </div>
+
+            <!-- Pack 2 -->
+            <div class="pack">
+                <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack2.webp" alt="Pack of 10 Videos">
+                <h3>Pack of 10 Videos</h3>
+                <p>R$120.00</p>
+                <a href="https://pay.kiwify.com.br/lHZ2NEG" target="_blank">
+                    <button>Buy Now</button>
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -202,3 +218,5 @@
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
 
+</body>
+</html>

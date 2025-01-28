@@ -8,16 +8,31 @@
     <script defer src="login.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
+        /* Garante que o html e o body ocupem toda a altura da tela */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        /* Define o body como um contêiner flexível com direção de coluna */
         body {
+            display: flex;
+            flex-direction: column;
             background-color: #141414;
             color: white;
+        }
+
+        /* O conteúdo principal deve expandir para ocupar o espaço disponível */
+        .conteudo {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
+            padding: 20px; /* Adiciona padding para melhor espaçamento em telas menores */
         }
+
         .cadastro-container {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 30px;
@@ -26,31 +41,40 @@
             width: 270px;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
         }
+
         .cadastro-container h2 {
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* Aumenta o espaçamento abaixo do título */
             font-size: 20px;
         }
+
         .cadastro-container label {
             display: block;
             font-size: 11px;
             text-align: left;
-            margin: 4px 15% 4px 15%;
+            margin: 8px 0 4px 0; /* Ajusta as margens para melhor alinhamento */
+            width: 100%;
         }
+
         .cadastro-container input {
-            width: 75%;
-            padding: 7px;
-            margin-bottom: 6px;
+            width: 100%; /* Define a largura como 100% para alinhar com os botões */
+            padding: 8px; /* Aumenta o padding para melhor usabilidade */
+            margin-bottom: 10px; /* Ajusta a margem para espaçamento consistente */
             border: none;
             border-radius: 5px;
             font-size: 12px;
             text-align: center;
+            box-sizing: border-box; /* Inclui padding na largura total */
+            background-color: white; /* Fundo branco para os inputs */
+            color: black; /* Texto preto para melhor legibilidade */
         }
-        .cadastro-container input#confirm-password {
-            margin-bottom: 15px;
+
+        .cadastro-container input::placeholder {
+            color: #aaa; /* Cor dos placeholders para melhor contraste */
         }
+
         .cadastro-container button {
-            width: 75%;
-            padding: 7px;
+            width: 100%; /* Define a largura como 100% para alinhar com os inputs */
+            padding: 8px 0; /* Ajusta o padding para corresponder aos inputs */
             background-color: #e50914;
             color: white;
             border: none;
@@ -58,22 +82,25 @@
             font-size: 12px;
             cursor: pointer;
             transition: background 0.3s;
-            margin-top: 5px;
+            margin-top: 10px; /* Espaçamento uniforme entre botões */
+            box-sizing: border-box; /* Inclui padding na largura total */
         }
+
         .cadastro-container button:hover {
             background-color: #b20710;
         }
+
         .social-login {
-            margin-top: 5px;
+            margin-top: 15px; /* Aumenta o espaçamento superior */
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
         }
+
         .social-login button {
-            width: 75%;
-            padding: 7px;
-            height: 30px;
+            width: 100%; /* Define a largura como 100% para alinhar com os inputs */
+            padding: 8px 0; /* Ajusta o padding para corresponder aos inputs */
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 10px;
@@ -83,61 +110,102 @@
             background-color: white;
             color: black;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 10px; /* Espaçamento uniforme entre botões */
             justify-content: center;
             text-align: center;
             position: relative;
+            box-sizing: border-box; /* Inclui padding na largura total */
+            height: auto; /* Remove altura fixa para permitir que o padding defina a altura */
         }
+
         .social-login button img {
-            width: 12px;
-            height: 12px;
+            width: 16px; /* Aumenta o tamanho do ícone para melhor visibilidade */
+            height: 16px;
             position: absolute;
-            left: 10px;
+            left: 15px; /* Ajusta a posição para alinhamento correto */
         }
+
         .social-login button:hover {
             background-color: #f0f0f0;
         }
+
         .cadastro-container p {
             margin-top: 20px;
             font-size: 10px;
-
         }
 
+        /* Estilização do rodapé */
+        footer {
+            background-color: #000; /* Mantém o fundo preto */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Links no rodapé */
+        footer a {
+            color: #b3b3b3;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 400px) {
+            .cadastro-container {
+                width: 90%; /* Ajusta a largura para telas muito pequenas */
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="cadastro-container">
-    <h2>Cadastrar</h2>
-    <form id="cadastro-form">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" required>
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" required>
+<!-- Conteúdo Principal -->
+<div class="conteudo">
+    <div class="cadastro-container">
+        <h2>Cadastrar</h2>
+        <form id="cadastro-form">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
 
-        <label for="password">Senha</label>
-        <input type="password" id="password" required>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Digite seu e-mail" required>
 
-        <label for="confirm-password">Confirmar Senha</label>
-        <input type="password" id="confirm-password" required>
-    </form>
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="Digite sua senha" required>
 
-    <button type="submit">Cadastrar</button>
-    <button onclick="window.location.href='index.html'">Voltar</button>
+            <label for="confirm-password">Confirmar Senha</label>
+            <input type="password" id="confirm-password" placeholder="Confirme sua senha" required>
+        </form>
 
-    <div class="social-login">
-        <button id="google-login">
-            <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
-            Cadastrar com Google
-        </button>
+        <button type="submit">Cadastrar</button>
+        <button onclick="window.location.href='index.html'">Voltar</button>
+
+        <div class="social-login">
+            <button id="google-login">
+                <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
+                Cadastrar com Google
+            </button>
+        </div>
+
+        <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+        <p><a href="termos.html">Termos e Condições</a></p>
+        <p><a href="politica-privacidade.html">Política de Privacidade</a></p>
     </div>
-
-    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
-    <p><a href="termos.html" style="color: #b3b3b3;">Termos e Condições</a></p>
-    <p><a href="politica-privacidade.html" style="color: #b3b3b3;">Política de Privacidade</a></p>
 </div>
-<footer class="footer">
-    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; <span id="currentYear"></span> SLAI Videos - Todos os direitos reservados.</p>
 </footer>
+
+<script>
+    // Script para atualizar o ano automaticamente no rodapé
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
