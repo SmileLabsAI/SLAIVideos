@@ -23,7 +23,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 50px;
+    padding: 20px 80px;
     background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -57,10 +57,10 @@ body {
     color: white;
     text-decoration: none;
     font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
     transition: color 0.3s ease-in-out;
-
-        font-weight: bold; /* Mantém a ênfase */
-        letter-spacing: 0.5px; /* Pequeno espaçamento para melhor leitura */}
+}
 
 .navbar ul li a:hover {
     color: #e50914;
@@ -70,7 +70,7 @@ body {
 /* CATÁLOGO DE VÍDEOS */
 /* =========================== */
 .catalog {
-    padding: 80px 100px 50px; /* Margem maior no topo */
+    padding: 120px 120px 50px; /* Ajustado para mais espaçamento no topo */
     text-align: center;
 }
 
@@ -78,7 +78,7 @@ body {
 .catalog h2 {
     font-size: 26px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-transform: uppercase;
 }
 
@@ -88,8 +88,8 @@ body {
 .videos-container {
     display: flex;
     justify-content: center;
-    gap: 40px; /* Espaçamento entre os pacotes */
-    margin-top: 30px; /* Espaçamento da navbar */
+    gap: 60px; /* Maior espaçamento entre os pacotes */
+    margin-top: 50px; /* Mais espaço abaixo da navbar */
     flex-wrap: wrap;
 }
 
@@ -99,7 +99,7 @@ body {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
-    max-width: 250px;
+    max-width: 270px;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
@@ -119,7 +119,7 @@ body {
 /* Ajuste do botão */
 .pack button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     font-weight: bold;
     background-color: #e50914;
@@ -139,8 +139,19 @@ body {
 /* RESPONSIVIDADE */
 /* =========================== */
 @media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px 30px;
+        text-align: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        padding-top: 10px;
+    }
+
     .catalog {
-        padding: 60px 30px;
+        padding: 80px 30px;
         margin-top: 20px;
     }
 
