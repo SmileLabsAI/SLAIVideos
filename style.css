@@ -114,92 +114,78 @@ body {
     display: flex;
 }
 
-/* Responsividade: Mostra o menu hambúrguer apenas em telas pequenas */
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #1e1e1e;
+}
+
+.navbar-left img {
+    height: 40px;
+}
+
+/* Oculta o menu padrão em telas pequenas */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hamburger button */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Mobile menu (inicialmente oculto) */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+/* Classe para exibir o menu ao clicar */
+.mobile-menu.open {
+    display: flex;
+}
+
+/* Responsividade: esconde nav padrão e exibe hambúrguer */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Esconde o menu normal */
+        display: none;
     }
 
     .hamburger {
-        display: block; /* Mostra o ícone hambúrguer */
-    }
-
-    .mobile-menu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        width: 200px;
-        text-align: left;
-        border-radius: 5px;
-        padding: 10px 0;
-        z-index: 999;
-    }
-
-    .mobile-menu a {
-        color: white;
-        text-decoration: none;
-        padding: 12px 20px;
         display: block;
-        font-size: 18px;
-        transition: background 0.3s ease-in-out;
     }
-
-    .mobile-menu a:hover {
-        background-color: #e50914;
-    }
-
-    .mobile-menu.open {
-        display: flex;
-    }
-    /* Estilos para o menu hambúrguer */
-    .hamburger {
-        display: none;
-        font-size: 26px;
-        cursor: pointer;
-    }
-
-    .mobile-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        width: 250px;
-        text-align: left;
-        border-radius: 5px;
-        padding: 15px 0;
-        z-index: 999;
-    }
-
-    .mobile-menu a {
-        color: white;
-        text-decoration: none;
-        padding: 12px 20px;
-        display: block;
-        font-size: 18px;
-        transition: background 0.3s ease-in-out;
-    }
-
-    .mobile-menu a:hover {
-        background-color: #e50914;
-    }
-
-    .mobile-menu.open {
-        display: flex;
-    }
-
-    @media (max-width: 768px) {
-        .nav-links {
-            display: none;
-        }
-
-        .hamburger {
-            display: block;
-        }
-    }
-
 }
+
+
