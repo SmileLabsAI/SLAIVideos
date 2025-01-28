@@ -7,9 +7,105 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="login.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- Estilos internos removidos para evitar conflitos -->
+    <style>
+
+        body {
+            background-color: #141414;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .cadastro-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 270px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+        }
+        .cadastro-container h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .cadastro-container label {
+            display: block;
+            font-size: 11px;
+            text-align: left;
+            margin: 4px 15% 4px 15%;
+        }
+        .cadastro-container input {
+            width: 75%;
+            padding: 7px;
+            margin-bottom: 6px;
+            border: none;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .cadastro-container input#confirm-password {
+            margin-bottom: 15px;
+        }
+        .cadastro-container button {
+            width: 75%;
+            padding: 7px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 5px;
+        }
+        .cadastro-container button:hover {
+            background-color: #b20710;
+        }
+        .social-login {
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .social-login button {
+            width: 75%;
+            padding: 7px;
+            height: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            margin-top: 5px;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .social-login button img {
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            left: 10px;
+        }
+        .social-login button:hover {
+            background-color: #f0f0f0;
+        }
+        .cadastro-container p {
+            margin-top: 20px;
+            font-size: 10px;
+
+        }
+
+    </style>
 </head>
-<body class="cadastro-page">
+<body>
 <div class="cadastro-container">
     <h2>Cadastrar</h2>
     <form id="cadastro-form">
