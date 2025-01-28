@@ -115,6 +115,19 @@ body {
 }
 
 /* =========================== */
+/* RODAPÉ */
+/* =========================== */
+footer {
+    background-color: #000; /* Preto */
+    color: white;
+    text-align: center;
+    padding: 10px 0; /* Padding vertical */
+    width: 100%;
+    font-size: 12px;
+    border-top: 2px solid #141414; /* Opcional: adiciona uma borda superior */
+}
+
+/* =========================== */
 /* RESPONSIVIDADE (PARA MOBILE) */
 /* =========================== */
 @media (max-width: 768px) {
@@ -143,6 +156,14 @@ body {
 }
 
 /* =========================== */
+/* ESTILO ESPECÍFICO PARA A PÁGINA DE CADASTRO */
+/* =========================== */
+body.cadastro-page {
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center;     /* Centraliza horizontalmente */
+}
+
+/* =========================== */
 /* CONTAINER DE CADASTRO */
 /* =========================== */
 .cadastro-container {
@@ -158,21 +179,7 @@ body {
     justify-content: center; /* Centraliza verticalmente os elementos dentro do container */
     align-items: center;     /* Alinha os itens horizontalmente */
     min-height: 400px;       /* Define uma altura mínima para o container de cadastro */
-    margin: 20px auto;       /* Adiciona margem superior e inferior para centralização */
-    /* Removido 'flex: 1;' para evitar impactar o layout geral */
-}
-
-/* =========================== */
-/* RODAPÉ */
-/* =========================== */
-footer {
-    background-color: #000; /* Preto */
-    color: white;
-    text-align: center;
-    padding: 10px 0; /* Padding vertical */
-    width: 100%;
-    font-size: 12px;
-    border-top: 2px solid #141414; /* Opcional: adiciona uma borda superior */
+    margin: 0 auto;           /* Centraliza horizontalmente */
 }
 
 /* =========================== */
