@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loginForm.addEventListener("submit", (event) => {
             event.preventDefault(); // Evita o envio do formulário padrão
             localStorage.setItem("userLoggedIn", "true");
-            window.location.href = "membros.html";
+            window.location.href = "members.html";
         });
     }
 });

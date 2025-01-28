@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho de Compras</title>
+    <title>Checkout</title>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Seu Carrinho</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Produto</th>
-        <th>Preço Unitário</th>
-        <th>Quantidade</th>
-        <th>Subtotal</th>
-        <th>Remover</th>
-    </tr>
-    </thead>
-    <tbody id="itens-carrinho"></tbody>
-</table>
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Finalizar Compra</h1>
+    <p>Escolha seu pacote e vá diretamente para o pagamento.</p>
+</div>
 
-<p>Total: <span id="total-carrinho">R$ 0,00</span></p>
+<!-- Opções de Compra -->
+<div class="catalogo">
+    <h2>Escolha seu Pack</h2>
+    <div class="videos-container">
+        <!-- Pack 1 -->
+        <div class="pack">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack1.webp" alt="Capa Pack 5 Vídeos">
+            <h3>Pack de 5 Vídeos</h3>
+            <p>R$ 80,00</p>
+            <button onclick="comprarPack('https://pay.kiwify.com.br/lHZ2NEG')">Finalizar Compra</button>
+        </div>
 
-<button onclick="finalizarCompra()">Finalizar Compra</button>
-<button onclick="window.location.href='index.html'">Continuar Comprando</button>
+        <!-- Pack 2 -->
+        <div class="pack">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack2.webp" alt="Capa Pack 10 Vídeos">
+            <h3>Pack de 10 Vídeos</h3>
+            <p>R$ 120,00</p>
+            <button onclick="comprarPack('https://pay.kiwify.com.br/lHZ2NEG')">Finalizar Compra</button>
+        </div>
+    </div>
+</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', carregarCarrinho);
-</script>
+<!-- Rodapé -->
+<footer>
+    <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
+</footer>
 
 </body>
 </html>
