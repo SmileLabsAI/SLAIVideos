@@ -26,18 +26,23 @@
             height: 50px;
         }
 
-        .navbar ul {
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right ul {
             display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
         }
 
-        .navbar li {
+        .navbar-right li {
             margin: 0 10px;
         }
 
-        .navbar a {
+        .navbar-right a {
             color: #fff;
             text-decoration: none;
         }
@@ -59,25 +64,25 @@
 
         /* Estilos para dispositivos móveis */
         @media (max-width: 768px) {
-            .navbar ul {
+            .navbar-right ul {
                 display: none;
                 position: fixed;
                 top: 0;
-                left: 0;
+                right: 0;
                 height: 100%;
                 width: 100%;
                 background-color: rgba(0, 0, 0, 0.9);
                 flex-direction: column;
-                justify-content: right;
+                justify-content: center;
                 align-items: center;
                 z-index: 1;
             }
 
-            .navbar ul.active {
+            .navbar-right ul.active {
                 display: flex;
             }
 
-            .navbar li {
+            .navbar-right li {
                 margin: 20px 0;
             }
 
@@ -107,16 +112,18 @@
     <div class="navbar-left">
         <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
     </div>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="members.html">Members Area</a></li>
-    </ul>
-    <div class="menu-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="navbar-right">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="members.html">Members Area</a></li>
+        </ul>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 </div>
 
@@ -149,7 +156,7 @@
 
 <script>
     function toggleMenu() {
-        const menu = document.querySelector('.navbar ul');
+        const menu = document.querySelector('.navbar-right ul');
         const menuIcon = document.querySelector('.menu-icon');
         menu.classList.toggle('active');
         menuIcon.classList.toggle('active');

@@ -43,17 +43,22 @@ body {
     color: white;
 }
 
-.navbar ul {
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
     list-style: none;
     display: flex;
     gap: 20px;
 }
 
-.navbar ul li {
+.nav-links li {
     display: inline;
 }
 
-.navbar ul li a {
+.nav-links li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -62,114 +67,13 @@ body {
     transition: color 0.3s ease-in-out;
 }
 
-.navbar ul li a:hover {
+.nav-links li a:hover {
     color: #e50914;
 }
 
 /* =========================== */
-/* CATÁLOGO DE VÍDEOS */
-/* =========================== */
-.catalog {
-    padding: 120px 120px 50px; /* Ajustado para mais espaçamento no topo */
-    text-align: center;
-}
-
-/* Título alinhado ao logo */
-.catalog h2 {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-}
-
-/* =========================== */
-/* PACOTES DE VÍDEOS */
-/* =========================== */
-.videos-container {
-    display: flex;
-    justify-content: center;
-    gap: 60px; /* Maior espaçamento entre os pacotes */
-    margin-top: 50px; /* Mais espaço abaixo da navbar */
-    flex-wrap: wrap;
-}
-
-/* Estilo dos pacotes */
-.pack {
-    background-color: #1f1f1f;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 270px;
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-}
-
-.pack:hover {
-    transform: scale(1.05);
-}
-
-/* Ajuste das imagens */
-.pack img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-/* Ajuste do botão */
-.pack button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #e50914;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-}
-
-.pack button:hover {
-    background-color: #b20710;
-    transform: scale(1.05);
-}
-
-/* =========================== */
-/* RESPONSIVIDADE */
-/* =========================== */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 15px 30px;
-        text-align: center;
-    }
-
-    .navbar ul {
-        flex-direction: column;
-        padding-top: 10px;
-    }
-
-    .catalog {
-        padding: 80px 30px;
-        margin-top: 20px;
-    }
-
-    .videos-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .pack {
-        width: 90%;
-        max-width: 280px;
-    }
-}
-/* =========================== */
 /* MENU HAMBÚRGUER RESPONSIVO */
 /* =========================== */
-
-/* Ícone do menu */
 .hamburger {
     display: none;
     font-size: 26px;
@@ -218,5 +122,36 @@ body {
 
     .hamburger {
         display: block; /* Mostra o ícone hambúrguer */
+    }
+
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        width: 200px;
+        text-align: left;
+        border-radius: 5px;
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .mobile-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        display: block;
+        font-size: 18px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .mobile-menu a:hover {
+        background-color: #e50914;
+    }
+
+    .mobile-menu.open {
+        display: flex;
     }
 }
