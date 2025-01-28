@@ -5,6 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLAI Videos - Catalog</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos gerais */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos da barra de navegação */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .navbar-left img {
+            height: 50px;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 10px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Estilos do ícone do menu hambúrguer */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-icon span {
+            background-color: #fff;
+            height: 3px;
+            width: 25px;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* Estilos para dispositivos móveis */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar li {
+                margin: 20px 0;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            /* Animação do ícone do menu */
+            .menu-icon.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .menu-icon.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -19,7 +113,11 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="members.html">Members Area</a></li>
     </ul>
-
+    <div class="menu-icon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </div>
 
 <!-- Video Packs Catalog -->
@@ -48,6 +146,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.querySelector('.navbar ul');
+        const menuIcon = document.querySelector('.menu-icon');
+        menu.classList.toggle('active');
+        menuIcon.classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
