@@ -14,8 +14,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    align-items: center;
-    justify-content: center; /* Centraliza verticalmente */
 }
 
 /* =========================== */
@@ -137,67 +135,24 @@ body {
 }
 
 /* =========================== */
-/* CONTAINER DE CADASTRO */
-/* =========================== */
-.cadastro-container {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 100%;
-    max-width: 380px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-}
-
-/* =========================== */
-/* CENTRALIZAÇÃO DO CONTAINER */
+/* RODAPÉ */
 /* =========================== */
 body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centraliza verticalmente */
     min-height: 100vh;
-    margin: 0;
-    background-color: #141414; /* Mantém o fundo escuro */
+    justify-content: flex-start; /* Garante que o conteúdo ocupe o topo */
 }
 
-/* =========================== */
-/* AJUSTE DO CONTAINER PARA ALINHAMENTO DO FORMULÁRIO */
-.cadastro-container input,
-.cadastro-container button {
-    width: 100%;
-    margin-bottom: 15px; /* Distância entre os campos e botões */
-}
-
-/* =========================== */
-/* RODAPÉ FIXO */
-/* =========================== */
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-    background-color: black; /* Faixa preta fixa */
+    background-color: #141414; /* Cor do fundo consistente com as outras páginas */
     color: white;
     text-align: center;
-    line-height: 50px; /* Alinha o texto verticalmente */
+    padding: 10px;
+    width: 100%;
     font-size: 12px;
-}
-
-/* =========================== */
-/* RESPONSIVIDADE (PARA MOBILE) */
-@media (max-width: 768px) {
-    .cadastro-container {
-        padding: 20px; /* Ajuste do padding para telas menores */
-        width: 90%; /* Deixa o container um pouco menor em telas pequenas */
-        min-height: auto; /* Ajuste a altura para que o conteúdo não fique limitado */
-    }
+    position: relative;
+    margin-top: auto; /* Garante que o rodapé vai para a parte inferior */
 }
 
 /* =========================== */
@@ -208,8 +163,6 @@ footer {
     outline: 2px dashed #e50914;
     outline-offset: 4px;
 }
-
-
 /* =========================== */
 /* BODY */
 body {
