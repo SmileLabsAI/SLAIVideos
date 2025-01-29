@@ -4,7 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirecionando...</title>
-  <meta http-equiv="refresh" content="https://smilelabsai.github.io/SLAIVideos/login.html">
+
+  <!-- Correção do redirecionamento -->
+  <meta http-equiv="refresh" content="0; URL=login.html">
+
+  <script>
+    // Redirecionamento alternativo via JavaScript, caso o meta refresh não funcione
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 100);
+  </script>
 </head>
 <body>
 <p>Se não for redirecionado automaticamente, <a href="login.html">clique aqui</a>.</p>
