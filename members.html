@@ -91,7 +91,7 @@
       background-color: rgba(0, 0, 0, 0.8);
       color: #b3b3b3;
       width: 100%;
-      font-size: 14px;
+      font-size: 8px;
     }
   </style>
 </head>
@@ -142,8 +142,10 @@
   }
 
   checkUser();
-</script>
-<button id="logout">Sair</button>
+  <div class="navbar-right">
+    <button id="btn-logout" class="btn-logout">Sair</button>
+  </div>
+  </div>
 
 <script>
   document.getElementById("logout").addEventListener("click", async () => {
