@@ -141,12 +141,6 @@
     }
   }
 
-  checkUser();
-  <div class="navbar-right">
-    <button id="btn-logout" class="btn-logout">Sair</button>
-  </div>
-  </div>
-
 <script>
   document.getElementById("logout").addEventListener("click", async () => {
     await supabase.auth.signOut();
