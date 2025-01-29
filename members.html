@@ -2,17 +2,21 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Área de Membros - SLAI Videos</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="membros.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Members - SLAI Videos</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
   <style>
+    /* Garante que o html e o body ocupem toda a altura da tela */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
     body {
       background-color: #141414;
       color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -23,75 +27,130 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;  /* Ajuste o padding */
+      padding: 20px 10px;
       background-color: rgba(0, 0, 0, 0.9);
+      position: relative;
     }
 
-    .navbar-left img {
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar img {
       height: 50px;
+      margin-right: 15px;
     }
 
-    .navbar a {
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      display: inline;
+    }
+
+    .nav-links li a {
       color: white;
       text-decoration: none;
       font-size: 18px;
-      margin-left: 20px;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
 
-    .navbar a:hover {
+    .nav-links li a:hover {
       color: #e50914;
     }
 
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      user-select: none;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      top: 70px;
+      right: 10px;
+      width: 200px;
+      padding: 15px;
+      z-index: 1000;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px;
+      display: block;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #e50914;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
     .container {
-      max-width: 800px;
+      max-width: 600px;
       margin: auto;
-      text-align: center;
-      padding: 20px;
-      flex-grow: 1; /* Mantém o conteúdo no centro */
+      padding: 40px 20px;
+      flex: 1;
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     p {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.6;
       color: #b3b3b3;
       text-align: justify;
     }
 
-    .btn-login {
-      padding: 12px 20px;
-      font-size: 18px;
-      background-color: #e50914;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-      display: none; /* Só aparece se o usuário não estiver logado */
-    }
+    /* Outros estilos específicos da página Members podem ir aqui */
 
-    .btn-login:hover {
-      background-color: #b20710;
-    }
-
-    /* Seção de Conteúdo para Membros */
-    .member-content {
-      display: none; /* Oculta se não estiver logado */
-    }
-
-    /* Rodapé fixo */
+    /* Rodapé */
     .footer {
-      text-align: center;
-      padding: 12px;
       background-color: rgba(0, 0, 0, 0.8);
       color: #b3b3b3;
-      width: 100%;
-      font-size: 8px;
+      text-align: left;
+      font-size: 10px;
+      padding: 10px;
+      margin-top: auto;
     }
   </style>
 </head>
@@ -103,66 +162,54 @@
     <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
   </div>
   <ul class="nav-links">
-    <li><a href="catalog.html">Home</a></li>
+    <li><a href="home.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="members.html">Members Area</a></li>
+    <li><a href="login.html">Login</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-</div>
+  <div class="hamburger">☰</div>
 
-<!-- Menu Mobile -->
-<div class="mobile-menu">
-  <a href="catalog.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="members.html">Members Area</a>
-</div>
-
-<!-- Conteúdo da Página de Membros -->
-<div class="container">
-  <h1>Bem-vindo à Área de Membros</h1>
-  <p id="message">Acesse conteúdos exclusivos sendo um membro da Smile Labs AI.</p>
-
-  <!-- Seção de login -->
-  <button id="btn-login" class="btn-login" onclick="window.location.href='login.html'">Login</button>
-
-  <!-- Conteúdo exclusivo para membros logados -->
-  <div class="member-content" id="member-content">
-    <h2>Conteúdo Exclusivo</h2>
-    <p>Aqui você terá acesso a vídeos premium, materiais complementares e novidades exclusivas.</p>
+  <!-- Menu Mobile -->
+  <div class="mobile-menu">
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="members.html">Members Area</a>
+    <a href="login.html">Login</a>
   </div>
 </div>
-<script>
-  async function checkUser() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      window.location.href = "/login.html"; // Redireciona para login se não estiver autenticado
-    }
-  }
 
-<script>
-  document.getElementById("logout").addEventListener("click", async () => {
-    await supabase.auth.signOut();
-    window.location.href = "/login.html";
-  });
-</script>
-
-<!-- Rodapé fixo -->
-<div class="footer">
-  <p>© 2025 Smile Labs Videos - Todos os direitos reservados</p>
+<!-- Conteúdo da Página Members -->
+<div class="container">
+  <h1>Área de Membros</h1>
+  <p>Bem-vindo à área exclusiva para membros. Aqui você encontra conteúdo especial e recursos adicionais.</p>
+  <!-- Conteúdo adicional para membros -->
 </div>
 
-<script>
-  // Simulação de login (substituir por autenticação real)
-  const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+<!-- Rodapé -->
+<footer class="footer">
+  &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
+</footer>
 
-  if (isLoggedIn) {
-    document.getElementById("member-content").style.display = "block";
-    document.getElementById("message").style.display = "none";
-  } else {
-    document.getElementById("btn-login").style.display = "inline-block";
-  }
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('open');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Atualiza o ano no rodapé
+    const currentYear = new Date().getFullYear();
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+      yearSpan.textContent = currentYear;
+    }
+  });
 </script>
 
 </body>
