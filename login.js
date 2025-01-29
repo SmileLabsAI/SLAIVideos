@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             logoutButton.style.display = "inline-block";
             logoutButton.addEventListener("click", () => {
                 localStorage.removeItem("userLoggedIn");
-                window.location.href = "index.html";
+                window.location.href = "catalog.html";
             });
         }
     }
