@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contato - SLAI Videos</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Comentado temporariamente para isolar problemas no style.css -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
   <style>
     /* Garante que o html e o body ocupem toda a altura da tela */
     html, body {
@@ -58,7 +59,7 @@
       color: white;
       text-decoration: none;
       font-size: 18px;
-      transition: 0.3s;
+      transition: color 0.3s;
     }
 
     .nav-links li a:hover {
@@ -71,18 +72,30 @@
       font-size: 30px;
       cursor: pointer;
       color: white;
+      user-select: none; /* Evita a seleção do ícone */
     }
 
     .mobile-menu {
       display: none;
       flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.95);
       position: absolute;
       top: 70px;
       right: 10px; /* Ajuste para alinhar com a navbar */
       width: 200px;
       padding: 15px;
       z-index: 1000; /* Garantir que fique acima de outros elementos */
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      visibility: visible;
     }
 
     .mobile-menu a {
@@ -91,14 +104,12 @@
       font-size: 18px;
       padding: 10px;
       display: block;
+      border-radius: 4px;
+      transition: background-color 0.3s;
     }
 
     .mobile-menu a:hover {
       background-color: #e50914;
-    }
-
-    .mobile-menu.open {
-      display: flex;
     }
 
     /* Responsividade */
@@ -214,7 +225,7 @@
     <li><a href="members.html">Members Area</a></li>
     <li><a href="login.html">Login</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="hamburger">☰</div>
 
   <!-- Menu Mobile -->
   <div class="mobile-menu">
@@ -257,17 +268,19 @@
 </footer>
 
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
-  function toggleMenu() {
-    mobileMenu.classList.toggle('open');
-  }
+    function toggleMenu() {
+      mobileMenu.classList.toggle('open');
+    }
 
-  hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('click', toggleMenu);
 
-  // Atualiza o ano no rodapé
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
+    // Atualiza o ano no rodapé
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  });
 </script>
 
 </body>
