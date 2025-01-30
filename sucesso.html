@@ -51,10 +51,12 @@
 <!-- Scripts -->
 <script>
     function toggleMenu() {
-        document.querySelector('.mobile-menu').classList.toggle('open');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        mobileMenu.classList.toggle('open');
     }
 
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>

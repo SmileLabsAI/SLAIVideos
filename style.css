@@ -313,7 +313,7 @@ body.sucesso-page {
     padding: 20px;
 }
 
-/* Mantém a navbar igual ao resto do site */
+/* NAVBAR */
 .sucesso-page .navbar {
     width: 100%;
     position: fixed;
@@ -354,6 +354,47 @@ body.sucesso-page {
     color: #e50914; /* Vermelho Netflix */
 }
 
+/* MENU HAMBÚRGUER (MOBILE) */
+.sucesso-page .hamburger {
+    display: none; /* Oculto no desktop */
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    z-index: 1010;
+}
+
+/* MENU MOBILE */
+.sucesso-page .mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
+    width: 200px;
+    border-radius: 5px;
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.sucesso-page .mobile-menu a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+}
+
+.sucesso-page .mobile-menu a:hover {
+    background-color: #e50914;
+}
+
+.sucesso-page .mobile-menu.open {
+    display: flex;
+}
+
 /* Centraliza a mensagem corretamente */
 .sucesso-container {
     background: rgba(0, 0, 0, 0.85);
@@ -362,7 +403,7 @@ body.sucesso-page {
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     max-width: 500px;
     width: 90%;
-    margin-top: 100px; /* Ajuste para evitar sobreposição com navbar */
+    margin-top: 100px; /* Evita sobreposição com navbar */
 }
 
 /* Títulos e texto */
@@ -404,15 +445,17 @@ body.sucesso-page {
 /* =========================== */
 @media (max-width: 768px) {
     .sucesso-page .navbar {
-        flex-direction: column;
-        padding: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .sucesso-page .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        margin-top: 10px;
+        display: none; /* Oculta links no mobile */
+    }
+
+    .sucesso-page .hamburger {
+        display: block; /* Mostra hambúrguer no mobile */
     }
 
     .sucesso-container {
