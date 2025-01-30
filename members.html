@@ -1,193 +1,78 @@
-/* =========================== */
-/* RESET E CONFIGURAÇÃO GERAL */
-/* =========================== */
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Members - SLAI Videos</title>
+  <!-- Descomente a linha abaixo para usar seu arquivo de estilo externo -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-body {
-background-color: #141414;
-color: white;
-display: flex;
-flex-direction: column;
-min-height: 100vh;
-font-family: Arial, sans-serif;
-}
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-left">
+    <img
+            src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png"
+            alt="SLAI Videos"
+    />
+  </div>
+  <ul class="nav-links">
+    <li><a href="catalog.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="members.html">Members Area</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+  <div class="hamburger">☰</div>
 
-/* =========================== */
-/* NAVBAR (NORMAL E MOBILE) */
-/* =========================== */
-.navbar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 10px 20px;
-background-color: rgba(0, 0, 0, 0.9);
-}
+  <!-- Menu Mobile -->
+  <div class="mobile-menu">
+    <a href="catalog.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="members.html">Members Area</a>
+    <a href="login.html">Login</a>
+  </div>
+</div>
 
-/* Esquerda da Navbar */
-.navbar-left {
-display: flex;
-align-items: center;
-gap: 15px;
-}
+<!-- Conteúdo da Página Members -->
+<div class="container">
+  <h1>Área de Membros</h1>
+  <p>
+    Bem-vindo à área exclusiva para membros. Aqui você encontra conteúdo
+    especial e recursos adicionais.
+  </p>
+  <!-- Conteúdo adicional para membros -->
+</div>
 
-.navbar-left img {
-height: 50px;
-}
+<!-- Rodapé -->
+<footer class="footer">
+  &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
+</footer>
 
-.navbar-title {
-font-size: 22px;
-font-weight: bold;
-color: white;
-}
+<!-- Script para a funcionalidade do menu mobile e atualização do ano no rodapé -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector(".hamburger");
+    const mobileMenu = document.querySelector(".mobile-menu");
 
-/* Links da Navbar (Desktop) */
-.nav-links {
-list-style: none;
-display: flex;
-gap: 20px;
-}
+    function toggleMenu() {
+      mobileMenu.classList.toggle("open");
+    }
 
-.nav-links li {
-display: inline;
-}
+    hamburger.addEventListener("click", toggleMenu);
 
-.nav-links li a {
-color: white;
-text-decoration: none;
-font-size: 18px;
-font-weight: bold;
-letter-spacing: 0.5px;
-transition: color 0.3s ease-in-out;
-}
+    // Atualiza o ano no rodapé
+    const currentYear = new Date().getFullYear();
+    const yearSpan = document.getElementById("currentYear");
+    if (yearSpan) {
+      yearSpan.textContent = String(currentYear);
+    }
+  });
+</script>
 
-.nav-links li a:hover {
-color: #e50914; /* Netflix red */
-}
-
-/* =========================== */
-/* BOTÃO HAMBÚRGUER (MOBILE) */
-/* =========================== */
-.hamburger {
-display: none; /* Invisível em desktop */
-font-size: 30px;
-cursor: pointer;
-color: white;
-z-index: 1010; /* Sobre o menu */
-}
-
-/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
-.mobile-menu {
-display: none; /* Invisível por padrão */
-flex-direction: column;
-position: absolute;
-top: 70px;
-right: 20px;
-background-color: rgba(0, 0, 0, 0.95);
-width: 200px;
-border-radius: 5px;
-z-index: 1000; /* Sempre acima */
-padding: 10px;
-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Estilo dos Links no Menu Mobile */
-.mobile-menu a {
-color: white;
-padding: 12px 20px;
-text-decoration: none;
-font-size: 18px;
-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-transition: background 0.3s ease-in-out;
-}
-
-.mobile-menu a:hover {
-background-color: #e50914;
-}
-
-/* EXIBIR MENU MOBILE QUANDO ATIVO */
-.mobile-menu.open {
-display: flex;
-}
-
-/* =========================== */
-/* RESPONSIVIDADE (PARA MOBILE) */
-/* =========================== */
-@media (max-width: 768px) {
-.nav-links {
-display: none; /* Esconde o menu padrão em telas menores */
-}
-
-.hamburger {
-display: block; /* Exibe o botão hambúrguer */
-}
-
-.navbar {
-padding: 15px 20px;
-}
-
-.navbar-left img {
-height: 40px;
-}
-
-/* Ajustes específicos para a página de cadastro em dispositivos móveis */
-body.cadastro-page .cadastro-container {
-padding: 20px;
-width: 90%;
-min-height: auto;
-}
-}
-
-/* =========================== */
-/* CONTAINER DE CADASTRO */
-/* =========================== */
-.cadastro-container {
-background-color: rgba(0, 0, 0, 0.8);
-padding: 30px;
-border-radius: 10px;
-text-align: center;
-width: 100%;
-max-width: 380px;
-box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-min-height: 400px;
-margin: 20px auto;
-}
-
-/* =========================== */
-/* RODAPÉ */
-/* =========================== */
-footer {
-background-color: #000; /* Preto */
-color: white;
-text-align: center;
-padding: 10px 0;
-width: 100%;
-font-size: 12px;
-border-top: 2px solid #141414;
-}
-
-/* =========================== */
-/* ACESSIBILIDADE */
-/* =========================== */
-.nav-links li a:focus,
-.mobile-menu a:focus {
-outline: 2px dashed #e50914;
-outline-offset: 4px;
-}
-
-/* =========================== */
-/* CAMPOS DE FORMULÁRIO DENTRO DO CONTAINER DE CADASTRO */
-/* =========================== */
-.cadastro-container input,
-.cadastro-container button {
-width: 100%;
-margin-bottom: 15px;
-}
+<!-- Se tiver outro script global, mantenha aqui -->
+<script src="script.js"></script>
+</body>
+</html>
