@@ -23,8 +23,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Mesmo padding para desktop e mobile */
-    padding: 10px 20px;
+    padding: 10px 20px; /* Mesmo padding desktop/mobile */
     background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -34,7 +33,7 @@ body {
     gap: 15px;
 }
 .navbar-left img {
-    height: 50px; /* Mesmo tamanho em todo o site */
+    height: 50px; /* Logo padronizado */
 }
 
 /* Links da Navbar (Desktop) */
@@ -62,7 +61,7 @@ body {
 /* BOTÃO HAMBÚRGUER (MOBILE) */
 /* =========================== */
 .hamburger {
-    display: none; /* Invisível em telas grandes */
+    display: none; /* Invisível no desktop */
     font-size: 30px;
     cursor: pointer;
     color: white;
@@ -109,7 +108,7 @@ body {
         display: block; /* aparece hamburguer no mobile */
     }
     .navbar {
-        padding: 15px 20px; /* opcional no mobile */
+        padding: 15px 20px; /* Ajuste opcional */
     }
 }
 
@@ -117,7 +116,7 @@ body {
 /* CONTEÚDO E RODAPÉ */
 /* =========================== */
 .conteudo {
-    flex: 1; /* empurra rodapé */
+    flex: 1; /* Empurra o rodapé para baixo */
 }
 
 footer.footer {
@@ -133,43 +132,51 @@ footer.footer {
 /* =========================== */
 /* CONTATO (FORMULÁRIO) */
 /* =========================== */
-/*
-   - Em todas as telas, margin: 40px 20px =>
-     alinhado a 20px da esquerda e direita (igual à navbar).
-   - Em telas >= 769px, limitamos a largura (max-width: 800px),
-     mas sem centralizar total (pois você pediu para alinhar
-     ao logo/hamburger na esquerda/direita).
-*/
-.container {
+.contact-container {
+    /*
+      Margens de 40px em cima/baixo, 20px laterais
+      para alinhar ao navbar.
+    */
     margin: 40px 20px;
 }
-@media (min-width: 769px) {
-    .container {
-        max-width: 800px;
-    }
-}
 
-/* Título centralizado */
-.container h1 {
+/* Título e texto */
+.contact-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
 }
-/* Parágrafo justificado */
-.container p {
+.contact-container p {
     font-size: 16px;
     line-height: 1.6;
     color: #b3b3b3;
     text-align: justify;
+    margin-bottom: 20px; /* Pequena margem final */
 }
 
-/* Formulário */
-form {
+/* Formulário centralizado */
+.contact-container form {
+    /* Em telas menores, ocupa 100% do container
+       (menos as margens laterais de 20px). */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
+    align-items: center; /* Centraliza o bloco do form */
 }
+
+/*
+   Para o desktop, limitamos a largura do form
+   para ~450px, assim inputs/botão ficam estreitos
+   e centralizados.
+*/
+@media (min-width: 769px) {
+    .contact-container form {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}
+
+/* Cada grupo (label + input/textarea) */
 .form-group {
     width: 100%;
     display: flex;
@@ -177,13 +184,18 @@ form {
     align-items: flex-start;
     margin-bottom: 15px;
 }
-label {
+
+/* Label */
+.form-group label {
     font-size: 14px;
     margin-top: 10px;
     color: #b3b3b3;
 }
-input, textarea {
-    width: 100%;
+
+/* Campos de texto */
+.form-group input,
+.form-group textarea {
+    width: 100%; /* Mesma largura do form-group */
     padding: 8px;
     margin-top: 5px;
     border: none;
@@ -192,14 +204,16 @@ input, textarea {
     background-color: #2c2c2c;
     color: white;
 }
-textarea {
+.form-group textarea {
     resize: vertical;
     min-height: 100px;
 }
 
+/* Botão "Enviar Mensagem"
+   - Ocupa 100% do form (max. 450px no desktop).
+*/
 .btn-enviar {
-    width: 75%;
-    max-width: 450px;
+    width: 100%;
     padding: 10px;
     background-color: #e50914;
     color: white;
@@ -230,7 +244,7 @@ body.catalog-page .videos-container {
     padding: 30px 0;
 }
 
-/* Packs menores */
+/* Packs menores (desktop = 150px wide; mobile ~2 colunas) */
 body.catalog-page .pack {
     background: #1e1e1e;
     border-radius: 8px;
@@ -239,11 +253,6 @@ body.catalog-page .pack {
     padding: 10px;
     margin: 0;
 }
-
-/*
-   - No mobile (<=768px): ~2 colunas (45%).
-   - No desktop (>768px): packs fixos de 150px de largura (bem pequenos).
-*/
 @media (max-width: 768px) {
     body.catalog-page .pack {
         width: 45%;
@@ -258,6 +267,7 @@ body.catalog-page .pack {
     }
 }
 
+/* Thumbnails dentro do pack */
 body.catalog-page .pack img {
     width: 100%;
     height: auto;
@@ -266,7 +276,7 @@ body.catalog-page .pack img {
     margin-bottom: 10px;
 }
 
-/* Botão estilo Netflix (vermelho) */
+/* Botão estilo Netflix */
 body.catalog-page .pack button {
     background-color: #E50914;
     color: white;
