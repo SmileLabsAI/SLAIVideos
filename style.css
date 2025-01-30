@@ -273,3 +273,32 @@ body.catalog-page .pack button {
 body.catalog-page .pack button:hover {
     background-color: #B20710;
 }
+/* =========================== */
+/* PÁGINA DE MEMBROS (members.html) */
+/* =========================== */
+body.members-page .members-container {
+    /* Margens para cima/baixo e laterais, similar ao contact-container */
+    margin: 40px 20px;
+
+    /* Em mobile, ~80–85% da tela é comum, mas se preferir 100%:
+       width: 85%;
+       margin: 40px auto;
+    */
+
+    /* Em desktop, podemos limitar a 800px e centralizar via margin auto */
+    max-width: 800px;
+    text-align: center; /* Centraliza texto e títulos */
+}
+
+/* Opcional: estilizar o <h1> e <p> dentro da .members-container */
+body.members-page .members-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+body.members-page .members-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #b3b3b3;
+    margin-bottom: 20px;
+}

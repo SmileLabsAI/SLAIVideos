@@ -2,13 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Members - SLAI Videos</title>
-  <!-- Descomente a linha abaixo para usar seu arquivo de estilo externo -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Membros - SLAI Videos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-
+<body class="members-page">
 <!-- Navbar -->
 <div class="navbar">
   <div class="navbar-left">
@@ -22,28 +20,27 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="members.html">Members Area</a></li>
-    <li><a href="login.html">Login</a></li>
+    <li><a href="login.html">Logout</a></li>
   </ul>
-  <div class="hamburger">☰</div>
-
-  <!-- Menu Mobile -->
-  <div class="mobile-menu">
-    <a href="catalog.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="members.html">Members Area</a>
-    <a href="login.html">Login</a>
-  </div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
 </div>
 
-<!-- Conteúdo da Página Members -->
-<div class="container">
-  <h1>Área de Membros</h1>
-  <p>
-    Bem-vindo à área exclusiva para membros. Aqui você encontra conteúdo
-    especial e recursos adicionais.
-  </p>
-  <!-- Conteúdo adicional para membros -->
+<!-- Menu Mobile -->
+<div class="mobile-menu">
+  <a href="catalog.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="members.html">Members Area</a>
+  <a href="login.html">Logout</a>
+</div>
+
+<!-- Conteúdo Principal -->
+<div class="conteudo">
+  <div class="members-container">
+    <h1>Área de Membros</h1>
+    <p>Bem-vindo à área exclusiva para membros. Aqui você encontra conteúdo especial e recursos adicionais.</p>
+    <!-- Qualquer outro conteúdo que desejar -->
+  </div>
 </div>
 
 <!-- Rodapé -->
@@ -51,28 +48,16 @@
   &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
-<!-- Script para a funcionalidade do menu mobile e atualização do ano no rodapé -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const hamburger = document.querySelector(".hamburger");
-    const mobileMenu = document.querySelector(".mobile-menu");
+  function toggleMenu() {
+    const menu = document.querySelector('.mobile-menu');
+    menu.classList.toggle('open');
+  }
 
-    function toggleMenu() {
-      mobileMenu.classList.toggle("open");
-    }
-
-    hamburger.addEventListener("click", toggleMenu);
-
-    // Atualiza o ano no rodapé
-    const currentYear = new Date().getFullYear();
-    const yearSpan = document.getElementById("currentYear");
-    if (yearSpan) {
-      yearSpan.textContent = String(currentYear);
-    }
-  });
+  // Atualiza o ano no rodapé
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
-
-<!-- Se tiver outro script global, mantenha aqui -->
+<!-- Se necessário, seu script global -->
 <script src="script.js"></script>
 </body>
 </html>
