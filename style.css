@@ -23,11 +23,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px; /* Ajuste igual ao about/catalog */
+    /* Mesmo padding para desktop e mobile */
+    padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Logo */
 .navbar-left {
     display: flex;
     align-items: center;
@@ -110,16 +110,20 @@ body {
         display: block; /* aparece hamburguer no mobile */
     }
     .navbar {
-        padding: 15px 20px; /* se quiser */
+        /* pode aumentar o padding no mobile, se quiser */
+        padding: 15px 20px;
     }
 }
 
 /* =========================== */
 /* CONTEÚDO E RODAPÉ */
 /* =========================== */
+
+/* A div .conteudo empurra o rodapé para baixo */
 .conteudo {
-    flex: 1; /* empurra rodapé */
+    flex: 1;
 }
+
 footer.footer {
     background-color: rgba(0, 0, 0, 0.8);
     color: #b3b3b3;
@@ -133,43 +137,59 @@ footer.footer {
 /* =========================== */
 /* PÁGINA DE CONTATO (FORMULÁRIO) */
 /* =========================== */
-/* .container: seu estilo do formulário */
+
+/* .container:
+   - Removemos o max-width fixo para permitir que
+     o conteúdo fique alinhado com a logo e o hamburger.
+   - margin: 40px 20px => 40px em cima e embaixo, 20px nas laterais,
+     para alinhar com a navbar (que também usa 20px).
+*/
 .container {
-    max-width: 600px;
-    margin: auto;
-    padding: 40px 20px;
+    margin: 40px 20px;
+    /* Se quiser limitar a largura em telas muito grandes, use algo como:
+       max-width: 1200px; (a seu critério)
+    */
 }
-/* Título e parágrafo */
+
+/* Título centralizado */
 .container h1 {
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
 }
+
+/* Parágrafo justificado */
 .container p {
     font-size: 16px;
     line-height: 1.6;
     color: #b3b3b3;
     text-align: justify;
 }
-/* Formulário */
+
+/* Formulário e grupos de campos */
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centraliza o botão e o label em relação ao form */
     width: 100%;
 }
+
 .form-group {
     width: 100%;
-    max-width: 500px;
+    /* A largura total do container é a área útil,
+       mas se quiser limitar, basta definir max-width.
+       Ex.: max-width: 600px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 label {
     font-size: 14px;
     margin-top: 10px;
     color: #b3b3b3;
 }
+
 input, textarea {
     width: 100%;
     padding: 8px;
@@ -180,10 +200,12 @@ input, textarea {
     background-color: #2c2c2c;
     color: white;
 }
+
 textarea {
     resize: vertical;
     min-height: 100px;
 }
+
 /* Botão enviar */
 .btn-enviar {
     width: 75%;
@@ -202,3 +224,9 @@ textarea {
 .btn-enviar:hover {
     background-color: #b20710;
 }
+
+/* =========================== */
+/* EXEMPLOS DE OUTRAS PÁGINAS */
+/* =========================== */
+/* Se houver regras específicas para .catalog-page, .about-page, etc.
+   mantenha aqui, sem interferir no contact. */
