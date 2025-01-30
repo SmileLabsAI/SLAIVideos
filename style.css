@@ -13,7 +13,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante altura de tela */
+    min-height: 100vh; /* para rodapé fixo no fim */
 }
 
 /* =========================== */
@@ -23,18 +23,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Ajuste igual ao about/catalog */
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Logo (mesmo tamanho em todas as telas) */
+/* Logo */
 .navbar-left {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 .navbar-left img {
-    height: 50px; /* Sempre 50px (desktop e mobile) */
+    height: 50px; /* Mesmo tamanho em todo o site */
 }
 
 /* Links da Navbar (Desktop) */
@@ -62,16 +62,16 @@ body {
 /* BOTÃO HAMBÚRGUER (MOBILE) */
 /* =========================== */
 .hamburger {
-    display: none; /* Invisível em desktop */
+    display: none; /* Invisível em telas grandes */
     font-size: 30px;
     cursor: pointer;
     color: white;
-    z-index: 1010; /* Fica acima do mobile-menu */
+    z-index: 1010; /* acima do mobile-menu */
 }
 
-/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
+/* MENU MOBILE */
 .mobile-menu {
-    display: none; /* Invisível por padrão */
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 70px;
@@ -79,9 +79,9 @@ body {
     background-color: rgba(0, 0, 0, 0.95);
     width: 200px;
     border-radius: 5px;
-    z-index: 1000; /* Sempre acima */
+    z-index: 1000;
     padding: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 .mobile-menu a {
     color: white;
@@ -89,101 +89,88 @@ body {
     text-decoration: none;
     font-size: 18px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s ease-in-out;
+    transition: background 0.3s;
 }
 .mobile-menu a:hover {
     background-color: #e50914;
 }
-/* EXIBIR MENU MOBILE QUANDO ABERTO */
+/* Quando o menu está aberto */
 .mobile-menu.open {
     display: flex;
 }
 
 /* =========================== */
-/* RESPONSIVIDADE (MOBILE) */
+/* RESPONSIVIDADE GERAL (até 768px) */
 /* =========================== */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Esconde o menu principal */
+        display: none; /* some links no mobile */
     }
     .hamburger {
-        display: block;
+        display: block; /* aparece hamburguer no mobile */
     }
     .navbar {
-        padding: 15px 20px;
+        padding: 15px 20px; /* se quiser */
     }
 }
 
 /* =========================== */
-/* RODAPÉ */
+/* CONTEÚDO E RODAPÉ */
 /* =========================== */
+.conteudo {
+    flex: 1; /* empurra rodapé */
+}
 footer.footer {
-    background-color: #000;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #b3b3b3;
+    text-align: left;
+    font-size: 10px;
+    padding: 10px;
     width: 100%;
-    font-size: 12px;
     border-top: 2px solid #141414;
 }
 
-/* Faz o rodapé ficar no fim (body > .conteudo > footer) */
-.conteudo {
-    flex: 1;
-}
-
 /* =========================== */
-/* ACESSIBILIDADE (Focus) */
+/* PÁGINA DE CONTATO (FORMULÁRIO) */
 /* =========================== */
-.nav-links li a:focus,
-.mobile-menu a:focus {
-    outline: 2px dashed #e50914;
-    outline-offset: 4px;
-}
-
-/* =========================== */
-/* PÁGINA DE CONTATO */
-/* =========================== */
-/* Aplica somente se <body class="contact-page"> */
-body.contact-page .contact-container {
+/* .container: seu estilo do formulário */
+.container {
     max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: center;
+    margin: auto;
+    padding: 40px 20px;
 }
-body.contact-page .contact-container h1 {
+/* Título e parágrafo */
+.container h1 {
     font-size: 32px;
     margin-bottom: 20px;
+    text-align: center;
 }
-body.contact-page .contact-container p {
+.container p {
     font-size: 16px;
     line-height: 1.6;
     color: #b3b3b3;
     text-align: justify;
-    margin-bottom: 20px;
 }
-/* Formulário de contato */
-body.contact-page .contact-container form {
+/* Formulário */
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
-body.contact-page .contact-container .form-group {
+.form-group {
     width: 100%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 15px;
 }
-body.contact-page .contact-container label {
+label {
     font-size: 14px;
     margin-top: 10px;
     color: #b3b3b3;
 }
-body.contact-page .contact-container input,
-body.contact-page .contact-container textarea {
+input, textarea {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -193,11 +180,12 @@ body.contact-page .contact-container textarea {
     background-color: #2c2c2c;
     color: white;
 }
-body.contact-page .contact-container textarea {
+textarea {
     resize: vertical;
     min-height: 100px;
 }
-body.contact-page .contact-container .btn-enviar {
+/* Botão enviar */
+.btn-enviar {
     width: 75%;
     max-width: 450px;
     padding: 10px;
@@ -211,48 +199,6 @@ body.contact-page .contact-container .btn-enviar {
     margin-top: 15px;
     text-align: center;
 }
-body.contact-page .contact-container .btn-enviar:hover {
+.btn-enviar:hover {
     background-color: #b20710;
-}
-
-/* =========================== */
-/* PÁGINA DE CATÁLOGO (Exemplo) */
-/* =========================== */
-body.catalog-page {
-    background-color: #121212;
-}
-body.catalog-page .videos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px 0;
-}
-body.catalog-page .pack {
-    background: #1e1e1e;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-    text-align: center;
-    padding: 10px;
-    margin: 0;
-}
-/* E assim por diante, sem interferir nas outras páginas... */
-
-/* =========================== */
-/* PÁGINA DE CADASTRO (Exemplo) */
-/* =========================== */
-body.cadastro-page .cadastro-container {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 100%;
-    max-width: 380px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    margin: 20px auto;
 }
