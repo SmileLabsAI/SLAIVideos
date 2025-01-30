@@ -30,14 +30,14 @@ body.catalog-page .catalog {
 body.catalog-page .videos-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 20px;   /* Espaçamento entre os cards */
+    flex-wrap: wrap;  /* Permite quebrar linha quando não couber */
     margin-top: 20px;
 }
 
-/* Cada “pack” (cartão) do catálogo */
+/* Cada “pack” (cartão) do catálogo, em telas grandes */
 body.catalog-page .pack {
-    width: 200px; /* Reduzido de 300px para 200px para evitar que as imagens fiquem muito grandes */
+    width: 180px;        /* Ajuste para ~5 caberem em linha em desktop */
     text-align: center;
     padding: 10px;
     background: #1e1e1e;
@@ -49,7 +49,7 @@ body.catalog-page .pack {
 body.catalog-page .pack img {
     width: 100%;
     height: auto;
-    aspect-ratio: 2 / 3;    /* Poster estilo Netflix (vertical) */
+    aspect-ratio: 2 / 3;     /* Poster estilo Netflix (vertical) */
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -84,4 +84,15 @@ body.catalog-page .pack button {
 /* Hover no botão */
 body.catalog-page .pack button:hover {
     background-color: #B20710;
+}
+
+/* =========================== */
+/* AJUSTES PARA DISPOSITIVOS PEQUENOS */
+/* =========================== */
+@media (max-width: 768px) {
+    /* Cada .pack ocupa ~45% da tela (2 por linha), porém limitamos a 180px caso seja uma tela intermediária */
+    body.catalog-page .pack {
+        width: 45vw;
+        max-width: 180px;
+    }
 }
