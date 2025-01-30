@@ -2,9 +2,9 @@
 /* CATALOG PAGE ESPECÍFICA     */
 /* =========================== */
 
-/* Substitui a cor de fundo para esta página em particular */
+/* Aplica fundo mais escuro especificamente ao catálogo */
 body.catalog-page {
-    background-color: #121212; /* antes era #141414 no global; agora #121212 especificamente para o catálogo */
+    background-color: #121212; /* antes era #141414 no global; agora #121212 para o catálogo */
 }
 
 /* Conteúdo flex para ocupar a altura */
@@ -21,7 +21,7 @@ body.catalog-page .navbar {
 body.catalog-page .catalog {
     background-color: #121212; /* Mesmo tom do background geral */
     color: white;
-    padding: 50px; /* Estava “20px” + “50px”; aqui mantemos 50px */
+    padding: 50px; /* antes tinha 20px + 50px, mantendo 50px */
     text-align: center;
     width: 100%;
 }
@@ -35,9 +35,9 @@ body.catalog-page .videos-container {
     margin-top: 20px;
 }
 
-/* Estilização de cada “pack” */
+/* Cada “pack” (cartão) do catálogo */
 body.catalog-page .pack {
-    width: 300px;
+    width: 200px; /* Reduzido de 300px para 200px para evitar que as imagens fiquem muito grandes */
     text-align: center;
     padding: 10px;
     background: #1e1e1e;
@@ -45,13 +45,11 @@ body.catalog-page .pack {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Imagens dentro do pack */
+/* Imagens dentro do pack: formato vertical (2:3) */
 body.catalog-page .pack img {
     width: 100%;
     height: auto;
-    /* aspect-ratio só funciona em navegadores modernos;
-       se precisar suportar legacy, usar outra abordagem. */
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 2 / 3;    /* Poster estilo Netflix (vertical) */
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
