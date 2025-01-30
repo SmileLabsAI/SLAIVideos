@@ -13,7 +13,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* para rodapé fixo no fim */
+    min-height: 100vh; /* Rodapé fixo no fim */
 }
 
 /* =========================== */
@@ -33,7 +33,6 @@ body {
     align-items: center;
     gap: 15px;
 }
-
 .navbar-left img {
     height: 50px; /* Mesmo tamanho em todo o site */
 }
@@ -95,7 +94,6 @@ body {
 .mobile-menu a:hover {
     background-color: #e50914;
 }
-/* Quando o menu está aberto */
 .mobile-menu.open {
     display: flex;
 }
@@ -111,17 +109,15 @@ body {
         display: block; /* aparece hamburguer no mobile */
     }
     .navbar {
-        padding: 15px 20px; /* Ajuste opcional no mobile */
+        padding: 15px 20px; /* opcional no mobile */
     }
 }
 
 /* =========================== */
 /* CONTEÚDO E RODAPÉ */
 /* =========================== */
-
-/* A div .conteudo empurra o rodapé para baixo */
 .conteudo {
-    flex: 1;
+    flex: 1; /* empurra rodapé */
 }
 
 footer.footer {
@@ -135,18 +131,31 @@ footer.footer {
 }
 
 /* =========================== */
-/* PÁGINA DE CONTATO (FORMULÁRIO) */
+/* CONTATO (FORMULÁRIO) */
 /* =========================== */
+/*
+   - Em todas as telas, margin: 40px 20px =>
+     alinhado a 20px da esquerda e direita (igual à navbar).
+   - Em telas >= 769px, limitamos a largura (max-width: 800px),
+     mas sem centralizar total (pois você pediu para alinhar
+     ao logo/hamburger na esquerda/direita).
+*/
 .container {
-    /* Espaço vertical de 40px e horizontal de 20px no mobile */
     margin: 40px 20px;
 }
+@media (min-width: 769px) {
+    .container {
+        max-width: 800px;
+    }
+}
 
+/* Título centralizado */
 .container h1 {
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
 }
+/* Parágrafo justificado */
 .container p {
     font-size: 16px;
     line-height: 1.6;
@@ -154,13 +163,13 @@ footer.footer {
     text-align: justify;
 }
 
+/* Formulário */
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
-
 .form-group {
     width: 100%;
     display: flex;
@@ -173,8 +182,7 @@ label {
     margin-top: 10px;
     color: #b3b3b3;
 }
-input,
-textarea {
+input, textarea {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -207,17 +215,6 @@ textarea {
     background-color: #b20710;
 }
 
-/*
-   REGRAS PARA TELA DESKTOP (maior que 768px)
-   limitando a largura do formulário.
-*/
-@media (min-width: 769px) {
-    .container {
-        max-width: 700px;  /* por exemplo, 700px */
-        margin: 40px auto; /* centraliza no desktop */
-    }
-}
-
 /* =========================== */
 /* CATÁLOGO (PACKS E THUMBNAILS) */
 /* =========================== */
@@ -240,47 +237,47 @@ body.catalog-page .pack {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
     text-align: center;
     padding: 10px;
-    margin: 0; /* se quiser espaçamento adicional, use margin: 10px; */
+    margin: 0;
 }
 
-/* Thumbnails:
-   fixamos ~150px no desktop,
-   e no mobile, ~2 colunas (45%) */
+/*
+   - No mobile (<=768px): ~2 colunas (45%).
+   - No desktop (>768px): packs fixos de 150px de largura (bem pequenos).
+*/
 @media (max-width: 768px) {
     body.catalog-page .pack {
-        width: 45%; /* 2 colunas no mobile */
-        max-width: 200px; /* se quiser um limite */
+        width: 45%;
+        max-width: 200px;
         margin: 0 auto;
     }
+}
+@media (min-width: 769px) {
+    body.catalog-page .pack {
+        width: 150px;
+        margin: 10px;
+    }
+}
 
-    @media (min-width: 769px) {
-        body.catalog-page .pack {
-            width: 150px;  /* packs pequenos no desktop */
-            margin: 10px;  /* espaçamento entre packs */
-        }
-    }
+body.catalog-page .pack img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
 
-    /* Imagem ajustada */
-    body.catalog-page .pack img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    /* Botão estilo Netflix dentro do pack */
-    body.catalog-page .pack button {
-        background-color: #E50914;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        transition: background-color 0.3s ease-in-out;
-    }
-    body.catalog-page .pack button:hover {
-        background-color: #B20710;
-    }
+/* Botão estilo Netflix (vermelho) */
+body.catalog-page .pack button {
+    background-color: #E50914;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+body.catalog-page .pack button:hover {
+    background-color: #B20710;
+}
