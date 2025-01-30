@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contato - SLAI Videos</title>
-  <!-- Comentado temporariamente para isolar problemas no style.css -->
   <!-- <link rel="stylesheet" href="style.css"> -->
   <style>
     /* Garante que o html e o body ocupem toda a altura da tela */
@@ -267,8 +266,9 @@
   &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
+<!-- Script inline (hambúrguer e ano) -->
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -278,10 +278,13 @@
 
     hamburger.addEventListener('click', toggleMenu);
 
-    // Atualiza o ano no rodapé
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    // Atualiza o ano no rodapé (converte para String p/ evitar aviso do linter)
+    document.getElementById('currentYear').textContent = String(new Date().getFullYear());
   });
 </script>
+
+<!-- Importa o script global de Login/Logout -->
+<script src="script.js"></script>
 
 </body>
 </html>

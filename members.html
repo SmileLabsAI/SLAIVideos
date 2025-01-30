@@ -91,24 +91,11 @@
       visibility: hidden;
     }
 
+    /* A classe "open" é usada no script.js (toggleMenu). */
     .mobile-menu.open {
       display: flex;
       opacity: 1;
       visibility: visible;
-    }
-
-    .mobile-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 10px;
-      display: block;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-
-    .mobile-menu a:hover {
-      background-color: #e50914;
     }
 
     /* Responsividade */
@@ -193,7 +180,7 @@
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -203,14 +190,17 @@
 
     hamburger.addEventListener('click', toggleMenu);
 
-    // Atualiza o ano no rodapé
+    // Atualiza o ano no rodapé, convertendo para string
     const currentYear = new Date().getFullYear();
     const yearSpan = document.getElementById('currentYear');
     if (yearSpan) {
-      yearSpan.textContent = currentYear;
+      yearSpan.textContent = String(currentYear);
     }
   });
 </script>
+
+<!-- Importa o script global (login/logout) -->
+<script src="script.js"></script>
 
 </body>
 </html>

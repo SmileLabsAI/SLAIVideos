@@ -31,7 +31,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: #000;/* Fundo preto */
+            background-color: #000; /* Fundo preto */
             color: white;
         }
 
@@ -62,6 +62,7 @@
         .nav-links li a:hover {
             color: #e50914;
         }
+
         .hamburger {
             display: none;
             font-size: 24px;
@@ -74,6 +75,10 @@
             gap: 10px;
             background-color: #000; /* Fundo preto */
             padding: 10px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
         }
 
         .catalog {
@@ -105,7 +110,7 @@
         .pack img {
             width: 100%;
             height: auto;
-            aspect-ratio: 3/2;
+            aspect-ratio: 3/2; /* Para manter a proporção */
             object-fit: cover;
             border-radius: 5px;
             margin-bottom: 10px;
@@ -150,13 +155,8 @@
             .nav-links {
                 display: none;
             }
-
             .hamburger {
                 display: block;
-            }
-
-            .mobile-menu.open {
-                display: flex;
             }
         }
     </style>
@@ -222,15 +222,19 @@
     &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
+<!-- Script inline -->
 <script>
     function toggleMenu() {
         const menu = document.querySelector('.mobile-menu');
         menu.classList.toggle('open');
     }
 
-    // Script para atualizar o ano automaticamente no rodapé
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    // Script para atualizar o ano no rodapé
+    document.getElementById('currentYear').textContent = String(new Date().getFullYear());
 </script>
+
+<!-- Importa o script global de Login/Logout -->
+<script src="script.js"></script>
 
 </body>
 </html>

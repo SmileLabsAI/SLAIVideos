@@ -92,6 +92,7 @@
       background-color: #e50914;
     }
 
+    /* A classe .open será adicionada dinamicamente pelo JS */
     .mobile-menu.open {
       display: flex;
     }
@@ -214,19 +215,29 @@
   <p>We are revolutionizing the dental market with technology and innovation. Join us in this transformation!</p>
 </div>
 
-
 <!-- Rodapé -->
 <footer class="footer">
-    &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
+  &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
+<!-- Script inline para menu e rodapé -->
 <script>
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-
-  hamburger.addEventListener('click', () => {
+  function toggleMenu() {
+    const mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.classList.toggle('open');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Atualiza o ano no rodapé
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+      yearSpan.textContent = String(new Date().getFullYear());
+    }
   });
 </script>
+
+<!-- Importa o script global (login/logout) -->
+<script src="script.js"></script>
+
 </body>
 </html>
