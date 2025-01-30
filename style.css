@@ -33,6 +33,7 @@ body {
     align-items: center;
     gap: 15px;
 }
+
 .navbar-left img {
     height: 50px; /* Mesmo tamanho em todo o site */
 }
@@ -110,8 +111,7 @@ body {
         display: block; /* aparece hamburguer no mobile */
     }
     .navbar {
-        /* pode aumentar o padding no mobile, se quiser */
-        padding: 15px 20px;
+        padding: 15px 20px; /* Ajuste opcional no mobile */
     }
 }
 
@@ -137,28 +137,16 @@ footer.footer {
 /* =========================== */
 /* PÁGINA DE CONTATO (FORMULÁRIO) */
 /* =========================== */
-
-/* .container:
-   - Removemos o max-width fixo para permitir que
-     o conteúdo fique alinhado com a logo e o hamburger.
-   - margin: 40px 20px => 40px em cima e embaixo, 20px nas laterais,
-     para alinhar com a navbar (que também usa 20px).
-*/
 .container {
+    /* Espaço vertical de 40px e horizontal de 20px no mobile */
     margin: 40px 20px;
-    /* Se quiser limitar a largura em telas muito grandes, use algo como:
-       max-width: 1200px; (a seu critério)
-    */
 }
 
-/* Título centralizado */
 .container h1 {
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
 }
-
-/* Parágrafo justificado */
 .container p {
     font-size: 16px;
     line-height: 1.6;
@@ -166,31 +154,27 @@ footer.footer {
     text-align: justify;
 }
 
-/* Formulário e grupos de campos */
 form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza o botão e o label em relação ao form */
+    align-items: center;
     width: 100%;
 }
 
 .form-group {
     width: 100%;
-    /* A largura total do container é a área útil,
-       mas se quiser limitar, basta definir max-width.
-       Ex.: max-width: 600px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 15px;
 }
-
 label {
     font-size: 14px;
     margin-top: 10px;
     color: #b3b3b3;
 }
-
-input, textarea {
+input,
+textarea {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -200,13 +184,11 @@ input, textarea {
     background-color: #2c2c2c;
     color: white;
 }
-
 textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-/* Botão enviar */
 .btn-enviar {
     width: 75%;
     max-width: 450px;
@@ -225,8 +207,80 @@ textarea {
     background-color: #b20710;
 }
 
+/*
+   REGRAS PARA TELA DESKTOP (maior que 768px)
+   limitando a largura do formulário.
+*/
+@media (min-width: 769px) {
+    .container {
+        max-width: 700px;  /* por exemplo, 700px */
+        margin: 40px auto; /* centraliza no desktop */
+    }
+}
+
 /* =========================== */
-/* EXEMPLOS DE OUTRAS PÁGINAS */
+/* CATÁLOGO (PACKS E THUMBNAILS) */
 /* =========================== */
-/* Se houver regras específicas para .catalog-page, .about-page, etc.
-   mantenha aqui, sem interferir no contact. */
+body.catalog-page {
+    background-color: #121212;
+}
+
+body.catalog-page .videos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 0;
+}
+
+/* Packs menores */
+body.catalog-page .pack {
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 10px;
+    margin: 0; /* se quiser espaçamento adicional, use margin: 10px; */
+}
+
+/* Thumbnails:
+   fixamos ~150px no desktop,
+   e no mobile, ~2 colunas (45%) */
+@media (max-width: 768px) {
+    body.catalog-page .pack {
+        width: 45%; /* 2 colunas no mobile */
+        max-width: 200px; /* se quiser um limite */
+        margin: 0 auto;
+    }
+
+    @media (min-width: 769px) {
+        body.catalog-page .pack {
+            width: 150px;  /* packs pequenos no desktop */
+            margin: 10px;  /* espaçamento entre packs */
+        }
+    }
+
+    /* Imagem ajustada */
+    body.catalog-page .pack img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    /* Botão estilo Netflix dentro do pack */
+    body.catalog-page .pack button {
+        background-color: #E50914;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        transition: background-color 0.3s ease-in-out;
+    }
+    body.catalog-page .pack button:hover {
+        background-color: #B20710;
+    }
