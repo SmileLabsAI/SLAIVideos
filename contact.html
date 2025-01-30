@@ -4,20 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contato - SLAI Videos</title>
-  <!-- Carrega apenas o style.css externo -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="contact-page">
-<!-- Envolve todo o conteúdo em .conteudo p/ rodapé fixo no fim -->
 <div class="conteudo">
 
-  <!-- Navbar -->
   <div class="navbar">
     <div class="navbar-left">
-      <img
-              src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png"
-              alt="SLAI Videos"
-      />
+      <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos" />
     </div>
     <ul class="nav-links">
       <li><a href="catalog.html">Home</a></li>
@@ -29,7 +23,6 @@
     <div class="hamburger" onclick="toggleMenu()">☰</div>
   </div>
 
-  <!-- Menu Mobile -->
   <div class="mobile-menu">
     <a href="catalog.html">Home</a>
     <a href="about.html">About</a>
@@ -38,17 +31,12 @@
     <a href="login.html">Login</a>
   </div>
 
-  <!-- Container principal da página de contato -->
   <div class="contact-container">
     <h1>Entre em Contato</h1>
-    <p>
-      Tem dúvidas ou sugestões?
-    </p>
-    <p>
-      Fale conosco preenchendo o formulário abaixo e responderemos o mais rápido possível.
-    </p>
+    <p>Tem dúvidas ou sugestões?</p>
+    <p>Fale conosco preenchendo o formulário abaixo e responderemos o mais rápido possível.</p>
 
-    <form action="#" method="post">
+    <form id="contactForm">
       <div class="form-group">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nome" required />
@@ -66,27 +54,49 @@
 
       <button type="submit" class="btn-enviar">Enviar Mensagem</button>
     </form>
-  </div> <!-- Fim do .contact-container -->
+  </div>
+</div>
 
-</div> <!-- Fim do .conteudo -->
-
-<!-- Rodapé -->
 <footer class="footer">
   &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
-<!-- Script inline (hambúrguer e ano) -->
 <script>
   function toggleMenu() {
     const mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.classList.toggle('open');
   }
 
-  // Atualiza o ano no rodapé
   document.getElementById('currentYear').textContent = String(new Date().getFullYear());
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita o reload da página
+
+    const formData = {
+      nome: document.getElementById('nome').value,
+      email: document.getElementById('email').value,
+      mensagem: document.getElementById('mensagem').value
+    };
+
+    fetch("http://localhost:8082/contact", { // Substituir pela URL do backend no Render quando em produção
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+            .then(response => response.json()) // Alteração feita aqui
+            .then(data => {
+              alert("Mensagem enviada com sucesso!");
+              window.location.href = "obrigado.html";
+            })
+            .catch(error => {
+              console.error("Erro ao enviar a mensagem:", error);
+              alert("Erro ao enviar a mensagem. Tente novamente mais tarde.");
+            });
+  });
 </script>
 
-<!-- Script global de Login/Logout, se necessário -->
 <script src="script.js"></script>
 </body>
 </html>
