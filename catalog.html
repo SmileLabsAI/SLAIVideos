@@ -11,6 +11,7 @@
 
 <!-- Conteúdo Principal -->
 <div class="conteudo">
+
     <!-- Navbar -->
     <div class="navbar">
         <div class="navbar-left">
@@ -41,7 +42,12 @@
     <!-- Video Packs Catalog -->
     <div class="catalog">
         <h2>Video Packs</h2>
-        <div class="videos-container">
+
+        <!-- Aqui está o ajuste principal:
+             Usamos style inline para garantir flex-wrap e espaçamento.
+             Se preferir, mova isso para o style.css. -->
+        <div class="videos-container"
+             style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
 
             <!-- Pack 1 -->
             <div class="pack">
@@ -68,6 +74,8 @@
                     <button>Buy Now</button>
                 </a>
             </div>
+
+            <!-- Se tiver mais packs, repita a estrutura acima -->
         </div>
     </div>
 </div>
