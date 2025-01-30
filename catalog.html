@@ -4,19 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SLAI Videos - Catalog</title>
-    <!-- Agora, todo o estilo vem do arquivo externo -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body class="catalog-page">
 
 <!-- Conteúdo Principal -->
 <div class="conteudo">
-
     <!-- Navbar -->
     <div class="navbar">
         <div class="navbar-left">
             <img
-                    src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png"
+                    src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/main/imagens/LogoSemfundo.png"
                     alt="SLAI Videos"
             />
         </div>
@@ -40,43 +38,22 @@
     </div>
 
     <!-- Video Packs Catalog -->
-    <div class="catalog">
-        <h2>Video Packs</h2>
-
-        <!-- Aqui está o ajuste principal:
-             Usamos style inline para garantir flex-wrap e espaçamento.
-             Se preferir, mova isso para o style.css. -->
-        <div class="videos-container"
-             style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-
-            <!-- Pack 1 -->
-            <div class="pack">
-                <img
-                        src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack1.webp"
-                        alt="Pack of 5 Videos"
-                />
-                <h3>Pack of 5 Videos</h3>
-                <p>R$80.00</p>
-                <a href="https://pay.kiwify.com.br/gztt5j3" target="_blank">
-                    <button>Buy Now</button>
-                </a>
-            </div>
-
-            <!-- Pack 2 -->
-            <div class="pack">
-                <img
-                        src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/Capa%20Pack2.webp"
-                        alt="Pack of 10 Videos"
-                />
-                <h3>Pack of 10 Videos</h3>
-                <p>R$120.00</p>
-                <a href="https://pay.kiwify.com.br/lHZ2NEG" target="_blank">
-                    <button>Buy Now</button>
-                </a>
-            </div>
-
-            <!-- Se tiver mais packs, repita a estrutura acima -->
+    <div class="videos-container">
+        <!-- Exemplo de packs -->
+        <div class="pack">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/main/imagens/Capa%20Pack1.webp" alt="Pack 1" />
+            <h3>Pack of 5 Videos</h3>
+            <p>R$80.00</p>
+            <button>Buy Now</button>
         </div>
+
+        <div class="pack">
+            <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/main/imagens/Capa%20Pack2.webp" alt="Pack 2" />
+            <h3>Pack of 10 Videos</h3>
+            <p>R$120.00</p>
+            <button>Buy Now</button>
+        </div>
+        <!-- etc -->
     </div>
 </div>
 
@@ -85,18 +62,16 @@
     &copy; <span id="currentYear"></span> SLAI Videos. All rights reserved.
 </footer>
 
-<!-- Script inline -->
 <script>
+    // Toggle menu mobile
     function toggleMenu() {
         const menu = document.querySelector('.mobile-menu');
         menu.classList.toggle('open');
     }
 
-    // Script para atualizar o ano no rodapé
+    // Atualiza o ano no rodapé
     document.getElementById('currentYear').textContent = String(new Date().getFullYear());
 </script>
-
-<!-- Importa o script global de Login/Logout -->
 <script src="script.js"></script>
 </body>
 </html>

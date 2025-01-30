@@ -1,219 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sobre - SLAI Videos</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #141414;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;  /* Ajuste o padding */
-      background-color: #000;
-    }
-
-    .navbar-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar img {
-      height: 50px;
-      margin-right: 15px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-links li {
-      display: inline;
-    }
-
-    .nav-links li a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      transition: 0.3s;
-    }
-
-    .nav-links li a:hover {
-      color: #e50914;
-    }
-
-    /* Menu hambúrguer para dispositivos móveis */
-    .hamburger {
-      display: none;
-      font-size: 30px;
-      cursor: pointer;
-      color: white;
-    }
-
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background-color: rgba(0, 0, 0, 0.9);
-      position: absolute;
-      top: 70px;
-      right: 0;
-      width: 200px;
-      padding: 15px;
-    }
-
-    .mobile-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 10px;
-      display: block;
-    }
-
-    .mobile-menu a:hover {
-      background-color: #e50914;
-    }
-
-    /* A classe .open será adicionada dinamicamente pelo JS */
-    .mobile-menu.open {
-      display: flex;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      .hamburger {
-        display: block;
-      }
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
-      flex: 1;
-    }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 24px;
-      margin-top: 30px;
-      color: #e50914;
-      text-align: left;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #b3b3b3;
-      text-align: justify;
-    }
-
-    .highlight {
-      color: #e50914;
-      font-weight: bold;
-    }
-
-    ul {
-      text-align: justify;
-      padding-left: 20px;
-    }
-
-    ul li {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #b3b3b3;
-      margin-bottom: 8px;
-    }
-
-    /* Rodapé */
-    .footer {
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #b3b3b3;
-      text-align: left;
-      font-size: 10px;
-      padding: 10px;
-      margin-top: auto;
-    }
-  </style>
+  <!-- Agora todo estilo vem do arquivo externo -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<!-- Navbar -->
-<div class="navbar">
-  <div class="navbar-left">
-    <img src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png" alt="SLAI Videos">
+<!-- Início do conteúdo principal -->
+<div class="conteudo">
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <img
+              src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/imagens/LogoSemfundo.png"
+              alt="SLAI Videos"
+      />
+    </div>
+    <ul class="nav-links">
+      <li><a href="catalog.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="members.html">Members Area</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
   </div>
-  <ul class="nav-links">
-    <li><a href="catalog.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="members.html">Members Area</a></li>
-    <li><a href="login.html">Login</a></li>
-  </ul>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <!-- Menu Mobile -->
+  <div class="mobile-menu">
+    <a href="catalog.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="members.html">Members Area</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <!-- Container principal da página About -->
+  <div class="container" style="max-width: 800px; margin: auto; padding: 40px 20px;">
+    <h1>
+      About
+      <span style="color: #e50914; font-weight: bold;">Smile Labs Videos</span>
+    </h1>
+
+    <p style="text-align: justify; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      <span style="color: #e50914; font-weight: bold;">Smile Labs Videos</span>
+      é uma empresa de produção de vídeos especializada em Odontologia, utilizando inteligência artificial para criação,
+      pesquisa e edição de conteúdo visual. Nosso objetivo é oferecer vídeos inovadores e educativos para dentistas
+      e profissionais da área, auxiliando na comunicação com seus pacientes e na apresentação de procedimentos.
+    </p>
+
+    <p style="text-align: justify; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      Os dentistas podem adquirir nosso conteúdo de duas formas: comprando pacotes de vídeos individuais ou tornando-se
+      membros da comunidade Smile Labs AI, obtendo acesso completo à nossa biblioteca de produções exclusivas.
+    </p>
+
+    <h2 style="font-size: 24px; margin-top: 30px; color: #e50914; text-align: left;">
+      How Can the Videos Help?
+    </h2>
+    <p style="text-align: justify; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      Smile Labs Videos são criados para demonstrar procedimentos odontológicos de forma clara e profissional.
+      Eles podem ser usados para:
+    </p>
+    <ul style="padding-left: 20px; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      <li>Educar pacientes sobre tratamentos estéticos e de saúde bucal.</li>
+      <li>Auxiliar no processo de tomada de decisão, fornecendo mais clareza e confiança.</li>
+      <li>Exibir em telas na sala de espera do consultório, despertando interesse em novos tratamentos.</li>
+    </ul>
+
+    <h2 style="font-size: 24px; margin-top: 30px; color: #e50914; text-align: left;">
+      Parte do Ecossistema Smile Labs AI
+    </h2>
+    <p style="text-align: justify; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      <span style="color: #e50914; font-weight: bold;">Smile Labs Videos</span> faz parte do ecossistema
+      <span style="color: #e50914; font-weight: bold;">Smile Labs AI</span>, um hub de inovação em Odontologia,
+      que no futuro incluirá:
+    </p>
+    <ul style="padding-left: 20px; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      <li><span style="color: #e50914; font-weight: bold;">Smile Labs 3D</span> – Escaneamento digital de sorrisos.</li>
+      <li><span style="color: #e50914; font-weight: bold;">Blockchain & Smart Contracts</span> – Mercado de NFTs de sorrisos digitalizados.</li>
+      <li><span style="color: #e50914; font-weight: bold;">SLAI Coin</span> – Uma criptomoeda para a comunidade, trazendo benefícios exclusivos.</li>
+    </ul>
+
+    <p style="text-align: justify; color: #b3b3b3; line-height: 1.6; font-size: 16px;">
+      Estamos revolucionando o mercado odontológico com tecnologia e inovação. Junte-se a nós nessa transformação!
+    </p>
+  </div>
 </div>
-
-<!-- Menu Mobile -->
-<div class="mobile-menu">
-  <a href="catalog.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="members.html">Members Area</a>
-  <a href="login.html">Login</a>
-</div>
-
-<!-- About Page Content -->
-<div class="container">
-  <h1>About <span class="highlight">Smile Labs Videos</span></h1>
-
-  <p><span class="highlight">Smile Labs Videos</span> is a video production company specialized in Dentistry, utilizing artificial intelligence for the creation, research, and editing of visual content. Our goal is to offer innovative and educational videos for dentists and professionals in the field, assisting in communication with their patients and in presenting procedures.</p>
-
-  <p>Dentists can acquire our content in two ways: purchasing individual video packages or becoming members of the Smile Labs AI community, gaining full access to our library of exclusive productions.</p>
-
-  <h2>How Can the Videos Help?</h2>
-  <p>Smile Labs Videos are created to demonstrate dental procedures in a clear and professional manner. They can be used to:</p>
-  <ul>
-    <li>Educate patients about aesthetic and oral health treatments.</li>
-    <li>Assist in the decision-making process, providing more clarity and confidence.</li>
-    <li>Display on screens in the office waiting room, sparking interest in new treatments.</li>
-  </ul>
-
-  <h2>Part of the Smile Labs AI Ecosystem</h2>
-  <p><span class="highlight">Smile Labs Videos</span> is part of the <span class="highlight">Smile Labs AI</span> ecosystem, an innovation hub in Dentistry, which in the future will include:</p>
-  <ul>
-    <li><span class="highlight">Smile Labs 3D</span> – Digital smile scanning.</li>
-    <li><span class="highlight">Blockchain & Smart Contracts</span> – NFT marketplace for digitized smiles.</li>
-    <li><span class="highlight">SLAI Coin</span> – A cryptocurrency for the community, bringing exclusive benefits.</li>
-  </ul>
-
-  <p>We are revolutionizing the dental market with technology and innovation. Join us in this transformation!</p>
-</div>
+<!-- Fim do conteúdo principal -->
 
 <!-- Rodapé -->
 <footer class="footer">
@@ -236,8 +111,7 @@
   });
 </script>
 
-<!-- Importa o script global (login/logout) -->
+<!-- Script global (login/logout), se necessário -->
 <script src="script.js"></script>
-
 </body>
 </html>
