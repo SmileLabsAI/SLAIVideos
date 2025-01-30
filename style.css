@@ -307,11 +307,52 @@ body.sucesso-page {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     text-align: center;
     background-color: #141414; /* Fundo Netflix */
 }
 
+/* Mantém a navbar igual ao resto do site */
+.sucesso-page .navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.sucesso-page .navbar-left img {
+    height: 50px;
+}
+
+.sucesso-page .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.sucesso-page .nav-links li {
+    display: inline;
+}
+
+.sucesso-page .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease-in-out;
+}
+
+.sucesso-page .nav-links li a:hover {
+    color: #e50914; /* Vermelho Netflix */
+}
+
+/* Centraliza a mensagem corretamente */
 .sucesso-container {
     background: rgba(0, 0, 0, 0.8);
     padding: 40px;
@@ -319,8 +360,10 @@ body.sucesso-page {
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     max-width: 500px;
     width: 90%;
+    margin-top: 80px; /* Evita sobreposição com a navbar */
 }
 
+/* Títulos e texto */
 .sucesso-container h2 {
     color: #e50914; /* Vermelho Netflix */
     font-size: 24px;
@@ -347,4 +390,40 @@ body.sucesso-page {
 
 .btn-home:hover {
     background: #b20710; /* Vermelho mais escuro */
+}
+
+/* =========================== */
+/* RESPONSIVIDADE */
+/* =========================== */
+@media (max-width: 768px) {
+    .sucesso-page .navbar {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .sucesso-page .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .sucesso-container {
+        width: 95%;
+        padding: 30px;
+    }
+
+    .sucesso-container h2 {
+        font-size: 22px;
+    }
+
+    .sucesso-container p {
+        font-size: 16px;
+    }
+
+    .btn-home {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
 }
