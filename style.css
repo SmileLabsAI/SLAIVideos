@@ -1,287 +1,91 @@
 /* =========================== */
-/* RESET E CONFIGURAÇÃO GERAL */
+/* PÁGINA DE CONTATO           */
 /* =========================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
 
-body {
-    background-color: #141414;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Garante altura de tela */
-}
-
-/* =========================== */
-/* NAVBAR (NORMAL E MOBILE) */
-/* =========================== */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-/* Logo (mesmo tamanho em todas as telas) */
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.navbar-left img {
-    height: 50px; /* Sempre 50px, tanto desktop quanto mobile */
-}
-
-/* Título eventual (se precisar) */
-.navbar-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-}
-
-/* Links da Navbar (Desktop) */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links li {
-    display: inline;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-links li a:hover {
-    color: #e50914; /* Netflix red */
-}
-
-/* =========================== */
-/* BOTÃO HAMBÚRGUER (MOBILE) */
-/* =========================== */
-.hamburger {
-    display: none; /* Invisível em desktop */
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-    z-index: 1010; /* Fica acima do mobile-menu */
-}
-
-/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
-.mobile-menu {
-    display: none; /* Invisível por padrão */
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background-color: rgba(0, 0, 0, 0.95);
-    width: 200px;
-    border-radius: 5px;
-    z-index: 1000; /* Sempre acima */
-    padding: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Estilo dos Links no Menu Mobile */
-.mobile-menu a {
-    color: white;
-    padding: 12px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s ease-in-out;
-}
-
-.mobile-menu a:hover {
-    background-color: #e50914;
-}
-
-/* EXIBIR MENU MOBILE QUANDO ABERTO */
-.mobile-menu.open {
-    display: flex;
-}
-
-/* =========================== */
-/* RESPONSIVIDADE GERAL (PARA MOBILE) */
-/* =========================== */
-@media (max-width: 768px) {
-    /* Esconde o menu principal e mostra o hambúrguer */
-    .nav-links {
-        display: none;
-    }
-    .hamburger {
-        display: block;
-    }
-    .navbar {
-        padding: 15px 20px;
-    }
-    /* Removido: não altera mais o tamanho do logo no mobile */
-    body.cadastro-page .cadastro-container {
-        padding: 20px;
-        width: 90%;
-        min-height: auto;
-    }
-}
-
-/* =========================== */
-/* CONTAINER DE CADASTRO */
-/* =========================== */
-.cadastro-container {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 10px;
+/* Container principal (substitui .container inline) */
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;  /* centraliza e dá espaço em cima/baixo */
+    padding: 20px;
+    flex: 1; /* se quiser que esse container cresça pra empurrar o footer */
     text-align: center;
+}
+
+/* Título */
+.contact-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Texto introdutório */
+.contact-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #b3b3b3;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+.contact-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: 380px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Agrupamento dos campos */
+.contact-container .form-group {
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    margin: 20px auto;
+    align-items: flex-start;
+    margin-bottom: 15px;
 }
 
-/* =========================== */
-/* RODAPÉ */
-/* =========================== */
-footer.footer {
-    background-color: #000;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
+/* Label */
+.contact-container label {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #b3b3b3;
+}
+
+/* Inputs e textarea */
+.contact-container input,
+.contact-container textarea {
     width: 100%;
-    font-size: 12px;
-    border-top: 2px solid #141414;
-}
-
-/*
-   Faz o rodapé ficar no fim, pois o .conteudo "empurra" tudo para cima
-   e o footer permanece lá embaixo.
-*/
-.conteudo {
-    flex: 1;
-}
-
-/* =========================== */
-/* ACESSIBILIDADE (Focus) */
-/* =========================== */
-.nav-links li a:focus,
-.mobile-menu a:focus {
-    outline: 2px dashed #e50914;
-    outline-offset: 4px;
-}
-
-/* =========================== */
-/* ESPECÍFICO PARA O CATÁLOGO */
-/* =========================== */
-
-/*
-   Use <body class="catalog-page"> no HTML
-   e .videos-container como contêiner dos packs.
-*/
-
-body.catalog-page {
-    background-color: #121212;
-}
-
-/* Tornamos o .videos-container flex em todas as telas,
-   mas ajustamos a quantidade de colunas via width. */
-body.catalog-page .videos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px 0; /* Espaço vertical se quiser */
-}
-
-/* Cada pack (cartão do catálogo) */
-body.catalog-page .pack {
-    background: #1e1e1e;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-    text-align: center;
-    padding: 10px;
-    /* Margin geral p/ espaçamento. O gap já ajuda, mas se quiser extra, use margin. */
-    margin: 0;
-}
-
-/* Imagens horizontais (3:2):
-   - Ex.: 300×200 no desktop.
-   - "object-fit: cover" + "object-position: center" => recorte central.
-*/
-body.catalog-page .pack img {
-    object-fit: cover;
-    object-position: center;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 100%;  /* Por padrão, ocupa 100% da largura do .pack */
-    height: auto; /* Ajusta a altura conforme a largura do pack */
-}
-
-/* Botão estilo Netflix */
-body.catalog-page .pack button {
-    background-color: #E50914;
-    color: white;
+    padding: 8px;
+    margin-top: 5px;
     border: none;
-    padding: 10px 15px;
-    cursor: pointer;
     border-radius: 5px;
     font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease-in-out;
-}
-body.catalog-page .pack button:hover {
-    background-color: #B20710;
+    background-color: #2c2c2c; /* contraste melhor */
+    color: white; /* texto branco */
 }
 
-/* =========================== */
-/* LAYOUT DOS PACKS EM CADA TELA */
-/* =========================== */
-
-/* MOBILE (até 768px) => 2 colunas */
-@media (max-width: 768px) {
-    /* Cada .pack ocupa ~48% da tela (2 por linha),
-       com um pequeno gap entre eles */
-    body.catalog-page .pack {
-        width: 48%;
-        max-width: 300px; /* Para não ficar gigantesco se for um tablet maior */
-        margin: 0 auto;
-    }
-
-    /* Ajustar a altura da imagem para manter ~3:2.
-       Por ex.: se a largura final for 200px, altura ~133px.
-       Mas “height: auto” já faz responsivo.
-       Se quiser forçar 3:2, use “height: calc(100% * 2/3);” etc.
-    */
+/* Textarea mais alto */
+.contact-container textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
-/* DESKTOP (acima de 768px) => packs com ~300px */
-@media (min-width: 769px) {
-    body.catalog-page .pack {
-        /* Largura fixa de 300px => 3:2 se a imagem for 300x200 */
-        width: 300px;
-        margin: 20px; /* espaçamento extra */
-    }
-    body.catalog-page .pack img {
-        /* Se quiser travar 300×200 exatos,
-           use:
-             width: 300px;
-             height: 200px;
-         Mas normalmente width: 100%; height: auto; é mais responsivo.
-        */
-    }
+/* Botão Enviar */
+.contact-container .btn-enviar {
+    width: 75%;
+    max-width: 450px;
+    padding: 10px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.contact-container .btn-enviar:hover {
+    background-color: #b20710;
 }
