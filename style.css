@@ -130,14 +130,10 @@ footer.footer {
 }
 
 /* =========================== */
-/* CONTATO (FORMULÁRIO) */
+/* PÁGINA DE CONTATO (FORMULÁRIO) */
 /* =========================== */
 .contact-container {
-    /*
-      Margens de 40px em cima/baixo, 20px laterais
-      para alinhar ao navbar.
-    */
-    margin: 40px 20px;
+    margin: 40px 20px; /* Margens superior/inferior e laterais */
 }
 
 /* Título e texto */
@@ -150,25 +146,19 @@ footer.footer {
     font-size: 16px;
     line-height: 1.6;
     color: #b3b3b3;
-    text-align: justify;
-    margin-bottom: 20px; /* Pequena margem final */
+    text-align: center; /* Centraliza o subtítulo no desktop e mobile */
+    margin-bottom: 20px;
 }
 
 /* Formulário centralizado */
 .contact-container form {
-    /* Em telas menores, ocupa 100% do container
-       (menos as margens laterais de 20px). */
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza o bloco do form */
+    align-items: center;
 }
 
-/*
-   Para o desktop, limitamos a largura do form
-   para ~450px, assim inputs/botão ficam estreitos
-   e centralizados.
-*/
+/* Em telas desktop, max 450px no form */
 @media (min-width: 769px) {
     .contact-container form {
         max-width: 450px;
@@ -185,17 +175,15 @@ footer.footer {
     margin-bottom: 15px;
 }
 
-/* Label */
+/* Label e campos */
 .form-group label {
     font-size: 14px;
     margin-top: 10px;
     color: #b3b3b3;
 }
-
-/* Campos de texto */
 .form-group input,
 .form-group textarea {
-    width: 100%; /* Mesma largura do form-group */
+    width: 100%;
     padding: 8px;
     margin-top: 5px;
     border: none;
@@ -209,9 +197,7 @@ footer.footer {
     min-height: 100px;
 }
 
-/* Botão "Enviar Mensagem"
-   - Ocupa 100% do form (max. 450px no desktop).
-*/
+/* Botão "Enviar Mensagem" */
 .btn-enviar {
     width: 100%;
     padding: 10px;
@@ -235,7 +221,6 @@ footer.footer {
 body.catalog-page {
     background-color: #121212;
 }
-
 body.catalog-page .videos-container {
     display: flex;
     flex-wrap: wrap;
@@ -266,8 +251,6 @@ body.catalog-page .pack {
         margin: 10px;
     }
 }
-
-/* Thumbnails dentro do pack */
 body.catalog-page .pack img {
     width: 100%;
     height: auto;
@@ -275,7 +258,6 @@ body.catalog-page .pack img {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-
 /* Botão estilo Netflix */
 body.catalog-page .pack button {
     background-color: #E50914;
