@@ -34,7 +34,7 @@ body {
     gap: 15px;
 }
 .navbar-left img {
-    height: 50px; /* Sempre 50px, desktop e mobile */
+    height: 50px; /* Sempre 50px (desktop e mobile) */
 }
 
 /* Links da Navbar (Desktop) */
@@ -100,20 +100,18 @@ body {
 }
 
 /* =========================== */
-/* RESPONSIVIDADE GERAL (MOBILE) */
+/* RESPONSIVIDADE (MOBILE) */
 /* =========================== */
 @media (max-width: 768px) {
     .nav-links {
         display: none; /* Esconde o menu principal */
     }
     .hamburger {
-        display: block; /* Exibe o hambúrguer */
+        display: block;
     }
     .navbar {
         padding: 15px 20px;
     }
-    /* Se houvesse ajuste do logo no mobile, ficaria aqui.
-       Mas estamos mantendo 50px em todas as telas. */
 }
 
 /* =========================== */
@@ -129,10 +127,7 @@ footer.footer {
     border-top: 2px solid #141414;
 }
 
-/*
-   Faz o rodapé ficar no fim, pois o .conteudo "empurra" tudo para cima
-   e o footer permanece lá embaixo.
-*/
+/* Faz o rodapé ficar no fim (body > .conteudo > footer) */
 .conteudo {
     flex: 1;
 }
@@ -147,40 +142,34 @@ footer.footer {
 }
 
 /* =========================== */
-/* FORMULÁRIO DE CONTATO */
+/* PÁGINA DE CONTATO */
 /* =========================== */
-
-/* Container principal da página de contato */
-.contact-container {
+/* Aplica somente se <body class="contact-page"> */
+body.contact-page .contact-container {
     max-width: 600px;
     margin: 40px auto;
     padding: 20px;
-    text-align: center; /* Centraliza os títulos */
+    text-align: center;
 }
-
-/* Título e texto */
-.contact-container h1 {
+body.contact-page .contact-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
 }
-.contact-container p {
+body.contact-page .contact-container p {
     font-size: 16px;
     line-height: 1.6;
     color: #b3b3b3;
     text-align: justify;
     margin-bottom: 20px;
 }
-
-/* Formulário */
-.contact-container form {
+/* Formulário de contato */
+body.contact-page .contact-container form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
-
-/* Grupo de cada campo (label + input/textarea) */
-.contact-container .form-group {
+body.contact-page .contact-container .form-group {
     width: 100%;
     max-width: 500px;
     display: flex;
@@ -188,35 +177,27 @@ footer.footer {
     align-items: flex-start;
     margin-bottom: 15px;
 }
-
-/* Label */
-.contact-container label {
+body.contact-page .contact-container label {
     font-size: 14px;
     margin-top: 10px;
     color: #b3b3b3;
 }
-
-/* Inputs e textarea */
-.contact-container input,
-.contact-container textarea {
+body.contact-page .contact-container input,
+body.contact-page .contact-container textarea {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
     border: none;
     border-radius: 5px;
     font-size: 14px;
-    background-color: #2c2c2c; /* cor de fundo do campo */
-    color: white;             /* texto branco */
+    background-color: #2c2c2c;
+    color: white;
 }
-
-/* Ajustes pro textarea */
-.contact-container textarea {
+body.contact-page .contact-container textarea {
     resize: vertical;
     min-height: 100px;
 }
-
-/* Botão de enviar */
-.contact-container .btn-enviar {
+body.contact-page .contact-container .btn-enviar {
     width: 75%;
     max-width: 450px;
     padding: 10px;
@@ -230,16 +211,13 @@ footer.footer {
     margin-top: 15px;
     text-align: center;
 }
-.contact-container .btn-enviar:hover {
+body.contact-page .contact-container .btn-enviar:hover {
     background-color: #b20710;
 }
 
 /* =========================== */
-/* ESPECÍFICO PARA O CATÁLOGO (Exemplo) */
+/* PÁGINA DE CATÁLOGO (Exemplo) */
 /* =========================== */
-/* Caso deseje manter as regras .catalog-page e .videos-container,
-   não apague se já estiverem em uso em 'catalog.html'.
-   Mantemos aqui apenas como referência. */
 body.catalog-page {
     background-color: #121212;
 }
@@ -258,4 +236,23 @@ body.catalog-page .pack {
     padding: 10px;
     margin: 0;
 }
-/* ... e assim por diante, caso já existam */
+/* E assim por diante, sem interferir nas outras páginas... */
+
+/* =========================== */
+/* PÁGINA DE CADASTRO (Exemplo) */
+/* =========================== */
+body.cadastro-page .cadastro-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    margin: 20px auto;
+}
