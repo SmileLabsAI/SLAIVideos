@@ -13,7 +13,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o footer fique no fim */
+    min-height: 100vh; /* Garante altura de tela */
 }
 
 /* =========================== */
@@ -27,17 +27,20 @@ body {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Área da logo */
+/* Esquerda da Navbar */
 .navbar-left {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-/* Tamanho padrão do logo em desktops */
+/* Logo sempre do mesmo tamanho em todas as páginas */
 .navbar-left img {
     height: 50px;
 }
+
+/* Se quiser outro tamanho fixo, ajuste aqui.
+   Qualquer página que use .navbar-left img respeitará este tamanho. */
 
 .navbar-title {
     font-size: 22px;
@@ -90,7 +93,7 @@ body {
     background-color: rgba(0, 0, 0, 0.95);
     width: 200px;
     border-radius: 5px;
-    z-index: 1000;
+    z-index: 1000; /* Sempre acima */
     padding: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
@@ -118,22 +121,19 @@ body {
 /* RESPONSIVIDADE (PARA MOBILE) */
 /* =========================== */
 @media (max-width: 768px) {
-    /* Navbar compacta */
+    /* Esconde o menu principal e mostra o hambúrguer */
     .nav-links {
-        display: none; /* Esconde o menu padrão em telas menores */
+        display: none;
     }
     .hamburger {
-        display: block; /* Exibe o botão hambúrguer */
+        display: block;
     }
     .navbar {
         padding: 15px 20px;
     }
-    /* Logo menor no mobile */
     .navbar-left img {
-        height: 40px;
+        height: 40px; /* Logo reduzido um pouco no mobile, se desejar */
     }
-
-    /* Ajustes específicos para a página de cadastro em telas menores */
     body.cadastro-page .cadastro-container {
         padding: 20px;
         width: 90%;
@@ -176,9 +176,6 @@ footer.footer {
 /* =========================== */
 /* FAZ O RODAPÉ FICAR NO FIM   */
 /* =========================== */
-/* Sempre que houver um <div class="conteudo"> ou similar,
-   aplicamos flex: 1 para ocupar todo o espaço vertical
-   e "empurrar" o footer para o fim. */
 .conteudo {
     flex: 1;
 }
@@ -197,51 +194,56 @@ footer.footer {
 /* =========================== */
 
 /*
-  - Utilize no body: <body class="catalog-page">
-  - .videos-container (no HTML) padrão: display: flex e flex-wrap no desktop
-    para ficarem lado a lado. Em mobile, vamos mudar para display: block
-    para empilhar.
+  Use <body class="catalog-page"> no HTML
+  e .videos-container para agrupar os packs.
 */
+
+/* Fundo ligeiramente diferente para o catálogo */
 body.catalog-page {
     background-color: #121212;
 }
 
-/* Exemplo de “videos-container” para desktop */
+/*
+   Organizamos a exibição de packs de maneira
+   que no mobile (até 768px) eles fiquem empilhados,
+   e no desktop (>768px) fiquem lado a lado.
+*/
+
+/* MOBILE (até 768px): packs empilhados */
 body.catalog-page .videos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* centraliza os packs */
-    gap: 20px; /* espaço entre os packs */
+    display: block;
+    /* cada .pack será um bloco inteiro empilhado */
 }
 
-/*
-  Cada .pack:
-  Largura horizontal (3:2). Ex: 225px x 150px.
-  Crop centralizado com object-fit: cover + object-position: center;
-*/
+/* Cada pack (cartão do catálogo) */
 body.catalog-page .pack {
-    width: 225px;
-    text-align: center;
-    padding: 10px;
     background: #1e1e1e;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-    margin: 0 auto; /* Se quiser centralizar no desktop (mas flex já alinha) */
+    margin: 20px auto; /* centraliza no mobile */
+    width: 90%;        /* quase toda a tela em mobile */
+    max-width: 600px;  /* se quiser um limite de largura no mobile */
+    text-align: center;
+    padding: 10px;
 }
 
-/* Thumbnail horizontal 3:2, com crop central */
+/* Imagens horizontais:
+   - Ex.: 300×200 (3:2)
+   - "object-fit: cover" e "object-position: center" para recortar centralizadamente.
+*/
 body.catalog-page .pack img {
-    width: 225px;
-    height: 150px;
+    width: 300px;       /* Tamanho fixo no desktop */
+    height: 200px;      /* 3:2 => 300:200 */
     object-fit: cover;
-    object-position: 50% 50%; /* centro da imagem */
+    object-position: center; /* corta o meio da imagem */
     border-radius: 5px;
     margin-bottom: 10px;
+    max-width: 100%; /* para não estourar no mobile se a tela for menor */
 }
 
-/* Botão estilo Netflix (vermelho) */
+/* Botão vermelho Netflix */
 body.catalog-page .pack button {
-    background-color: #E50914; /* Netflix red */
+    background-color: #E50914;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -251,30 +253,20 @@ body.catalog-page .pack button {
     font-weight: bold;
     transition: background-color 0.3s ease-in-out;
 }
-
 body.catalog-page .pack button:hover {
     background-color: #B20710;
 }
 
-/*
-   Responsividade: em telas menores,
-   queremos cada .pack ocupar 100% da largura (empilhados).
-   Ou seja, .videos-container: display block, e packs com width: ~80% (max 225px).
-*/
-@media (max-width: 768px) {
+/* DESKTOP (acima de 768px): packs lado a lado */
+@media (min-width: 769px) {
     body.catalog-page .videos-container {
-        display: block;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
-
     body.catalog-page .pack {
-        width: 80%;
-        max-width: 225px;
-        margin: 20px auto; /* espaçamento vertical */
-    }
-
-    /* Mantém a proporção 3:2, mas se preferir adaptar: */
-    body.catalog-page .pack img {
-        width: 100%;
-        height: auto;
+        width: 300px; /* para combinar com a imagem 300×200 */
+        margin: 20px; /* espaçamento entre os packs */
     }
 }
