@@ -34,7 +34,7 @@ body {
 }
 
 .navbar-left img {
-    height: 50px;
+    height: 50px; /* Logo */
 }
 
 .navbar-title {
@@ -180,36 +180,69 @@ footer.footer {
 /* ESPECÍFICO PARA O CATÁLOGO */
 /* =========================== */
 
-/* Cada cartão (pack) do catálogo
-   Ajuste a largura conforme desejar (150px, 120px, etc.).
-   ~150px faz com que caibam cerca de 5 packs no desktop (depende da resolução). */
+/*
+  - Utilize no body: <body class="catalog-page">
+  - Garanta que .videos-container no HTML tenha "display: flex; flex-wrap: wrap;"
+    para que vários .pack fiquem em linha.
+*/
+body.catalog-page {
+    background-color: #121212; /* Tom para diferenciar do #141414 global, se desejar */
+}
 
+/* Cada "pack" no catálogo */
 body.catalog-page .pack {
+    /* Largura fixa de 150px;
+       Ajuste conforme quiser (120px, 180px, etc.). */
     width: 150px;
     text-align: center;
     padding: 10px;
     background: #1e1e1e;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    margin: 10px; /* Se quiser um espaçamento extra entre cards */
 }
 
-/* Imagem na proporção vertical (2:3) */
+/* Thumbnail 2:3 (150px x 225px), recortada se necessário */
 body.catalog-page .pack img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 2 / 3; /* Mantém estilo “poster” */
-    object-fit: cover;
+    width: 150px;
+    height: 225px;
+    object-fit: cover; /* recorta a imagem excedente sem distorcer */
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-/* Responsividade do catálogo para telas < 768px
-   Em telas pequenas, cada pack ocupa ~45% da largura da tela,
-   mas não excede 150px (ou o valor que definiu em .pack).
-*/
+/* Botão estilo Netflix (vermelho) dentro do pack */
+body.catalog-page .pack button {
+    background-color: #E50914; /* Netflix red */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+body.catalog-page .pack button:hover {
+    background-color: #B20710; /* Tom mais escuro ao passar o mouse */
+}
+
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
+    /* Cada pack passa a ~45% da tela */
     body.catalog-page .pack {
         width: 45vw;
         max-width: 150px;
+        margin: 10px auto;
+    }
+
+    /* Se quiser redimensionar a imagem automaticamente em mobile, use:
+       width: 100%; height: auto; object-fit: cover;
+       mas isso pode quebrar a proporção exata de 2:3.
+    */
+    body.catalog-page .pack img {
+        width: 100%;
+        height: auto;
     }
 }
