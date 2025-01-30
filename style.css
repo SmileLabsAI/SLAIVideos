@@ -1,187 +1,89 @@
 /* =========================== */
-/* RESET E CONFIGURAÇÃO GERAL */
+/* CATALOG PAGE ESPECÍFICA     */
 /* =========================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+
+/* Substitui a cor de fundo para esta página em particular */
+body.catalog-page {
+    background-color: #121212; /* antes era #141414 no global; agora #121212 especificamente para o catálogo */
 }
 
-body {
-    background-color: #141414;
+/* Conteúdo flex para ocupar a altura */
+body.catalog-page .conteudo {
+    flex: 1;
+}
+
+/* Navbar do catálogo para fundo preto sólido (#000) */
+body.catalog-page .navbar {
+    background-color: #000; /* Sólido, como definido no catálogo */
+}
+
+/* Container principal do catálogo */
+body.catalog-page .catalog {
+    background-color: #121212; /* Mesmo tom do background geral */
     color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* =========================== */
-/* NAVBAR (NORMAL E MOBILE) */
-/* =========================== */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-/* Esquerda da Navbar */
-.navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.navbar-left img {
-    height: 50px;
-}
-
-.navbar-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-}
-
-/* Links da Navbar (Desktop) */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links li {
-    display: inline;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease-in-out;
-}
-
-.nav-links li a:hover {
-    color: #e50914; /* Netflix red */
-}
-
-/* =========================== */
-/* BOTÃO HAMBÚRGUER (MOBILE) */
-/* =========================== */
-.hamburger {
-    display: none; /* Invisível em desktop */
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
-    z-index: 1010; /* Fica acima do mobile-menu */
-}
-
-/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
-.mobile-menu {
-    display: none; /* Invisível por padrão */
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background-color: rgba(0, 0, 0, 0.95);
-    width: 200px;
-    border-radius: 5px;
-    z-index: 1000; /* Sempre acima */
-    padding: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* Estilo dos Links no Menu Mobile */
-.mobile-menu a {
-    color: white;
-    padding: 12px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s ease-in-out;
-}
-
-.mobile-menu a:hover {
-    background-color: #e50914;
-}
-
-/* EXIBIR MENU MOBILE QUANDO ABERTO */
-.mobile-menu.open {
-    display: flex;
-}
-
-/* =========================== */
-/* RESPONSIVIDADE (PARA MOBILE) */
-/* =========================== */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Esconde o menu padrão em telas menores */
-    }
-    .hamburger {
-        display: block; /* Exibe o botão hambúrguer */
-    }
-    .navbar {
-        padding: 15px 20px;
-    }
-    .navbar-left img {
-        height: 40px;
-    }
-    body.cadastro-page .cadastro-container {
-        padding: 20px;
-        width: 90%;
-        min-height: auto;
-    }
-}
-
-/* =========================== */
-/* CONTAINER DE CADASTRO */
-/* =========================== */
-.cadastro-container {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 10px;
+    padding: 50px; /* Estava “20px” + “50px”; aqui mantemos 50px */
     text-align: center;
     width: 100%;
-    max-width: 380px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Container que agrupa os packs de vídeo */
+body.catalog-page .videos-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    margin: 20px auto;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
-/* =========================== */
-/* RODAPÉ */
-/* =========================== */
-footer {
-    background-color: #000;
-    color: white;
+/* Estilização de cada “pack” */
+body.catalog-page .pack {
+    width: 300px;
     text-align: center;
-    padding: 10px 0;
-    width: 100%;
-    font-size: 12px;
-    border-top: 2px solid #141414;
+    padding: 10px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
 }
 
-/* =========================== */
-/* ACESSIBILIDADE (Focus) */
-/* =========================== */
-.nav-links li a:focus,
-.mobile-menu a:focus {
-    outline: 2px dashed #e50914;
-    outline-offset: 4px;
+/* Imagens dentro do pack */
+body.catalog-page .pack img {
+    width: 100%;
+    height: auto;
+    /* aspect-ratio só funciona em navegadores modernos;
+       se precisar suportar legacy, usar outra abordagem. */
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-/* =========================== */
-/* FORMULÁRIOS DENTRO DE .cadastro-container */
-/* =========================== */
-.cadastro-container input,
-.cadastro-container button {
-    width: 100%;
-    margin-bottom: 15px;
+/* Título do pack */
+body.catalog-page .pack h3 {
+    margin: 10px 0;
+    color: white;
+}
+
+/* Preço */
+body.catalog-page .pack p {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* Botão de compra */
+body.catalog-page .pack button {
+    background-color: #E50914; /* Vermelho Netflix */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Hover no botão */
+body.catalog-page .pack button:hover {
+    background-color: #B20710;
 }
