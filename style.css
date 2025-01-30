@@ -1,43 +1,230 @@
 /* =========================== */
-/* CATALOG PAGE ESPECÍFICA     */
+/* RESET E CONFIGURAÇÃO GERAL */
 /* =========================== */
-
-/* Aplica fundo mais escuro especificamente ao catálogo */
-body.catalog-page {
-    background-color: #121212; /* antes era #141414 no global; agora #121212 para o catálogo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Conteúdo flex para ocupar a altura */
+body {
+    background-color: #141414;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================== */
+/* NAVBAR (NORMAL E MOBILE) */
+/* =========================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-left img {
+    height: 50px;
+}
+
+.navbar-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Links da Navbar (Desktop) */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links li a:hover {
+    color: #e50914; /* Netflix red */
+}
+
+/* =========================== */
+/* BOTÃO HAMBÚRGUER (MOBILE) */
+/* =========================== */
+.hamburger {
+    display: none; /* Invisível em desktop */
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    z-index: 1010; /* Fica acima do mobile-menu */
+}
+
+/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
+.mobile-menu {
+    display: none; /* Invisível por padrão */
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
+    width: 200px;
+    border-radius: 5px;
+    z-index: 1000; /* Sempre acima */
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo dos Links no Menu Mobile */
+.mobile-menu a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease-in-out;
+}
+
+.mobile-menu a:hover {
+    background-color: #e50914;
+}
+
+/* EXIBIR MENU MOBILE QUANDO ABERTO */
+.mobile-menu.open {
+    display: flex;
+}
+
+/* =========================== */
+/* RESPONSIVIDADE (PARA MOBILE) */
+/* =========================== */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Esconde o menu padrão em telas menores */
+    }
+    .hamburger {
+        display: block; /* Exibe o botão hambúrguer */
+    }
+    .navbar {
+        padding: 15px 20px;
+    }
+    .navbar-left img {
+        height: 40px;
+    }
+    body.cadastro-page .cadastro-container {
+        padding: 20px;
+        width: 90%;
+        min-height: auto;
+    }
+}
+
+/* =========================== */
+/* CONTAINER DE CADASTRO */
+/* =========================== */
+.cadastro-container {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    margin: 20px auto;
+}
+
+/* =========================== */
+/* RODAPÉ */
+/* =========================== */
+footer.footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 12px;
+    border-top: 2px solid #141414;
+}
+
+/* =========================== */
+/* ACESSIBILIDADE (Focus) */
+/* =========================== */
+.nav-links li a:focus,
+.mobile-menu a:focus {
+    outline: 2px dashed #e50914;
+    outline-offset: 4px;
+}
+
+/* =========================== */
+/* FORMULÁRIOS DENTRO DE .cadastro-container */
+/* =========================== */
+.cadastro-container input,
+.cadastro-container button {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* =========================== */
+/* ESPECÍFICO PARA O CATÁLOGO */
+/* =========================== */
+
+/* 1) Indica que a página de catálogo use #121212 no background */
+body.catalog-page {
+    background-color: #121212;
+}
+
+/* Para ocupar espaço vertical no flex container */
 body.catalog-page .conteudo {
     flex: 1;
 }
 
-/* Navbar do catálogo para fundo preto sólido (#000) */
+/* Navbar do catálogo */
 body.catalog-page .navbar {
-    background-color: #000; /* Sólido, como definido no catálogo */
+    background-color: #000;
 }
 
 /* Container principal do catálogo */
 body.catalog-page .catalog {
-    background-color: #121212; /* Mesmo tom do background geral */
+    background-color: #121212;
     color: white;
-    padding: 50px; /* antes tinha 20px + 50px, mantendo 50px */
+    padding: 50px;
     text-align: center;
     width: 100%;
 }
 
-/* Container que agrupa os packs de vídeo */
+/* Container que agrupa os “packs” */
 body.catalog-page .videos-container {
     display: flex;
     justify-content: center;
-    gap: 20px;   /* Espaçamento entre os cards */
-    flex-wrap: wrap;  /* Permite quebrar linha quando não couber */
+    gap: 20px;
+    flex-wrap: wrap; /* Permite quebrar linha */
     margin-top: 20px;
 }
 
-/* Cada “pack” (cartão) do catálogo, em telas grandes */
+/* Cartão de cada pack */
 body.catalog-page .pack {
-    width: 180px;        /* Ajuste para ~5 caberem em linha em desktop */
+    width: 180px;        /* Ajuste p/ ~5 por linha em desktop */
     text-align: center;
     padding: 10px;
     background: #1e1e1e;
@@ -45,17 +232,17 @@ body.catalog-page .pack {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Imagens dentro do pack: formato vertical (2:3) */
+/* Imagem 2:3 (vertical) */
 body.catalog-page .pack img {
     width: 100%;
     height: auto;
-    aspect-ratio: 2 / 3;     /* Poster estilo Netflix (vertical) */
+    aspect-ratio: 2 / 3;
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-/* Título do pack */
+/* Título */
 body.catalog-page .pack h3 {
     margin: 10px 0;
     color: white;
@@ -69,9 +256,9 @@ body.catalog-page .pack p {
     margin-bottom: 10px;
 }
 
-/* Botão de compra */
+/* Botão */
 body.catalog-page .pack button {
-    background-color: #E50914; /* Vermelho Netflix */
+    background-color: #E50914;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -80,19 +267,15 @@ body.catalog-page .pack button {
     font-size: 14px;
     font-weight: bold;
 }
-
-/* Hover no botão */
 body.catalog-page .pack button:hover {
     background-color: #B20710;
 }
 
-/* =========================== */
-/* AJUSTES PARA DISPOSITIVOS PEQUENOS */
-/* =========================== */
+/* Responsividade do catálogo */
 @media (max-width: 768px) {
-    /* Cada .pack ocupa ~45% da tela (2 por linha), porém limitamos a 180px caso seja uma tela intermediária */
+    /* Em telas pequenas, 2 por linha (45% cada) */
     body.catalog-page .pack {
         width: 45vw;
-        max-width: 180px;
+        max-width: 180px; /* Se quiser travar no máximo 180px */
     }
 }
