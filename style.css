@@ -172,39 +172,44 @@ footer.footer {
 /* =========================== */
 .nav-links li a:focus,
 .mobile-menu a:focus {
+    outline: 2px dashed #e50914;
+    outline-offset: 4px;
+}
 
-    /* Cada cartão (pack) do catálogo */
+/* =========================== */
+/* ESPECÍFICO PARA O CATÁLOGO */
+/* =========================== */
+
+/* Cada cartão (pack) do catálogo
+   Ajuste a largura conforme desejar (150px, 120px, etc.).
+   ~150px faz com que caibam cerca de 5 packs no desktop (depende da resolução). */
+
+body.catalog-page .pack {
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Imagem na proporção vertical (2:3) */
+body.catalog-page .pack img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3; /* Mantém estilo “poster” */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Responsividade do catálogo para telas < 768px
+   Em telas pequenas, cada pack ocupa ~45% da largura da tela,
+   mas não excede 150px (ou o valor que definiu em .pack).
+*/
+@media (max-width: 768px) {
     body.catalog-page .pack {
-        /* Ajuste a largura aqui conforme desejar.
-           Por exemplo, 150px faz com que caibam ~5 packs lado a lado em desktop (depende da resolução).
-           Se quiser ainda menor, tente 120px ou 130px. */
-        width: 150px;
-
-        text-align: center;
-        padding: 10px;
-        background: #1e1e1e;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        width: 45vw;
+        max-width: 150px;
     }
-
-    /* Imagem na proporção vertical (2:3) */
-    body.catalog-page .pack img {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 2 / 3;  /* Mantém o estilo “poster” */
-        object-fit: cover;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    /* Responsividade do catálogo para telas < 768px */
-    @media (max-width: 768px) {
-        /* Em telas pequenas, cada pack ocupa ~45% da largura da tela,
-           mas não excede 150px (ou o valor que você definiu) */
-        body.catalog-page .pack {
-            width: 45vw;
-            max-width: 150px;
-        }
-    }
-
 }
