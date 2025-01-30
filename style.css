@@ -273,26 +273,26 @@ body.catalog-page .pack button {
 body.catalog-page .pack button:hover {
     background-color: #B20710;
 }
+
 /* =========================== */
 /* PÁGINA DE MEMBROS (members.html) */
 /* =========================== */
 body.members-page .members-container {
-    /* Margens para cima/baixo e laterais */
-    margin: 40px 20px;
+    /* Margens: 40px em cima/baixo e auto nas laterais para centralizar */
+    margin: 40px auto;
 
-    /* Limita a largura em telas maiores (desktop) */
+    /* Largura de 90% p/ mobile, até 800px em desktops grandes */
+    width: 90%;
     max-width: 800px;
 
-    /* Centraliza o texto (título, parágrafos, etc.) */
+    /* Centraliza texto do h1 e p */
     text-align: center;
 }
-
-/* Estilos opcionais para título e parágrafo dentro de .members-container */
+/* Título e parágrafo */
 body.members-page .members-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
 }
-
 body.members-page .members-container p {
     font-size: 16px;
     line-height: 1.6;
