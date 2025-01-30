@@ -14,7 +14,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
 }
 
 /* =========================== */
@@ -66,7 +65,7 @@ body {
 }
 
 .nav-links li a:hover {
-    color: #e50914;
+    color: #e50914; /* Netflix red */
 }
 
 /* =========================== */
@@ -77,7 +76,7 @@ body {
     font-size: 30px;
     cursor: pointer;
     color: white;
-    z-index: 1010; /* Sobre o menu */
+    z-index: 1010; /* Fica acima do mobile-menu */
 }
 
 /* MENU MOBILE (INVISÍVEL POR PADRÃO) */
@@ -109,7 +108,7 @@ body {
     background-color: #e50914;
 }
 
-/* EXIBIR MENU MOBILE QUANDO ATIVO */
+/* EXIBIR MENU MOBILE QUANDO ABERTO */
 .mobile-menu.open {
     display: flex;
 }
@@ -121,24 +120,19 @@ body {
     .nav-links {
         display: none; /* Esconde o menu padrão em telas menores */
     }
-
     .hamburger {
         display: block; /* Exibe o botão hambúrguer */
     }
-
     .navbar {
         padding: 15px 20px;
     }
-
     .navbar-left img {
         height: 40px;
     }
-
-    /* Ajustes específicos para a página de cadastro em dispositivos móveis */
     body.cadastro-page .cadastro-container {
-        padding: 20px; /* Ajuste do padding para telas menores */
-        width: 90%;     /* Deixa o container um pouco menor em telas pequenas */
-        min-height: auto; /* Ajuste a altura para que o conteúdo não fique limitado */
+        padding: 20px;
+        width: 90%;
+        min-height: auto;
     }
 }
 
@@ -151,32 +145,31 @@ body {
     border-radius: 10px;
     text-align: center;
     width: 100%;
-    max-width: 380px; /* Ajuste para centralizar e evitar largura excessiva */
+    max-width: 380px;
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente os elementos dentro do container */
-    align-items: center;     /* Alinha os itens horizontalmente */
-    min-height: 400px;       /* Define uma altura mínima para o container de cadastro */
-    margin: 20px auto;       /* Adiciona margem superior e inferior para centralização */
-    /* Removido 'flex: 1;' para evitar impactar o layout geral */
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    margin: 20px auto;
 }
 
 /* =========================== */
 /* RODAPÉ */
 /* =========================== */
 footer {
-    background-color: #000; /* Preto */
+    background-color: #000;
     color: white;
     text-align: center;
-    padding: 10px 0; /* Padding vertical */
+    padding: 10px 0;
     width: 100%;
     font-size: 12px;
-    border-top: 2px solid #141414; /* Opcional: adiciona uma borda superior */
+    border-top: 2px solid #141414;
 }
 
 /* =========================== */
-/* ACESSIBILIDADE */
+/* ACESSIBILIDADE (Focus) */
 /* =========================== */
 .nav-links li a:focus,
 .mobile-menu a:focus {
@@ -185,10 +178,10 @@ footer {
 }
 
 /* =========================== */
-/* AJUSTE DO CONTAINER PARA ALINHAMENTO DO FORMULÁRIO */
+/* FORMULÁRIOS DENTRO DE .cadastro-container */
 /* =========================== */
 .cadastro-container input,
 .cadastro-container button {
     width: 100%;
-    margin-bottom: 15px; /* Distância entre os campos e botões */
+    margin-bottom: 15px;
 }
