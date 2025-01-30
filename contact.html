@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contato - SLAI Videos</title>
-  <!-- Agora usamos somente o style.css externo -->
+  <!-- Carrega somente o style.css externo -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<!-- Início do Conteúdo Principal -->
+<!-- Envolve todo o conteúdo em .conteudo para o rodapé ficar no fim -->
 <div class="conteudo">
 
   <!-- Navbar -->
@@ -64,9 +64,9 @@
 
       <button type="submit" class="btn-enviar">Enviar Mensagem</button>
     </form>
-  </div>
-</div>
-<!-- Fim do Conteúdo Principal -->
+  </div> <!-- Fim do .contact-container -->
+
+</div> <!-- Fim do .conteudo -->
 
 <!-- Rodapé -->
 <footer class="footer">
@@ -80,7 +80,7 @@
     mobileMenu.classList.toggle('open');
   }
 
-  // Atualiza o ano no rodapé (converte para String p/ evitar alerta do linter)
+  // Atualiza o ano no rodapé
   document.getElementById('currentYear').textContent = String(new Date().getFullYear());
 </script>
 

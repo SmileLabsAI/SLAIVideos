@@ -1,23 +1,168 @@
 /* =========================== */
-/* PÁGINA DE CONTATO           */
+/* RESET E CONFIGURAÇÃO GERAL */
 /* =========================== */
-
-/* Container principal (substitui .container inline) */
-.contact-container {
-    max-width: 600px;
-    margin: 40px auto;  /* centraliza e dá espaço em cima/baixo */
-    padding: 20px;
-    flex: 1; /* se quiser que esse container cresça pra empurrar o footer */
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Título */
+body {
+    background-color: #141414;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante altura de tela */
+}
+
+/* =========================== */
+/* NAVBAR (NORMAL E MOBILE) */
+/* =========================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Logo (mesmo tamanho em todas as telas) */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.navbar-left img {
+    height: 50px; /* Sempre 50px, desktop e mobile */
+}
+
+/* Links da Navbar (Desktop) */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+.nav-links li {
+    display: inline;
+}
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease-in-out;
+}
+.nav-links li a:hover {
+    color: #e50914; /* Netflix red */
+}
+
+/* =========================== */
+/* BOTÃO HAMBÚRGUER (MOBILE) */
+/* =========================== */
+.hamburger {
+    display: none; /* Invisível em desktop */
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    z-index: 1010; /* Fica acima do mobile-menu */
+}
+
+/* MENU MOBILE (INVISÍVEL POR PADRÃO) */
+.mobile-menu {
+    display: none; /* Invisível por padrão */
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
+    width: 200px;
+    border-radius: 5px;
+    z-index: 1000; /* Sempre acima */
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+.mobile-menu a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease-in-out;
+}
+.mobile-menu a:hover {
+    background-color: #e50914;
+}
+/* EXIBIR MENU MOBILE QUANDO ABERTO */
+.mobile-menu.open {
+    display: flex;
+}
+
+/* =========================== */
+/* RESPONSIVIDADE GERAL (MOBILE) */
+/* =========================== */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Esconde o menu principal */
+    }
+    .hamburger {
+        display: block; /* Exibe o hambúrguer */
+    }
+    .navbar {
+        padding: 15px 20px;
+    }
+    /* Se houvesse ajuste do logo no mobile, ficaria aqui.
+       Mas estamos mantendo 50px em todas as telas. */
+}
+
+/* =========================== */
+/* RODAPÉ */
+/* =========================== */
+footer.footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 12px;
+    border-top: 2px solid #141414;
+}
+
+/*
+   Faz o rodapé ficar no fim, pois o .conteudo "empurra" tudo para cima
+   e o footer permanece lá embaixo.
+*/
+.conteudo {
+    flex: 1;
+}
+
+/* =========================== */
+/* ACESSIBILIDADE (Focus) */
+/* =========================== */
+.nav-links li a:focus,
+.mobile-menu a:focus {
+    outline: 2px dashed #e50914;
+    outline-offset: 4px;
+}
+
+/* =========================== */
+/* FORMULÁRIO DE CONTATO */
+/* =========================== */
+
+/* Container principal da página de contato */
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center; /* Centraliza os títulos */
+}
+
+/* Título e texto */
 .contact-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
 }
-
-/* Texto introdutório */
 .contact-container p {
     font-size: 16px;
     line-height: 1.6;
@@ -34,7 +179,7 @@
     width: 100%;
 }
 
-/* Agrupamento dos campos */
+/* Grupo de cada campo (label + input/textarea) */
 .contact-container .form-group {
     width: 100%;
     max-width: 500px;
@@ -60,17 +205,17 @@
     border: none;
     border-radius: 5px;
     font-size: 14px;
-    background-color: #2c2c2c; /* contraste melhor */
-    color: white; /* texto branco */
+    background-color: #2c2c2c; /* cor de fundo do campo */
+    color: white;             /* texto branco */
 }
 
-/* Textarea mais alto */
+/* Ajustes pro textarea */
 .contact-container textarea {
     resize: vertical;
     min-height: 100px;
 }
 
-/* Botão Enviar */
+/* Botão de enviar */
 .contact-container .btn-enviar {
     width: 75%;
     max-width: 450px;
@@ -85,7 +230,32 @@
     margin-top: 15px;
     text-align: center;
 }
-
 .contact-container .btn-enviar:hover {
     background-color: #b20710;
 }
+
+/* =========================== */
+/* ESPECÍFICO PARA O CATÁLOGO (Exemplo) */
+/* =========================== */
+/* Caso deseje manter as regras .catalog-page e .videos-container,
+   não apague se já estiverem em uso em 'catalog.html'.
+   Mantemos aqui apenas como referência. */
+body.catalog-page {
+    background-color: #121212;
+}
+body.catalog-page .videos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 0;
+}
+body.catalog-page .pack {
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+/* ... e assim por diante, caso já existam */
