@@ -13,7 +13,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Garante altura de tela */
 }
 
 /* =========================== */
@@ -165,6 +165,16 @@ footer.footer {
     width: 100%;
     font-size: 12px;
     border-top: 2px solid #141414;
+}
+
+/* =========================== */
+/* FAZ O RODAPÉ FICAR NO FIM   */
+/* =========================== */
+/* Sempre que houver um <div class="conteudo"> ou similar,
+   aplicamos flex: 1 para ocupar todo o espaço vertical
+   e "empurrar" o footer para o fim. */
+.conteudo {
+    flex: 1;
 }
 
 /* =========================== */
