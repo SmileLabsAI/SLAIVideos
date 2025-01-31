@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("menu-logout");
-    const userToken = localStorage.getItem("userToken"); // Armazena o token do usuário
+    const userToken = localStorage.getItem("userToken");
 
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login"; // Backend no Render
     const SUPABASE_URL = "https://rxqieqpxjztnelrsibqc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    if (typeof supabase === "undefined") {
+        console.warn("Supabase não estava inicializado. Criando agora...");
+        var supabase = window.supabase = window.supabase || supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
 
     if (userToken) {
         console.log("Usuário já está logado.");
@@ -22,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (loginForm) {
         loginForm.addEventListener("submit", async (event) => {
-            event.preventDefault(); // Evita recarregar a página
+            event.preventDefault();
 
             const email = document.getElementById("email").value;
             const senha = document.getElementById("password").value;
 
-            console.log("Tentando fazer login com:", { email, senha });
+            console.log("Tentando login com:", { email, senha });
 
             try {
                 const response = await fetch(BACKEND_URL, {
@@ -40,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("Resposta do servidor:", data);
 
                 if (response.ok) {
-                    localStorage.setItem("userToken", data.token); // Salva token no navegador
+                    localStorage.setItem("userToken", data.token);
                     alert("Login realizado com sucesso!");
-                    console.log("Redirecionando para members.html...");
-                    window.location.href = "members.html"; // Redireciona para área logada
+                    console.log("Redirecionando para membros.html...");
+                    window.location.href = "membros.html";
                 } else {
                     alert(data.error || "Erro ao fazer login. Verifique suas credenciais.");
                     console.error("Erro de login:", data);
@@ -57,12 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 🔹 Verifica a autenticação ao carregar a página
-async function checkAuth() {
+document.addEventListener("DOMContentLoaded", () => {
     const userToken = localStorage.getItem("userToken");
     if (userToken) {
         console.log("Usuário autenticado. Redirecionando...");
-        window.location.href = "members.html"; // Redireciona se já estiver logado
+        window.location.href = "membros.html";
     }
-}
-
-document.addEventListener("DOMContentLoaded", checkAuth);
+});
