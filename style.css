@@ -451,44 +451,54 @@ body.sucesso-page {
 /* =========================== */
 /* BOTÃO GOOGLE - CADASTRO */
 /* =========================== */
+.social-login button,
 #google-login {
-    width: 100%; /* Ocupa toda a largura disponível */
-    height: 40px; /* Mantém o mesmo tamanho dos outros botões */
+    width: 100%; /* Mesma largura dos outros botões */
+    height: 40px; /* Altura padrão dos botões */
     padding: 10px;
-    background-color: white; /* Fundo branco para seguir padrão Google */
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: white; /* Fundo branco para seguir o padrão do Google */
+    color: black;
     cursor: pointer;
-    display: flex; /* Flexbox para alinhar ícone e texto */
+    display: flex; /* Alinha ícone e texto corretamente */
     align-items: center;
-    justify-content: center; /* Mantém alinhamento central */
-    gap: 10px; /* Espaço entre ícone e texto */
+    justify-content: center;
     transition: background 0.3s ease-in-out;
+    text-align: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
 }
 
 /* Ícone do Google dentro do botão */
+.social-login button img,
 #google-login img {
-    width: 18px; /* Ajusta tamanho do ícone */
+    width: 18px;
     height: 18px;
+    margin-left: -8px; /* Ajusta o alinhamento do ícone */
 }
 
 /* Efeito de hover no botão */
+.social-login button:hover,
 #google-login:hover {
     background-color: #f0f0f0;
 }
 
-/* Responsividade para telas menores */
+/* =========================== */
+/* RESPONSIVIDADE */
+/* =========================== */
 @media (max-width: 480px) {
+    .social-login button,
     #google-login {
-        font-size: 12px; /* Diminui a fonte para telas pequenas */
-        height: 38px;
+        font-size: 12px; /* Texto menor em telas pequenas */
+        height: 38px; /* Mantém proporcional */
     }
 
+    .social-login button img,
     #google-login img {
-        width: 16px; /* Reduz o ícone em telas pequenas */
+        width: 16px; /* Ícone reduzido */
         height: 16px;
+        margin-left: -6px; /* Ajuste fino no alinhamento */
     }
 }
