@@ -448,3 +448,47 @@ body.sucesso-page {
 .social-login button:hover {
     background-color: #f0f0f0;
 }
+/* =========================== */
+/* BOTÃO GOOGLE - CADASTRO */
+/* =========================== */
+#google-login {
+    width: 100%; /* Ocupa toda a largura disponível */
+    height: 40px; /* Mantém o mesmo tamanho dos outros botões */
+    padding: 10px;
+    background-color: white; /* Fundo branco para seguir padrão Google */
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex; /* Flexbox para alinhar ícone e texto */
+    align-items: center;
+    justify-content: center; /* Mantém alinhamento central */
+    gap: 10px; /* Espaço entre ícone e texto */
+    transition: background 0.3s ease-in-out;
+}
+
+/* Ícone do Google dentro do botão */
+#google-login img {
+    width: 18px; /* Ajusta tamanho do ícone */
+    height: 18px;
+}
+
+/* Efeito de hover no botão */
+#google-login:hover {
+    background-color: #f0f0f0;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 480px) {
+    #google-login {
+        font-size: 12px; /* Diminui a fonte para telas pequenas */
+        height: 38px;
+    }
+
+    #google-login img {
+        width: 16px; /* Reduz o ícone em telas pequenas */
+        height: 16px;
+    }
+}
