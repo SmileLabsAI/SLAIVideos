@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ Página carregada. Inicializando login.js...");
+
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("menu-logout");
     const userToken = localStorage.getItem("userToken");
@@ -8,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const SUPABASE_URL = "https://rxqieqpxjztnelrsibqc.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
 
-    // 🔹 Certifica que a biblioteca Supabase está carregada antes de usar
-    if (typeof supabase === "undefined") {
+    // 🔹 Inicializa Supabase corretamente
+    if (typeof window.supabase === "undefined") {
         console.warn("⚠ Supabase não estava inicializado. Criando agora...");
-        window.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
 
     // 🔹 Verifica se o usuário já está logado
@@ -32,8 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
         loginForm.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            const email = document.getElementById("email").value;
-            const senha = document.getElementById("password").value;
+            const email = document.getElementById("email")?.value.trim();
+            const senha = document.getElementById("password")?.value.trim();
+
+            if (!email || !senha) {
+                alert("⚠ Preencha todos os campos.");
+                return;
+            }
 
             console.log("🟡 Tentando login com:", { email, senha });
 
@@ -51,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem("userToken", data.token);
                     alert("✅ Login realizado com sucesso!");
                     console.log("🔄 Redirecionando para membros.html...");
-                    window.location.href = "membros.html"; // ✅ Certifique-se de que este arquivo existe!
+                    window.location.href = "members.html";
                 } else {
                     alert(data.error || "❌ Erro ao fazer login. Verifique suas credenciais.");
                     console.error("⚠ Erro de login:", data);
@@ -61,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
             }
         });
+    } else {
+        console.warn("⚠ Formulário de login não encontrado no DOM.");
     }
 });
 
@@ -69,6 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const userToken = localStorage.getItem("userToken");
     if (userToken) {
         console.log("✅ Usuário autenticado. Redirecionando...");
-        window.location.href = "membros.html"; // ✅ Verifique se esse arquivo existe no GitHub Pages!
+        window.location.href = "members.html"; // ✅ Verifique se esse arquivo existe no GitHub Pages!
     }
 });
