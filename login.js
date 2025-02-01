@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log("✅ Login bem-sucedido. Redirecionando...");
 
                     setTimeout(() => {
-                        window.location.href = MEMBERS_PAGE;
+                        window.location.href = members.html;
                     }, 500);
                 } else {
                     console.error("❌ Erro de login:", data?.error || "Usuário ou senha incorretos.");
