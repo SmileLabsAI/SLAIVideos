@@ -6,27 +6,23 @@ function comprarPack(link) {
 // Função para abrir/fechar o menu mobile
 function toggleMenu() {
     const menu = document.querySelector('.mobile-menu');
-    menu.classList.toggle('open');
+    if (menu) {
+        menu.classList.toggle('open');
+    }
 }
 
 // Executa ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Página carregada - Checkout via 'Kiwify' ativo");
 
-    // Verifica se o usuário está logado
-    const isLoggedIn = (localStorage.getItem("userLoggedIn") === "true");
+    // Verifica se o usuário está logado usando o token JWT
+    const userToken = localStorage.getItem("userToken");
+    const isLoggedIn = Boolean(userToken);
 
-    // Seleciona o link de Login/Logout no menu principal
-    const loginLink =
-        document.querySelector('.nav-links li a[href="login.html"]') ||
-        document.querySelector('li a[href="login.html"]');
-
-    // Seleciona o link de Login/Logout no menu mobile
+    // Seleciona os links de Login/Logout e Members nos menus
+    const loginLink = document.querySelector('.nav-links li a[href="login.html"]') || document.querySelector('li a[href="login.html"]');
     const loginLinkMobile = document.querySelector('.mobile-menu a[href="login.html"]');
-
-    // Seleciona o link de "Members" no menu principal
     const membersLink = document.querySelector('.nav-links li a[href="members.html"]');
-    // Seleciona o link de "Members" no menu mobile
     const membersLinkMobile = document.querySelector('.mobile-menu a[href="members.html"]');
 
     // Se estiver logado, altera "Login" para "Logout"
@@ -36,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             loginLink.href = "#";
             loginLink.addEventListener("click", function(e) {
                 e.preventDefault();
-                localStorage.removeItem("userLoggedIn");
-                window.location.href = "index.html"; // ou outra página de destino
+                localStorage.removeItem("userToken");
+                window.location.href = "index.html";
             });
         }
         if (loginLinkMobile) {
@@ -45,12 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
             loginLinkMobile.href = "#";
             loginLinkMobile.addEventListener("click", function(e) {
                 e.preventDefault();
-                localStorage.removeItem("userLoggedIn");
+                localStorage.removeItem("userToken");
                 window.location.href = "index.html";
             });
         }
     } else {
-        // Senão, mantém "Login"
         if (loginLink) {
             loginLink.textContent = "Login";
             loginLink.href = "login.html";
@@ -84,10 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentPage === "members.html" && !isLoggedIn) {
         window.location.href = "login.html";
     }
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.navbar-left img').addEventListener('click', function() {
-            window.location.href = "catalog.html"; // Define a home
-        });
-    });
 
+    // Redirecionamento do logo para a página inicial (catalog.html)
+    const navbarLogo = document.querySelector('.navbar-left img');
+    if (navbarLogo) {
+        navbarLogo.addEventListener('click', function() {
+            window.location.href = "catalog.html";
+        });
+    }
 });
