@@ -25,19 +25,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // 🔐 Redirecionamento seguro para usuários autenticados
     if (userToken && isTokenValid(userToken)) {
         console.log("✅ Usuário autenticado e token válido.");
-
         if (window.location.pathname.endsWith("login.html")) {
             console.log("🔄 Redirecionando para a área de membros...");
             window.location.href = MEMBERS_PAGE;
         }
     } else {
         console.log("❌ Usuário não autenticado ou token inválido.");
-
         if (window.location.pathname.endsWith(MEMBERS_PAGE)) {
             console.warn("🔒 Redirecionando usuário não autenticado para a página de login.");
             window.location.href = "login.html";
         }
-
         localStorage.removeItem("userToken"); // Remove tokens inválidos
     }
 
@@ -51,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 🔹 Processo de Login
+    // Processo de Login
     if (loginForm) {
         loginForm.addEventListener("submit", async function(event) {
             event.preventDefault();
@@ -73,14 +70,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     body: JSON.stringify({ email: email, senha: senha })
                 });
 
+                // Anotação JSDoc para informar a estrutura esperada
+                /** @type {{ token?: string, message?: string, error?: string }} */
                 const data = await response.json();
                 console.log("🟢 Resposta do servidor:", data);
 
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     alert("✅ Login realizado com sucesso!");
-                    console.log("🔄 Redirecionando para a área de membros...");
-                    window.location.href = MEMBERS_PAGE;
+                    window.location.href = MEMBERS_PAGE; // Redireciona após login
                 } else {
                     alert(data.error || "❌ Erro ao fazer login. Verifique suas credenciais.");
                     console.error("⚠ Erro de login:", data);
