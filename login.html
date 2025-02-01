@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script defer src="login.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
     <style>
         * {
             margin: 0;
@@ -25,7 +24,6 @@
             align-items: center;
             height: 100vh;
         }
-
         .login-container {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 30px;
@@ -97,10 +95,10 @@
             position: relative;
         }
         .social-login button img {
-            width: 13px; /* Reduzi o ícone em 30% */
+            width: 13px;
             height: 13px;
             position: absolute;
-            left: 8px; /* Movi o ícone mais para a esquerda */
+            left: 8px;
         }
         .social-login button:hover {
             background-color: #f0f0f0;
@@ -129,10 +127,8 @@
     <form id="login-form">
         <label for="email">E-mail</label>
         <input type="email" id="email" required>
-
         <label for="password">Senha</label>
         <input type="password" id="password" required>
-
         <button type="submit">Login</button>
     </form>
 
@@ -150,29 +146,18 @@
     <p><a href="politica-privacidade.html" style="color: #b3b3b3;">Política de Privacidade</a></p>
 </div>
 
-
 <footer class="footer">
     <p>&copy; 2025 SLAI Videos - Todos os direitos reservados.</p>
 </footer>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const loginForm = document.getElementById("login-form");
-
-        if (loginForm) {
-            loginForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                localStorage.setItem("userLoggedIn", "true");
-                window.location.href = "members.html";
-            });
-        }
-
-        const googleLoginBtn = document.getElementById("google-login");
+    // Script para o botão de login com Google
+    const googleLoginBtn = document.getElementById("login-google");
+    if (googleLoginBtn) {
         googleLoginBtn.addEventListener("click", () => {
             alert("Funcionalidade de login com Google em desenvolvimento!");
         });
-    });
+    }
 </script>
-
 </body>
 </html>
