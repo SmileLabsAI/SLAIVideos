@@ -7,35 +7,51 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // URLs do Backend e Supabase
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
-    const SUPABASE_URL = "https://rxqieqpxjztnelrsibqc.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
+    const MEMBERS_PAGE = "members.html"; // Página protegida
 
-    // Inicializa Supabase, se necessário
-    if (typeof window.supabase === "undefined") {
-        console.warn("⚠ Supabase não estava inicializado. Criando agora...");
-        window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // 🔐 Função para validar token JWT
+    function isTokenValid(token) {
+        if (!token) return false;
+        try {
+            const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica a parte útil do token (Payload)
+            const now = Math.floor(Date.now() / 1000); // Tempo atual em segundos
+            return payload.exp > now; // Verifica se o token ainda não expirou
+        } catch (e) {
+            console.error("⚠ Token inválido:", e);
+            return false;
+        }
     }
 
-    // Se o usuário já estiver autenticado
-    if (userToken) {
-        console.log("✅ Usuário já autenticado.");
-        if (logoutButton) {
-            logoutButton.style.display = "inline-block";
-            logoutButton.addEventListener("click", function() {
-                localStorage.removeItem("userToken");
-                console.log("🔴 Usuário fez logout.");
-                window.location.href = "index.html";
-            });
-        }
-        // Se estivermos na página de login e já houver token, redireciona para members.html
+    // 🔐 Redirecionamento seguro para usuários autenticados
+    if (userToken && isTokenValid(userToken)) {
+        console.log("✅ Usuário autenticado e token válido.");
+
         if (window.location.pathname.endsWith("login.html")) {
-            console.log("✅ Usuário autenticado. Redirecionando...");
-            window.location.href = "members.html";
-            return; // Para evitar a execução do restante do código
+            console.log("🔄 Redirecionando para a área de membros...");
+            window.location.href = MEMBERS_PAGE;
         }
+    } else {
+        console.log("❌ Usuário não autenticado ou token inválido.");
+
+        if (window.location.pathname.endsWith(MEMBERS_PAGE)) {
+            console.warn("🔒 Redirecionando usuário não autenticado para a página de login.");
+            window.location.href = "login.html";
+        }
+
+        localStorage.removeItem("userToken"); // Remove tokens inválidos
     }
 
-    // Processo de Login
+    // 🔴 Logout do usuário
+    if (logoutButton) {
+        logoutButton.style.display = "inline-block";
+        logoutButton.addEventListener("click", function() {
+            localStorage.removeItem("userToken");
+            console.log("🔴 Usuário fez logout.");
+            window.location.href = "index.html";
+        });
+    }
+
+    // 🔹 Processo de Login
     if (loginForm) {
         loginForm.addEventListener("submit", async function(event) {
             event.preventDefault();
@@ -60,11 +76,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 const data = await response.json();
                 console.log("🟢 Resposta do servidor:", data);
 
-                if (response.ok) {
+                if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     alert("✅ Login realizado com sucesso!");
-                    console.log("🔄 Redirecionando para members.html...");
-                    window.location.href = "members.html";
+                    console.log("🔄 Redirecionando para a área de membros...");
+                    window.location.href = MEMBERS_PAGE;
                 } else {
                     alert(data.error || "❌ Erro ao fazer login. Verifique suas credenciais.");
                     console.error("⚠ Erro de login:", data);
