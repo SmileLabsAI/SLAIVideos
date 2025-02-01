@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     localStorage.setItem("userToken", data.token);
                     console.log("🟢 Login bem-sucedido. Redirecionando...");
 
-                    // Aguarda um pequeno tempo antes do redirecionamento para garantir que o token seja salvo
+                    // Redirecionamento sem alerta
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
