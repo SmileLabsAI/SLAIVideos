@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const now = Math.floor(Date.now() / 1000);
             return payload.exp > now;
         } catch (e) {
-            console.error("⚠ Token inválido:", e);
             return false;
         }
     }
@@ -25,9 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (window.location.pathname.endsWith("login.html")) {
             window.location.href = MEMBERS_PAGE;
         }
-    } else {
-        console.log("❌ Usuário não autenticado ou token inválido.");
-        localStorage.removeItem("userToken");
     }
 
     if (logoutButton) {
@@ -57,14 +53,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 const response = await fetch(BACKEND_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: email, senha: senha })
+                    body: JSON.stringify({ email, senha })
                 });
 
                 const data = await response.json();
-                console.log("🔍 Resposta da API:", data); // Debugging - Verificar resposta
+                console.log("🔍 Resposta da API:", data);
 
-                // Verifica se 'data' é um objeto válido antes de acessar 'data.token'
-                if (response.ok && typeof data === "object" && data.token) {
+                if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     console.log("✅ Login bem-sucedido. Redirecionando...");
 
@@ -72,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
                 } else {
-                    console.error("❌ Erro de login:", data?.message || "Usuário ou senha incorretos.");
+                    console.error("❌ Erro de login:", data.message || "Usuário ou senha incorretos.");
                     alert("❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
             } catch (error) {
@@ -80,7 +75,5 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
             }
         });
-    } else {
-        console.warn("⚠ Formulário de login não encontrado no DOM.");
     }
 });
