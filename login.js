@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const data = await response.json();
                 console.log("🔍 Resposta da API:", data);
 
-                if (response.ok && data.token) {
+                if (response.ok && data.token && !data.error) {
                     localStorage.setItem("userToken", data.token);
                     console.log("✅ Login bem-sucedido. Redirecionando...");
 
