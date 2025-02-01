@@ -65,10 +65,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 if (response.ok && data.token && !data.error) {
                     localStorage.setItem("userToken", data.token);
-                    console.log("✅ Login bem-sucedido. Redirecionando...");
+                    console.log("✅ Login bem-sucedido. Redirecionando para:", MEMBERS_PAGE);
 
                     setTimeout(() => {
-                        window.location.href = members.html;
+                        console.log("🔄 Executando redirecionamento...");
+                        window.location.href = MEMBERS_PAGE;
                     }, 500);
                 } else {
                     console.error("❌ Erro de login:", data?.error || "Usuário ou senha incorretos.");
@@ -78,8 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error("❌ Erro ao conectar com o servidor:", error);
                 alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
             }
-
-        }); // 🔹 Agora o fechamento está correto
+        });
     } else {
         console.warn("⚠ Formulário de login não encontrado no DOM.");
     }
