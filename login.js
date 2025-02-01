@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ Página carregada. Inicializando login.js...");
 
-    // Se estivermos na página de login, remova qualquer token antigo.
+    // Remove token antigo se estivermos na página de login
     if (window.location.pathname.endsWith("login.html")) {
         localStorage.removeItem("userToken");
     }
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const MEMBERS_PAGE = "members.html"; // Página protegida
     const CADASTRO_PAGE = "cadastro.html"; // Página de cadastro
 
-    // Função para validar token JWT (se necessário)
+    // Função para validar token JWT (opcional)
     function isTokenValid(token) {
         if (!token) return false;
         try {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Se não estivermos na página de login (ex: em members.html), verifique se há token válido
+    // Se não estivermos na página de login, verifique se há token válido
     if (!window.location.pathname.endsWith("login.html")) {
         const storedToken = localStorage.getItem("userToken");
         if (!storedToken || !isTokenValid(storedToken)) {
@@ -74,18 +74,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
-                    alert("✅ Login realizado com sucesso!");
-                    // Aguarda 1 segundo para que o alerta seja visto
+                    // Redireciona para a área de membros sem exibir alerta com o token
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
-                    }, 1000);
+                    }, 1000); // 1 segundo de atraso opcional
                 } else {
-                    // Se o erro for "Usuário não encontrado", redireciona para cadastro após 3 segundos.
                     if (data.error === "Usuário não encontrado.") {
                         alert("Usuário não encontrado. Redirecionando para cadastro.");
                         setTimeout(() => {
                             window.location.href = CADASTRO_PAGE;
-                        }, 3000);
+                        }, 3000); // 3 segundos de atraso para que o alerta seja lido
                     } else if (data.error === "Senha incorreta.") {
                         alert("Senha incorreta. Por favor, tente novamente.");
                     } else {
