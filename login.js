@@ -70,15 +70,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
+                } else if (data.message && data.message.includes("bem-sucedido")) {
+                    // Se a API disser que o login foi bem-sucedido, trata como sucesso mesmo sem token explícito
+                    console.warn("⚠ Login bem-sucedido, mas sem token. Verifique API.");
+                    alert("⚠ Login realizado, mas sem token. Entre em contato com o suporte.");
                 } else {
                     console.error("❌ Erro de login:", data?.error || "Usuário ou senha incorretos.");
                     alert("❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
-            } catch (error) {
-                console.error("❌ Erro ao conectar com o servidor:", error);
-                alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
-            }
-        });
+
+            });
     } else {
         console.warn("⚠ Formulário de login não encontrado no DOM.");
     }
