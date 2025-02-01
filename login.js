@@ -5,24 +5,25 @@ document.addEventListener("DOMContentLoaded", function() {
     const logoutButton = document.getElementById("menu-logout");
     const userToken = localStorage.getItem("userToken");
 
-    // URLs do Backend e Supabase
+    // URLs do Backend e páginas de destino
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
     const MEMBERS_PAGE = "members.html"; // Página protegida
+    const CADASTRO_PAGE = "cadastro.html"; // Página de cadastro
 
-    // 🔐 Função para validar token JWT
+    // 🔐 Função para validar token JWT (opcional)
     function isTokenValid(token) {
         if (!token) return false;
         try {
-            const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica a parte útil do token (Payload)
-            const now = Math.floor(Date.now() / 1000); // Tempo atual em segundos
-            return payload.exp > now; // Verifica se o token ainda não expirou
+            const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica o payload
+            const now = Math.floor(Date.now() / 1000);
+            return payload.exp > now;
         } catch (e) {
             console.error("⚠ Token inválido:", e);
             return false;
         }
     }
 
-    // 🔐 Redirecionamento seguro para usuários autenticados
+    // Redirecionamento se já estiver autenticado
     if (userToken && isTokenValid(userToken)) {
         console.log("✅ Usuário autenticado e token válido.");
         if (window.location.pathname.endsWith("login.html")) {
@@ -35,10 +36,10 @@ document.addEventListener("DOMContentLoaded", function() {
             console.warn("🔒 Redirecionando usuário não autenticado para a página de login.");
             window.location.href = "login.html";
         }
-        localStorage.removeItem("userToken"); // Remove tokens inválidos
+        localStorage.removeItem("userToken");
     }
 
-    // 🔴 Logout do usuário
+    // Logout do usuário
     if (logoutButton) {
         logoutButton.style.display = "inline-block";
         logoutButton.addEventListener("click", function() {
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     body: JSON.stringify({ email: email, senha: senha })
                 });
 
-                // Anotação JSDoc para informar a estrutura esperada
+                // Anotação JSDoc para informar a estrutura esperada da resposta:
                 /** @type {{ token?: string, message?: string, error?: string }} */
                 const data = await response.json();
                 console.log("🟢 Resposta do servidor:", data);
@@ -78,9 +79,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     alert("✅ Login realizado com sucesso!");
-                    window.location.href = MEMBERS_PAGE; // Redireciona após login
+                    window.location.href = MEMBERS_PAGE;
                 } else {
-                    alert(data.error || "❌ Erro ao fazer login. Verifique suas credenciais.");
+                    // Se o backend indicar "Usuário não encontrado.", redireciona para cadastro
+                    if (data.error === "Usuário não encontrado.") {
+                        alert("Usuário não encontrado. Redirecionando para cadastro.");
+                        window.location.href = CADASTRO_PAGE;
+                    } else if (data.error === "Senha incorreta.") {
+                        alert("Senha incorreta. Por favor, tente novamente.");
+                    } else {
+                        alert(data.error || "❌ Erro ao fazer login. Verifique suas credenciais.");
+                    }
                     console.error("⚠ Erro de login:", data);
                 }
             } catch (error) {
