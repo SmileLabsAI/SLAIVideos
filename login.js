@@ -1,42 +1,39 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ Página carregada. Inicializando login.js...");
 
-    // Remove token antigo se estivermos na página de login
-    if (window.location.pathname.endsWith("login.html")) {
-        localStorage.removeItem("userToken");
-    }
-
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("menu-logout");
+    const userToken = localStorage.getItem("userToken");
 
-    // URLs do Backend e páginas de destino
+    // URLs do Backend e Supabase
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
     const MEMBERS_PAGE = "members.html"; // Página protegida
-    const CADASTRO_PAGE = "cadastro.html"; // Página de cadastro
 
-    // Função para validar token JWT (opcional)
+    // 🔐 Função para validar token JWT
     function isTokenValid(token) {
         if (!token) return false;
         try {
-            const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica o payload
-            const now = Math.floor(Date.now() / 1000);
-            return payload.exp > now;
+            const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica a parte útil do token (Payload)
+            const now = Math.floor(Date.now() / 1000); // Tempo atual em segundos
+            return payload.exp > now; // Verifica se o token ainda não expirou
         } catch (e) {
             console.error("⚠ Token inválido:", e);
             return false;
         }
     }
 
-    // Se não estivermos na página de login, verifique se há token válido
-    if (!window.location.pathname.endsWith("login.html")) {
-        const storedToken = localStorage.getItem("userToken");
-        if (!storedToken || !isTokenValid(storedToken)) {
-            console.warn("🔒 Token ausente ou inválido. Redirecionando para login...");
-            window.location.href = "login.html";
+    // 🔐 Redirecionamento seguro para usuários autenticados
+    if (userToken && isTokenValid(userToken)) {
+        console.log("✅ Usuário autenticado e token válido.");
+        if (window.location.pathname.endsWith("login.html")) {
+            window.location.href = MEMBERS_PAGE;
         }
+    } else {
+        console.log("❌ Usuário não autenticado ou token inválido.");
+        localStorage.removeItem("userToken"); // Remove tokens inválidos
     }
 
-    // Logout do usuário
+    // 🔴 Logout do usuário
     if (logoutButton) {
         logoutButton.style.display = "inline-block";
         logoutButton.addEventListener("click", function() {
@@ -46,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Processo de Login
     if (loginForm) {
         loginForm.addEventListener("submit", async function(event) {
             event.preventDefault();
@@ -65,31 +61,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 const response = await fetch(BACKEND_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: email, senha: senha })
+                    body: JSON.stringify({ email, senha })
                 });
 
-                /** @type {{ token?: string, message?: string, error?: string }} */
                 const data = await response.json();
-                console.log("🟢 Resposta do servidor:", data);
 
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
-                    // Redireciona para a área de membros sem exibir alerta com o token
+                    console.log("🟢 Login bem-sucedido. Redirecionando...");
+
+                    // Aguarda um pequeno tempo antes do redirecionamento para garantir que o token seja salvo
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
-                    }, 1000); // 1 segundo de atraso opcional
+                    }, 500);
                 } else {
-                    if (data.error === "Usuário não encontrado.") {
-                        alert("Usuário não encontrado. Redirecionando para cadastro.");
-                        setTimeout(() => {
-                            window.location.href = CADASTRO_PAGE;
-                        }, 3000); // 3 segundos de atraso para que o alerta seja lido
-                    } else if (data.error === "Senha incorreta.") {
-                        alert("Senha incorreta. Por favor, tente novamente.");
-                    } else {
-                        alert(data.error || "❌ Erro ao fazer login. Verifique suas credenciais.");
-                    }
-                    console.error("⚠ Erro de login:", data);
+                    alert(data.message || "❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
             } catch (error) {
                 console.error("❌ Erro ao conectar com o servidor:", error);
