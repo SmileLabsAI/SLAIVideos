@@ -61,9 +61,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 const data = await response.json();
-                data.token = undefined;
+                console.log("🔍 Resposta da API:", data); // Debugging - Verificar resposta
 
-                if (response.ok && data.token) {
+                // Verifica se 'data' é um objeto válido antes de acessar 'data.token'
+                if (response.ok && typeof data === "object" && data.token) {
                     localStorage.setItem("userToken", data.token);
                     console.log("✅ Login bem-sucedido. Redirecionando...");
 
@@ -71,14 +72,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
                 } else {
-                    console.error("❌ Erro de login:", data.message || "Usuário ou senha incorretos.");
+                    console.error("❌ Erro de login:", data?.message || "Usuário ou senha incorretos.");
                     alert("❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
             } catch (error) {
                 console.error("❌ Erro ao conectar com o servidor:", error);
                 alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
             }
-
         });
     } else {
         console.warn("⚠ Formulário de login não encontrado no DOM.");
