@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     body: JSON.stringify({ email: email, senha: senha })
                 });
 
-                // Anotação JSDoc para informar a estrutura esperada da resposta:
                 /** @type {{ token?: string, message?: string, error?: string }} */
                 const data = await response.json();
                 console.log("🟢 Resposta do servidor:", data);
@@ -79,12 +78,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     alert("✅ Login realizado com sucesso!");
-                    window.location.href = MEMBERS_PAGE;
+                    // Opcional: adicione um pequeno atraso para que o usuário veja a mensagem
+                    setTimeout(() => {
+                        window.location.href = MEMBERS_PAGE;
+                    }, 1000); // 1 segundo de atraso
                 } else {
-                    // Se o backend indicar "Usuário não encontrado.", redireciona para cadastro
                     if (data.error === "Usuário não encontrado.") {
                         alert("Usuário não encontrado. Redirecionando para cadastro.");
-                        window.location.href = CADASTRO_PAGE;
+                        // Aguardar alguns segundos para que a mensagem seja vista antes de redirecionar
+                        setTimeout(() => {
+                            window.location.href = CADASTRO_PAGE;
+                        }, 3000); // 3 segundos de atraso
                     } else if (data.error === "Senha incorreta.") {
                         alert("Senha incorreta. Por favor, tente novamente.");
                     } else {
