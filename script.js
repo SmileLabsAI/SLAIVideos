@@ -84,4 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentPage === "members.html" && !isLoggedIn) {
         window.location.href = "login.html";
     }
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.navbar-left img').addEventListener('click', function() {
+            window.location.href = "catalog.html"; // Define a home
+        });
+    });
+
 });
