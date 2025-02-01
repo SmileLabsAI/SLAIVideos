@@ -1,16 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ Página carregada. Inicializando login.js...");
 
+    // Se estivermos na página de login, remova qualquer token antigo.
+    if (window.location.pathname.endsWith("login.html")) {
+        localStorage.removeItem("userToken");
+    }
+
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("menu-logout");
-    const userToken = localStorage.getItem("userToken");
 
     // URLs do Backend e páginas de destino
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
     const MEMBERS_PAGE = "members.html"; // Página protegida
     const CADASTRO_PAGE = "cadastro.html"; // Página de cadastro
 
-    // 🔐 Função para validar token JWT (opcional)
+    // Função para validar token JWT (se necessário)
     function isTokenValid(token) {
         if (!token) return false;
         try {
@@ -23,20 +27,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Redirecionamento se já estiver autenticado
-    if (userToken && isTokenValid(userToken)) {
-        console.log("✅ Usuário autenticado e token válido.");
-        if (window.location.pathname.endsWith("login.html")) {
-            console.log("🔄 Redirecionando para a área de membros...");
-            window.location.href = MEMBERS_PAGE;
-        }
-    } else {
-        console.log("❌ Usuário não autenticado ou token inválido.");
-        if (window.location.pathname.endsWith(MEMBERS_PAGE)) {
-            console.warn("🔒 Redirecionando usuário não autenticado para a página de login.");
+    // Se não estivermos na página de login (ex: em members.html), verifique se há token válido
+    if (!window.location.pathname.endsWith("login.html")) {
+        const storedToken = localStorage.getItem("userToken");
+        if (!storedToken || !isTokenValid(storedToken)) {
+            console.warn("🔒 Token ausente ou inválido. Redirecionando para login...");
             window.location.href = "login.html";
         }
-        localStorage.removeItem("userToken");
     }
 
     // Logout do usuário
@@ -78,17 +75,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     alert("✅ Login realizado com sucesso!");
-                    // Opcional: adicione um pequeno atraso para que o usuário veja a mensagem
+                    // Aguarda 1 segundo para que o alerta seja visto
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
-                    }, 1000); // 1 segundo de atraso
+                    }, 1000);
                 } else {
+                    // Se o erro for "Usuário não encontrado", redireciona para cadastro após 3 segundos.
                     if (data.error === "Usuário não encontrado.") {
                         alert("Usuário não encontrado. Redirecionando para cadastro.");
-                        // Aguardar alguns segundos para que a mensagem seja vista antes de redirecionar
                         setTimeout(() => {
                             window.location.href = CADASTRO_PAGE;
-                        }, 3000); // 3 segundos de atraso
+                        }, 3000);
                     } else if (data.error === "Senha incorreta.") {
                         alert("Senha incorreta. Por favor, tente novamente.");
                     } else {
