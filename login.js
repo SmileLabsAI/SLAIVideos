@@ -65,16 +65,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
 
                 const data = await response.json();
+                console.log("📩 Resposta do servidor:", data); // Verificar no console
 
+                // ⚠ Verifica se a resposta contém um token antes de exibir erro
                 if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     console.log("🟢 Login bem-sucedido. Redirecionando...");
-
-                    // Redirecionamento sem alerta
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
                 } else {
+                    console.error("⚠ Erro de login:", data.message || "Usuário ou senha incorretos.");
                     alert(data.message || "❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
             } catch (error) {
