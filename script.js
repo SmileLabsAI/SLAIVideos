@@ -87,4 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = "catalog.html";
         });
     }
+
+    // Correção: adiciona evento ao botão de hambúrguer para abrir/fechar o menu mobile
+    const menuButton = document.querySelector('.hamburger');
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMenu);
+    }
 });

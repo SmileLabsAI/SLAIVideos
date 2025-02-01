@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const now = Math.floor(Date.now() / 1000);
             return payload.exp > now;
         } catch (e) {
+            console.error("⚠ Token inválido:", e);
             return false;
         }
     }
@@ -24,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if (window.location.pathname.endsWith("login.html")) {
             window.location.href = MEMBERS_PAGE;
         }
+    } else {
+        console.log("❌ Usuário não autenticado ou token inválido.");
+        localStorage.removeItem("userToken");
     }
 
     if (logoutButton) {
@@ -59,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const data = await response.json();
                 console.log("🔍 Resposta da API:", data);
 
-                // Verifica se o login foi bem-sucedido antes de salvar o token
-                if (response.ok && data.token && !data.error) {
+                if (response.ok && data.token) {
                     localStorage.setItem("userToken", data.token);
                     console.log("✅ Login bem-sucedido. Redirecionando...");
 
@@ -68,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
                 } else {
-                    console.error("❌ Erro de login:", data.message || "Usuário ou senha incorretos.");
+                    console.error("❌ Erro de login:", data?.error || "Usuário ou senha incorretos.");
                     alert("❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
             } catch (error) {
@@ -76,5 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
             }
         });
+    } else {
+        console.warn("⚠ Formulário de login não encontrado no DOM.");
     }
 });
