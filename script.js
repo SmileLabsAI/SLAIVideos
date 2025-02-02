@@ -8,7 +8,7 @@ function toggleMenu() {
     const menu = document.querySelector('.mobile-menu');
     if (menu) {
         menu.classList.toggle('open');
-        console.log("📂 Menu hambúrguer " + (menu.classList.contains("open") ? "aberto" : "fechado"));
+        console.log("📂 Menu hambúrguer " + (menu.classList.contains("flex") ? "aberto" : "fechado"));
     }
 }
 
