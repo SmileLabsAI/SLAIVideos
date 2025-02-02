@@ -9,21 +9,21 @@ function toggleMenu() {
     const overlay = document.querySelector('.menu-overlay');
 
     if (menu) {
-        menu.classList.toggle('open');
-        overlay.classList.toggle('active');
-        console.log("📂 Menu hambúrguer " + (menu.classList.contains("open") ? "aberto" : "fechado"));
+        const isOpen = menu.classList.toggle('open');
+        overlay.classList.toggle('active', isOpen);
+        console.log(isOpen ? "📂 Menu hambúrguer aberto" : "❌ Menu hambúrguer fechado");
     }
 }
 
-// Fecha o menu ao clicar fora dele (overlay)
+// Fecha o menu ao clicar fora dele (overlay) ou em um link do menu
 function closeMenu() {
     const menu = document.querySelector('.mobile-menu');
     const overlay = document.querySelector('.menu-overlay');
 
-    if (menu.classList.contains('open')) {
+    if (menu && menu.classList.contains('open')) {
         menu.classList.remove('open');
         overlay.classList.remove('active');
-        console.log("❌ Menu fechado ao clicar fora");
+        console.log("❌ Menu fechado ao clicar fora ou em um link");
     }
 }
 
@@ -48,41 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.mobile-menu a').forEach(link => {
         link.addEventListener('click', closeMenu);
     });
-});
-
-
-// Função para validar se o token JWT ainda é válido
-function isTokenValid(token) {
-    if (!token) return false;
-    try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
-        const now = Math.floor(Date.now() / 1000);
-        return payload.exp > now;
-    } catch (e) {
-        console.error("⚠ Token inválido:", e);
-        return false;
-    }
-}
-
-// Função de logout unificada para evitar código duplicado
-function logoutUser() {
-    localStorage.removeItem("userToken");
-    console.log("🔴 Usuário fez logout.");
-    window.location.href = "index.html";
-}
-
-// Executa ao carregar a página
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("✅ Página carregada - Inicializando script.js...");
-
-    // 📌 Botão de hambúrguer - adiciona evento de clique
-    const menuButton = document.querySelector('.hamburger');
-    if (menuButton) {
-        menuButton.addEventListener('click', toggleMenu);
-        console.log("🍔 Botão de menu hambúrguer ativado.");
-    } else {
-        console.warn("⚠ Botão de menu hambúrguer não encontrado.");
-    }
 
     // 📌 Verifica se o usuário está logado
     const userToken = localStorage.getItem("userToken");
@@ -141,3 +106,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Função para validar se o token JWT ainda é válido
+function isTokenValid(token) {
+    if (!token) return false;
+    try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const now = Math.floor(Date.now() / 1000);
+        return payload.exp > now;
+    } catch (e) {
+        console.error("⚠ Token inválido:", e);
+        return false;
+    }
+}
+
+// Função de logout unificada para evitar código duplicado
+function logoutUser() {
+    localStorage.removeItem("userToken");
+    console.log("🔴 Usuário fez logout.");
+    window.location.href = "index.html";
+}
