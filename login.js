@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const userToken = localStorage.getItem("userToken");
 
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
-    const MEMBERS_PAGE = "members.html"; // Página protegida
+    const MEMBERS_PAGE = "members.html";
 
     function isTokenValid(token) {
         if (!token) return false;
@@ -60,20 +60,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     body: JSON.stringify({ email, senha })
                 });
 
-                const data = await response.json();
-                console.log("🔍 Resposta completa da API:", data);
-
-                if (response.ok && data.token && !data.error) {
+                if (response.ok) {
+                    const data = await response.json();
                     localStorage.setItem("userToken", data.token);
                     console.log("✅ Login bem-sucedido. Redirecionando para:", MEMBERS_PAGE);
-
-                    setTimeout(() => {
-                        console.log("🔄 Executando redirecionamento...");
-                        window.location.href = MEMBERS_PAGE;
-                    }, 500);
+                    window.location.href = MEMBERS_PAGE;
                 } else {
-                    console.error("❌ Erro de login:", data?.error || "Usuário ou senha incorretos.");
-                    alert(`❌ Erro ao fazer login: ${data?.error || "Verifique suas credenciais."}`);
+                    const errorData = await response.json();
+                    const errorMessage = errorData.error || "Erro desconhecido";
+                    console.error("❌ Erro de login:", errorMessage);
+                    alert(`❌ Erro ao fazer login: ${errorMessage}`);
                 }
             } catch (error) {
                 console.error("❌ Erro ao conectar com o servidor:", error);
