@@ -112,3 +112,28 @@ document.addEventListener('DOMContentLoaded', function () {
         menuButton.addEventListener('click', toggleMenu);
     }
 });
+// Função para abrir/fechar o menu mobile
+function toggleMenu() {
+    const menu = document.querySelector('.mobile-menu');
+    if (menu) {
+        menu.classList.toggle('open');
+    }
+}
+
+// Executa ao carregar a página
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("✅ Página carregada. Inicializando script.js...");
+
+    const menuButton = document.querySelector('.hamburger');
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMenu);
+    }
+
+    // Redirecionamento do logo para a página inicial
+    const navbarLogo = document.querySelector('.navbar-left img');
+    if (navbarLogo) {
+        navbarLogo.addEventListener('click', function() {
+            window.location.href = "catalog.html";
+        });
+    }
+});

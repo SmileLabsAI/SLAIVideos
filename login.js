@@ -1,20 +1,13 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ Página carregada. Inicializando login.js...");
 
-    // Inicializa o cliente Supabase via CDN (o Supabase deve estar carregado no HTML)
-    const supabaseUrl = "https://rxqieqpxjztnelrsibqc.supabase.co";
-    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
-
     const loginForm = document.getElementById("login-form");
-    const logoutButton = document.getElementById("menu-logout");
-    const userToken = localStorage.getItem("userToken");
 
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
     const MEMBERS_PAGE = "members.html";
 
     if (loginForm) {
-        loginForm.addEventListener("submit", async function (event) {
+        loginForm.addEventListener("submit", async function(event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value.trim();
@@ -35,28 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 const data = await response.json();
-                console.log("🔍 Resposta da API:", data);
 
                 if (response.ok && data.token) {
-                    console.log("✅ Token recebido:", data.token);
-
-                    // Salva o token no localStorage
                     localStorage.setItem("userToken", data.token);
+                    console.log("✅ Login bem-sucedido. Redirecionando...");
 
-                    // Agora buscamos os dados do usuário no Supabase
-                    const { data: user, error } = await supabase
-                        .from('usuarios')
-                        .select('*')
-                        .eq('email', email)
-                        .single();
-
-                    if (error) {
-                        console.error('Erro ao buscar usuário no Supabase:', error);
-                    } else {
-                        console.log('Usuário do Supabase:', user);
-                    }
-
-                    // Redireciona após o login bem-sucedido
                     setTimeout(() => {
                         window.location.href = MEMBERS_PAGE;
                     }, 500);
