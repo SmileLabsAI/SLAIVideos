@@ -1,30 +1,31 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ Página carregada. Inicializando login.js...");
 
-    // Importe a biblioteca Supabase (se você ainda não a importou em outro lugar)
-    import { createClient } from '@supabase/supabase-js';
+    // Inicializa o cliente Supabase via CDN (o Supabase deve estar carregado no HTML)
+    const supabaseUrl = "https://rxqieqpxjztnelrsibqc.supabase.co";
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
 
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("menu-logout");
     const userToken = localStorage.getItem("userToken");
 
-    const supabaseUrl = "https://rxqieqpxjztnelrsibqc.supabase.co";
-    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
-    const supabase = createClient(supabaseUrl, supabaseAnonKey); // Inicializa o cliente Supabase
-
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
     const MEMBERS_PAGE = "members.html";
 
-    // ... (seu código para validar o token - mantenha este código) ...
-
     if (loginForm) {
-        loginForm.addEventListener("submit", async function(event) {
+        loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value.trim();
             const senha = document.getElementById("password").value.trim();
 
-            // ... (seu código para validar os campos - mantenha este código) ...
+            if (!email || !senha) {
+                alert("⚠ Preencha todos os campos.");
+                return;
+            }
+
+            console.log("🟡 Tentando login com:", { email, senha });
 
             try {
                 const response = await fetch(BACKEND_URL, {
@@ -33,14 +34,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     body: JSON.stringify({ email, senha })
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    localStorage.setItem("userToken", data.token);
-                    console.log("✅ Login bem-sucedido. Redirecionando para:", MEMBERS_PAGE);
+                const data = await response.json();
+                console.log("🔍 Resposta da API:", data);
 
-                    // Exemplo de como usar o cliente Supabase após o login:
+                if (response.ok && data.token) {
+                    console.log("✅ Token recebido:", data.token);
+
+                    // Salva o token no localStorage
+                    localStorage.setItem("userToken", data.token);
+
+                    // Agora buscamos os dados do usuário no Supabase
                     const { data: user, error } = await supabase
-                        .from('usuarios') // Nome da sua tabela de usuários
+                        .from('usuarios')
                         .select('*')
                         .eq('email', email)
                         .single();
@@ -49,16 +54,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         console.error('Erro ao buscar usuário no Supabase:', error);
                     } else {
                         console.log('Usuário do Supabase:', user);
-                        // Faça algo com os dados do usuário, se necessário
                     }
 
-
-                    window.location.href = MEMBERS_PAGE;
+                    // Redireciona após o login bem-sucedido
+                    setTimeout(() => {
+                        window.location.href = MEMBERS_PAGE;
+                    }, 500);
                 } else {
-                    const errorData = await response.json();
-                    const errorMessage = errorData.error || "Erro desconhecido";
-                    console.error("❌ Erro de login:", errorMessage);
-                    alert(`❌ Erro ao fazer login: ${errorMessage}`);
+                    console.error("❌ Erro de login:", data?.error || "Usuário ou senha incorretos.");
+                    alert("❌ Erro ao fazer login. Verifique suas credenciais.");
                 }
             } catch (error) {
                 console.error("❌ Erro ao conectar com o servidor:", error);
@@ -66,6 +70,4 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
-    // ... (resto do seu código - mantenha este código) ...
 });

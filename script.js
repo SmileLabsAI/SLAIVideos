@@ -11,13 +11,33 @@ function toggleMenu() {
     }
 }
 
+// Função para validar se o token JWT ainda é válido
+function isTokenValid(token) {
+    if (!token) return false;
+    try {
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const now = Math.floor(Date.now() / 1000);
+        return payload.exp > now;
+    } catch (e) {
+        console.error("⚠ Token inválido:", e);
+        return false;
+    }
+}
+
+// Função de logout unificada para evitar código duplicado
+function logoutUser() {
+    localStorage.removeItem("userToken");
+    console.log("🔴 Usuário fez logout.");
+    window.location.href = "index.html";
+}
+
 // Executa ao carregar a página
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("Página carregada - Checkout via 'Kiwify' ativo");
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("✅ Página carregada - Checkout via 'Kiwify' ativo");
 
     // Verifica se o usuário está logado usando o token JWT
     const userToken = localStorage.getItem("userToken");
-    const isLoggedIn = Boolean(userToken);
+    const isLoggedIn = userToken && isTokenValid(userToken);
 
     // Seleciona os links de Login/Logout e Members nos menus
     const loginLink = document.querySelector('.nav-links li a[href="login.html"]') || document.querySelector('li a[href="login.html"]');
@@ -30,19 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loginLink) {
             loginLink.textContent = "Logout";
             loginLink.href = "#";
-            loginLink.addEventListener("click", function(e) {
+            loginLink.addEventListener("click", function (e) {
                 e.preventDefault();
-                localStorage.removeItem("userToken");
-                window.location.href = "index.html";
+                logoutUser();
             });
         }
         if (loginLinkMobile) {
             loginLinkMobile.textContent = "Logout";
             loginLinkMobile.href = "#";
-            loginLinkMobile.addEventListener("click", function(e) {
+            loginLinkMobile.addEventListener("click", function (e) {
                 e.preventDefault();
-                localStorage.removeItem("userToken");
-                window.location.href = "index.html";
+                logoutUser();
             });
         }
     } else {
@@ -58,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Se clicar em "Members" e não estiver logado, redireciona para "login.html"
     if (membersLink) {
-        membersLink.addEventListener("click", function(e) {
+        membersLink.addEventListener("click", function (e) {
             if (!isLoggedIn) {
                 e.preventDefault();
                 window.location.href = "login.html";
@@ -66,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     if (membersLinkMobile) {
-        membersLinkMobile.addEventListener("click", function(e) {
+        membersLinkMobile.addEventListener("click", function (e) {
             if (!isLoggedIn) {
                 e.preventDefault();
                 window.location.href = "login.html";
@@ -83,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Redirecionamento do logo para a página inicial (catalog.html)
     const navbarLogo = document.querySelector('.navbar-left img');
     if (navbarLogo) {
-        navbarLogo.addEventListener('click', function() {
+        navbarLogo.addEventListener('click', function () {
             window.location.href = "catalog.html";
         });
     }
