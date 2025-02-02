@@ -1,43 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("✅ Página carregada. Inicializando login.js...");
 
+    // Importe a biblioteca Supabase (se você ainda não a importou em outro lugar)
+    import { createClient } from '@supabase/supabase-js';
+
     const loginForm = document.getElementById("login-form");
     const logoutButton = document.getElementById("menu-logout");
     const userToken = localStorage.getItem("userToken");
 
+    const supabaseUrl = "https://rxqieqpxjztnelrsibqc.supabase.co";
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4cWllcXB4anp0bmVscnNpYnFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc4MzAzMDYsImV4cCI6MjA1MzQwNjMwNn0.-eFyRvUhRRGwS5u2zOdKjhHronlw8u-POJzCaBocBxc";
+    const supabase = createClient(supabaseUrl, supabaseAnonKey); // Inicializa o cliente Supabase
+
     const BACKEND_URL = "https://slaivideos-backend-1.onrender.com/usuarios/login";
     const MEMBERS_PAGE = "members.html";
 
-    function isTokenValid(token) {
-        if (!token) return false;
-        try {
-            const payload = JSON.parse(atob(token.split(".")[1]));
-            const now = Math.floor(Date.now() / 1000);
-            return payload.exp > now;
-        } catch (e) {
-            console.error("⚠ Token inválido:", e);
-            return false;
-        }
-    }
-
-    if (userToken && isTokenValid(userToken)) {
-        console.log("✅ Usuário autenticado e token válido.");
-        if (window.location.pathname.endsWith("login.html")) {
-            window.location.href = MEMBERS_PAGE;
-        }
-    } else {
-        console.log("❌ Usuário não autenticado ou token inválido.");
-        localStorage.removeItem("userToken");
-    }
-
-    if (logoutButton) {
-        logoutButton.style.display = "inline-block";
-        logoutButton.addEventListener("click", function() {
-            localStorage.removeItem("userToken");
-            console.log("🔴 Usuário fez logout.");
-            window.location.href = "index.html";
-        });
-    }
+    // ... (seu código para validar o token - mantenha este código) ...
 
     if (loginForm) {
         loginForm.addEventListener("submit", async function(event) {
@@ -46,12 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const email = document.getElementById("email").value.trim();
             const senha = document.getElementById("password").value.trim();
 
-            if (!email || !senha) {
-                alert("⚠ Preencha todos os campos.");
-                return;
-            }
-
-            console.log("🟡 Tentando login com:", { email, senha });
+            // ... (seu código para validar os campos - mantenha este código) ...
 
             try {
                 const response = await fetch(BACKEND_URL, {
@@ -64,6 +37,22 @@ document.addEventListener("DOMContentLoaded", function() {
                     const data = await response.json();
                     localStorage.setItem("userToken", data.token);
                     console.log("✅ Login bem-sucedido. Redirecionando para:", MEMBERS_PAGE);
+
+                    // Exemplo de como usar o cliente Supabase após o login:
+                    const { data: user, error } = await supabase
+                        .from('usuarios') // Nome da sua tabela de usuários
+                        .select('*')
+                        .eq('email', email)
+                        .single();
+
+                    if (error) {
+                        console.error('Erro ao buscar usuário no Supabase:', error);
+                    } else {
+                        console.log('Usuário do Supabase:', user);
+                        // Faça algo com os dados do usuário, se necessário
+                    }
+
+
                     window.location.href = MEMBERS_PAGE;
                 } else {
                     const errorData = await response.json();
@@ -76,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Erro ao conectar com o servidor. Tente novamente mais tarde.");
             }
         });
-    } else {
-        console.warn("⚠ Formulário de login não encontrado no DOM.");
     }
+
+    // ... (resto do seu código - mantenha este código) ...
 });
