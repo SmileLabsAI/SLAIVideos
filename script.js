@@ -3,14 +3,53 @@ function comprarPack(link) {
     window.location.href = link;
 }
 
-// Função para abrir/fechar o menu mobile
+// Função para abrir/fechar o menu e overlay
 function toggleMenu() {
     const menu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.menu-overlay');
+
     if (menu) {
         menu.classList.toggle('open');
-        console.log("📂 Menu hambúrguer " + (menu.classList.contains("flex") ? "aberto" : "fechado"));
+        overlay.classList.toggle('active');
+        console.log("📂 Menu hambúrguer " + (menu.classList.contains("open") ? "aberto" : "fechado"));
     }
 }
+
+// Fecha o menu ao clicar fora dele (overlay)
+function closeMenu() {
+    const menu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.menu-overlay');
+
+    if (menu.classList.contains('open')) {
+        menu.classList.remove('open');
+        overlay.classList.remove('active');
+        console.log("❌ Menu fechado ao clicar fora");
+    }
+}
+
+// Espera o DOM carregar antes de adicionar eventos
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("✅ Script.js inicializado");
+
+    // Botão hambúrguer
+    const menuButton = document.querySelector('.hamburger');
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMenu);
+        console.log("🍔 Botão de menu hambúrguer ativado.");
+    }
+
+    // Captura clique no overlay para fechar o menu
+    const overlay = document.querySelector('.menu-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+
+    // Captura clique em qualquer link dentro do menu para fechar
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+});
+
 
 // Função para validar se o token JWT ainda é válido
 function isTokenValid(token) {
