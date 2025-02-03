@@ -6,11 +6,13 @@ function comprarPack(link) {
 // Função para abrir/fechar o menu e overlay
 function toggleMenu() {
     const menu = document.querySelector('.mobile-menu');
-    const overlay = document.querySelector('.menu-overlay');
+    const overlay = document.querySelector('.menu-overlay'); // Pode não existir no HTML
 
     if (menu) {
         const isOpen = menu.classList.toggle('open');
-        overlay.classList.toggle('active', isOpen);
+        if (overlay) { // Verifica se o overlay existe antes de alterar sua classe
+            overlay.classList.toggle('active', isOpen);
+        }
         console.log(isOpen ? "📂 Menu hambúrguer aberto" : "❌ Menu hambúrguer fechado");
     }
 }
@@ -22,7 +24,9 @@ function closeMenu() {
 
     if (menu && menu.classList.contains('open')) {
         menu.classList.remove('open');
-        overlay.classList.remove('active');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
         console.log("❌ Menu fechado ao clicar fora ou em um link");
     }
 }
@@ -38,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("🍔 Botão de menu hambúrguer ativado.");
     }
 
-    // Captura clique no overlay para fechar o menu
+    // Captura clique no overlay para fechar o menu (caso o overlay exista)
     const overlay = document.querySelector('.menu-overlay');
     if (overlay) {
         overlay.addEventListener('click', closeMenu);
