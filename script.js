@@ -8,7 +8,9 @@ function toggleMenu() {
     const menu = document.querySelector('.mobile-menu');
     if (menu) {
         menu.classList.toggle('open');
-        console.log(menu.classList.contains('open') ? "📂 Menu hambúrguer aberto" : "❌ Menu hambúrguer fechado");
+        console.log(menu.classList.contains('open')
+            ? "📂 Menu hambúrguer aberto"
+            : "❌ Menu hambúrguer fechado");
     }
 }
 
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuButton = document.querySelector('.hamburger');
     if (menuButton) {
         menuButton.addEventListener('click', toggleMenu);
+        // Remove o atributo inline para evitar chamada dupla da função
+        menuButton.removeAttribute('onclick');
         console.log("🍔 Botão de menu hambúrguer ativado.");
     }
 
