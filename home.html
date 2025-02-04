@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +27,7 @@
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 </div>
 
-<!-- Menu Mobile -->
+<!-- Mobile Menu -->
 <div class="mobile-menu">
   <a href="home.html">Home</a>
   <a href="catalog.html">Catalog</a>
@@ -38,154 +38,126 @@
   <a href="cadastro.html">Sign In</a>
 </div>
 
-<!-- Conteúdo Principal -->
-<div class="conteudo">
-  <!-- Seção Quem Somos -->
-  <section id="quem-somos" style="padding: 40px 20px; text-align: center;">
-    <h1>Quem Somos</h1>
-    <p style="max-width: 800px; margin: 20px auto; line-height: 1.6;">
-      A Smile Labs AI Videos é uma produtora de vídeos especializada em odontologia, utilizamos inteligência artificial para criação, pesquisa e edição de conteúdo. Nosso objetivo é oferecer vídeos inovadores e educativos para dentistas e profissionais da área, auxiliando na comunicação com pacientes e na apresentação de procedimentos. Aumentando as conversões de venda após a visualização dos videos.
-    </p>
-  </section>
+<!-- Membership Plans Section (with Carousel) -->
+<section id="packages" class="carousel-container">
+  <h2 class="titulo-planos">Membership Plans</h2>
 
-  <!-- Seção Vídeo Institucional -->
-  <section id="video-institucional" style="padding: 40px 20px; text-align: center;">
-    <h2>Nosso Vídeo Institucional</h2>
-    <!-- Incorporando vídeo do YouTube -->
-    <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/M_sut2OsFsw?si=W3OHR2VfZKC1Spco"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-            style="border-radius: 8px; margin-top: 20px; max-width: 100%;">
-    </iframe>
-  </section>
-
-
-  <!-- Seção Planos de Membros (com Carrossel) -->
-  <section id="pacotes" class="carousel-container">
-    <h2 class="titulo-planos">Planos de Membros</h2>
-
-    <div class="carousel">
-      <!-- Plano Mensal -->
-      <div class="plano">
-        <img src="https://via.placeholder.com/150x100?text=Mensal" alt="Plano Mensal" />
-        <h3>Plano Mensal</h3>
-        <p class="preco">R$29,90</p>
-        <p style="font-size: 12px;">Acesso por 1 mês</p>
-        <a href="https://exemplo.com/compra-mensal" target="_blank">
-          <button class="botao">Assine Agora</button>
-        </a>
-      </div>
-
-      <!-- Plano Trimestral -->
-      <div class="plano">
-        <img src="https://via.placeholder.com/150x100?text=Trimestral" alt="Plano Trimestral" />
-        <h3>Plano Trimestral</h3>
-        <p class="preco">R$79,90</p>
-        <p style="font-size: 12px;">Acesso por 3 meses</p>
-        <a href="https://exemplo.com/compra-trimestral" target="_blank">
-          <button class="botao">Assine Agora</button>
-        </a>
-      </div>
-
-      <!-- Plano Semestral -->
-      <div class="plano">
-        <img src="https://via.placeholder.com/150x100?text=Semestral" alt="Plano Semestral" />
-        <h3>Plano Semestral</h3>
-        <p class="preco">R$149,90</p>
-        <p style="font-size: 12px;">Acesso por 6 meses</p>
-        <a href="https://exemplo.com/compra-semestral" target="_blank">
-          <button class="botao">Assine Agora</button>
-        </a>
-      </div>
-
-      <!-- Plano Anual -->
-      <div class="plano">
-        <img src="https://via.placeholder.com/150x100?text=Anual" alt="Plano Anual" />
-        <h3>Plano Anual</h3>
-        <p class="preco">R$249,90</p>
-        <p style="font-size: 12px;">Acesso por 12 meses</p>
-        <a href="https://exemplo.com/compra-anual" target="_blank">
-          <button class="botao">Assine Agora</button>
-        </a>
-      </div>
-
-
+  <div class="carousel">
+    <!-- Monthly Plan -->
+    <div class="plano">
+      <img src="https://via.placeholder.com/150x100?text=Monthly" alt="Monthly Plan" />
+      <h3>Monthly Plan</h3>
+      <p class="preco">$5.99</p>
+      <p style="font-size: 12px;">Access for 1 month</p>
+      <a href="https://pay.kiwify.com.br/monthly-plan" target="_blank">
+        <button>Buy Now</button>
+      </a>
     </div>
 
-    <!-- Botões de Navegação do Carrossel -->
-    <button class="anterior">&#10094;</button>
-    <button class="proximo">&#10095;</button>
-  </section>
-
-
-  <!-- Seção FAQ -->
-  <section id="faq" style="padding: 40px 20px; max-width: 800px; margin: auto;">
-    <h2 style="text-align: center; margin-bottom: 30px;">Perguntas Frequentes</h2>
-
-    <!-- FAQ Item 1 -->
-    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
-      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
-        O que é a Smile Labs?
-      </div>
-      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
-        A Smile Labs Videos é uma produtora de vídeos especializada em odontologia, utilizando inteligência artificial para criação, pesquisa e edição de conteúdo. Nosso objetivo é oferecer vídeos inovadores e educativos para dentistas e profissionais da área, auxiliando na comunicação com pacientes e na apresentação de procedimentos.
-      </div>
+    <!-- Quarterly Plan -->
+    <div class="plano">
+      <img src="https://via.placeholder.com/150x100?text=Quarterly" alt="Quarterly Plan" />
+      <h3>Quarterly Plan</h3>
+      <p class="preco">$15.99</p>
+      <p style="font-size: 12px;">Access for 3 months</p>
+      <a href="https://pay.kiwify.com.br/quarterly-plan" target="_blank">
+        <button>Buy Now</button>
+      </a>
     </div>
 
-    <!-- FAQ Item 2 -->
-    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
-      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
-        Como faço para me tornar um membro?
-      </div>
-      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
-        Basta escolher um dos nossos planos na seção “Planos de Membros” e clicar em “Assine Agora”. Você será redirecionado para o processo de pagamento.
-      </div>
+    <!-- Semi-Annual Plan -->
+    <div class="plano">
+      <img src="https://via.placeholder.com/150x100?text=Semi-Annual" alt="Semi-Annual Plan" />
+      <h3>Semi-Annual Plan</h3>
+      <p class="preco">$29.99</p>
+      <p style="font-size: 12px;">Access for 6 months</p>
+      <a href="https://pay.kiwify.com.br/semi-annual-plan" target="_blank">
+        <button>Buy Now</button>
+      </a>
     </div>
 
-    <!-- FAQ Item 3 -->
-    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
-      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
-        Posso cancelar minha assinatura a qualquer momento?
-      </div>
-      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
-        Sim. Você pode cancelar sua assinatura quando desejar através da sua área de membros.
-      </div>
+    <!-- Annual Plan -->
+    <div class="plano">
+      <img src="https://via.placeholder.com/150x100?text=Annual" alt="Annual Plan" />
+      <h3>Annual Plan</h3>
+      <p class="preco">$49.99</p>
+      <p style="font-size: 12px;">Access for 12 months</p>
+      <a href="https://pay.kiwify.com.br/annual-plan" target="_blank">
+        <button>Buy Now</button>
+      </a>
     </div>
+  </div>
+</section>
 
-    <!-- FAQ Item 4 -->
-    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
-      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
-        Quais formas de pagamento são aceitas?
-      </div>
-      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
-        Aceitamos diversos métodos de pagamento, incluindo PIX, cartão de crédito, boleto e outros métodos disponíveis na plataforma de pagamento da kiwify.
-      </div>
+<!-- FAQ Section -->
+<section id="faq" style="padding: 40px 20px; max-width: 800px; margin: auto;">
+  <h2 style="text-align: center; margin-bottom: 30px;">Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      What is Smile Labs?
     </div>
-  </section>
-</div>
+    <div class="faq-answer" style="display: none;">
+      Smile Labs Videos is a video production company specializing in dentistry, using artificial intelligence for content creation, research, and editing.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      How do I become a member?
+    </div>
+    <div class="faq-answer" style="display: none;">
+      Simply choose one of our plans in the "Membership Plans" section and click "Buy Now." You will be redirected to the payment process.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Can I cancel my subscription anytime?
+    </div>
+    <div class="faq-answer" style="display: none;">
+      Yes. You can cancel your subscription anytime through your members' area.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      What payment methods are accepted?
+    </div>
+    <div class="faq-answer" style="display: none;">
+      We accept various payment methods, including PIX, credit card, boleto, and other methods available on the Kiwify payment platform.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Do you offer refunds?
+    </div>
+    <div class="faq-answer" style="display: none;">
+      Yes, we offer refunds within 7 days of purchase, as long as the content has not been excessively accessed.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Can I upgrade my plan?
+    </div>
+    <div class="faq-answer" style="display: none;">
+      Yes, you can upgrade your plan anytime by choosing a higher-tier membership and paying the price difference.
+    </div>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer class="footer">
   &copy; <span id="currentYear"></span> Smile Labs. All rights reserved.
 </footer>
 
-<!-- Scripts -->
-<script src="script.js"></script>
 <script>
-  // Atualiza o ano no rodapé
   document.getElementById('currentYear').textContent = String(new Date().getFullYear());
-
-  // Função para alternar (mostrar/ocultar) a resposta do FAQ
   function toggleFaq(element) {
-    // Procura o elemento seguinte com a classe 'faq-answer'
     const answer = element.nextElementSibling;
-    if (answer.style.display === "none" || answer.style.display === "") {
-      answer.style.display = "block";
-    } else {
-      answer.style.display = "none";
-    }
+    answer.style.display = (answer.style.display === "none" || answer.style.display === "") ? "block" : "none";
   }
 </script>
 </body>
