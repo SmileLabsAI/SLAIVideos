@@ -726,13 +726,13 @@ body.sucesso-page {
     padding: 40px 20px;
     max-width: 800px;
     margin: auto;
-    text-align: left; /* Mantém o título centralizado e os itens à esquerda */
+    text-align: left; /* Mantém o título centralizado e as perguntas à esquerda */
 }
 
 .faq-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Garante que as perguntas fiquem à esquerda */
+    align-items: flex-start; /* Alinha todas as perguntas à esquerda */
 }
 
 .faq-item {
@@ -744,24 +744,27 @@ body.sucesso-page {
 
 .faq-question {
     cursor: pointer;
-    padding: 15px;
+    padding: 10px 0; /* Reduz o padding para não parecer um bloco */
     font-weight: bold;
-    border-radius: 5px;
-    border: none; /* Remove a borda se necessário */
-    width: auto; /* Mantém o tamanho ajustado ao conteúdo */
-    display: inline-block;
-    transition: all 0.3s ease-in-out;
-    background: transparent; /* Torna o fundo transparente */
-    color: white; /* Garante que o texto fique visível */
+    border: none;
+    width: 100%;
+    display: block; /* Garante que ocupe a largura sem afetar a posição */
+    background: transparent;
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+.faq-question:hover {
+    color: red; /* Retorna o efeito vermelho ao passar o mouse */
 }
 
 .faq-answer {
     display: none;
-    padding: 15px;
+    padding: 10px;
     background-color: #333;
-    color: #fff;
+    color: white;
     border-radius: 5px;
     margin-top: 5px;
-    width: auto; /* Deixa o tamanho apenas do conteúdo */
+    width: 100%;
     text-align: left;
 }
