@@ -149,4 +149,12 @@ document.addEventListener("DOMContentLoaded", function () {
             updateCarousel();
         }
     });
+
+    // Ajusta a rolagem para o item mais próximo quando o usuário desliza manualmente
+    carousel.addEventListener("scroll", function () {
+        let closestIndex = Math.round(carousel.scrollLeft / (planos[0].offsetWidth + 20));
+        if (closestIndex !== index) {
+            index = closestIndex;
+        }
+    });
 });

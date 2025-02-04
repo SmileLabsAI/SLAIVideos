@@ -595,12 +595,13 @@ body.sucesso-page {
 
 /* Título dos planos - Mantendo o mesmo tamanho e cor do site */
 .titulo-planos {
-    font-size: 28px;
+    font-size: 24px; /* Agora segue o mesmo padrão dos outros títulos */
     font-weight: bold;
     color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 30px;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 /* Container do carrossel */
@@ -610,6 +611,9 @@ body.sucesso-page {
     scroll-behavior: smooth;
     justify-content: center;
     gap: 20px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 50%; /* Mantém os itens centralizados */
+    width: 100%;
 }
 
 /* Estilo de cada plano */
@@ -629,21 +633,22 @@ body.sucesso-page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    scroll-snap-align: center;
 }
 
 /* Corrigindo a cor do título */
 .plano h3 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff; /* Mudado do azul para branco */
+    color: #ffffff; /* Mantendo padrão Netflix */
 }
 
 /* Estilização do preço */
 .preco {
     font-size: 20px;
     font-weight: bold;
-    color: #00ccff;
+    color: #ffffff; /* Removendo azul */
     margin: 15px 0;
 }
 
@@ -660,6 +665,7 @@ body.sucesso-page {
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.3s ease-in-out;
+    text-decoration: none; /* Remove qualquer sublinhado */
 }
 
 .botao:hover {
@@ -692,7 +698,42 @@ body.sucesso-page {
     background: rgba(255, 255, 255, 0.4);
 }
 
-/* Responsividade para telas menores */
+/* =========================== */
+/* FAQ - CAIXA DE DIÁLOGO */
+/* =========================== */
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.faq-question:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.15); /* Cinza mais claro, mantendo tom Netflix */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* =========================== */
+/* RESPONSIVIDADE PARA MOBILE */
+/* =========================== */
 @media (max-width: 768px) {
     .carousel-container {
         width: 95%;
@@ -702,48 +743,4 @@ body.sucesso-page {
         min-width: 300px;
         max-width: 320px;
     }
-}
-
-/* =========================== */
-/* FAQ - CAIXA DE DIÁLOGO */
-/* =========================== */
-.faq-item {
-    margin-bottom: 20px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 15px;
-    border-left: 4px solid #00ccff;
-}
-
-.faq-question {
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
-}
-
-.faq-answer {
-    display: none;
-    margin-top: 10px;
-    font-size: 16px;
-    line-height: 1.6;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 5px;
-}
-
-/* =========================== */
-/* MELHORANDO A ROLAGEM DO CARROSSEL */
-/* =========================== */
-.carousel {
-    display: flex;
-    overflow: hidden;
-    scroll-behavior: smooth;
-    justify-content: center;
-    gap: 20px;
-    scroll-snap-type: x mandatory;
-}
-
-.plano {
-    scroll-snap-align: center;
 }
