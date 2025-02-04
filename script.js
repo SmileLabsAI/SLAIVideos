@@ -118,3 +118,27 @@ function logoutUser() {
     console.log("🔴 Usuário fez logout.");
     window.location.href = "index.html";
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const carousel = document.querySelector(".carousel");
+    const prevButton = document.querySelector(".anterior");
+    const nextButton = document.querySelector(".proximo");
+
+    let scrollAmount = 0;
+    const scrollStep = 350;
+
+    nextButton.addEventListener("click", function () {
+        scrollAmount += scrollStep;
+        carousel.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        });
+    });
+
+    prevButton.addEventListener("click", function () {
+        scrollAmount -= scrollStep;
+        carousel.scrollTo({
+            left: scrollAmount,
+            behavior: "smooth",
+        });
+    });
+});
