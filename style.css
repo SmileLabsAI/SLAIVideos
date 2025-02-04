@@ -726,13 +726,13 @@ body.sucesso-page {
     padding: 40px 20px;
     max-width: 800px;
     margin: auto;
-    text-align: left; /* Mantém o título centralizado e o conteúdo alinhado à esquerda */
+    text-align: left; /* Mantém o título centralizado e os itens à esquerda */
 }
 
 .faq-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Mantém tudo alinhado à esquerda */
+    align-items: flex-start; /* Garante que as perguntas fiquem à esquerda */
 }
 
 .faq-item {
@@ -749,9 +749,8 @@ body.sucesso-page {
     background-color: #f5f5f5;
     border-radius: 5px;
     border: 1px solid #ddd;
-    width: 100%;
-    text-align: left;
-    display: block;
+    width: auto; /* Deixa o tamanho apenas do conteúdo */
+    display: inline-block; /* Faz com que o tamanho da pergunta seja ajustado ao texto */
     transition: all 0.3s ease-in-out;
 }
 
@@ -762,6 +761,6 @@ body.sucesso-page {
     color: #fff;
     border-radius: 5px;
     margin-top: 5px;
-    width: 100%;
+    width: auto; /* Deixa o tamanho apenas do conteúdo */
     text-align: left;
 }
