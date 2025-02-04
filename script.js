@@ -123,22 +123,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevButton = document.querySelector(".anterior");
     const nextButton = document.querySelector(".proximo");
 
-    let scrollAmount = 0;
-    const scrollStep = 350;
+    let index = 0;
+    const planos = document.querySelectorAll(".plano");
+    const totalPlanos = planos.length;
 
-    nextButton.addEventListener("click", function () {
-        scrollAmount += scrollStep;
+    function updateCarousel() {
+        const cardWidth = planos[0].offsetWidth + 20; // Considera margens
+        const scrollPosition = index * cardWidth;
         carousel.scrollTo({
-            left: scrollAmount,
+            left: scrollPosition,
             behavior: "smooth",
         });
+    }
+
+    nextButton.addEventListener("click", function () {
+        if (index < totalPlanos - 1) {
+            index++;
+            updateCarousel();
+        }
     });
 
     prevButton.addEventListener("click", function () {
-        scrollAmount -= scrollStep;
-        carousel.scrollTo({
-            left: scrollAmount,
-            behavior: "smooth",
-        });
+        if (index > 0) {
+            index--;
+            updateCarousel();
+        }
     });
 });

@@ -520,10 +520,14 @@ body.sucesso-page {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     text-align: center;
-    padding: 30px;
+    padding: 40px; /* Mais altura */
     margin: 10px;
     flex: 1 1 280px;
-    max-width: 340px;
+    max-width: 360px;
+    height: 500px; /* Dobro da altura para formato mais vertical */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* Imagem do pacote */
@@ -534,12 +538,13 @@ body.sucesso-page {
     margin-bottom: 20px;
 }
 
-/* Título do pacote */
+/* Título do pacote - Mantendo a cor azul padrão do site */
 .members-pack h3 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     color: #00ccff;
     margin-bottom: 12px;
+    text-transform: uppercase;
 }
 
 /* Informações do pacote */
@@ -550,7 +555,7 @@ body.sucesso-page {
 
 /* Botão do pacote - Ajustado para seguir o design do catálogo */
 .members-pack button {
-    background-color: #E50914; /* Vermelho Netflix */
+    background-color: #E50914;
     color: white;
     border: none;
     padding: 12px;
@@ -620,6 +625,10 @@ body.sucesso-page {
     transition: 0.5s;
     flex-shrink: 0;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    height: 500px; /* Ajustado para altura maior */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .plano img {
@@ -660,7 +669,7 @@ body.sucesso-page {
     width: 100%;
     padding: 12px;
     border: none;
-    background-color: #E50914; /* Vermelho Netflix */
+    background-color: #E50914;
     color: white;
     font-size: 16px;
     font-weight: bold;
