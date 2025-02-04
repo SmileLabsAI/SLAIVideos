@@ -725,7 +725,7 @@ body.sucesso-page {
 /* FAQ - REMOVENDO FAIXA CINZA DAS PERGUNTAS */
 /* =========================== */
 .faq-item {
-    margin-bottom: 10px; /* Aproxima mais as perguntas */
+    margin-bottom: 7px; /* Aproxima mais as perguntas */
     padding-bottom: 5px;
     border-bottom: none !important;
 }
