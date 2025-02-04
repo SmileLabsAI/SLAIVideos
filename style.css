@@ -574,3 +574,115 @@ body.sucesso-page {
         max-width: none;
     }
 }
+/* Estilo da seção de planos */
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* Título dos planos */
+.titulo-planos {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Container do carrossel */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Estilo de cada plano */
+.plano {
+    min-width: 300px;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: left;
+    transition: 0.5s;
+    flex-shrink: 0;
+}
+
+.plano h3 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.plano ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.plano ul li {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Estilização do preço */
+.preco {
+    font-size: 18px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.preco span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00ccff;
+}
+
+/* Botão de contratação */
+.botao {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.botao:hover {
+    background: #0056b3;
+}
+
+/* Botões de navegação do carrossel */
+.anterior, .proximo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.anterior {
+    left: 10px;
+}
+
+.proximo {
+    right: 10px;
+}
+
+.anterior:hover, .proximo:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
