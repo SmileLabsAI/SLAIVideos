@@ -593,7 +593,7 @@ body.sucesso-page {
     padding: 50px 0;
 }
 
-/* Título dos planos */
+/* Título dos planos - Mantendo o mesmo tamanho e cor do site */
 .titulo-planos {
     font-size: 28px;
     font-weight: bold;
@@ -625,34 +625,18 @@ body.sucesso-page {
     transition: 0.5s;
     flex-shrink: 0;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    height: 500px; /* Ajustado para altura maior */
+    height: 500px; /* Mantendo altura maior */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.plano img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
+/* Corrigindo a cor do título */
 .plano h3 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #00ccff;
-}
-
-.plano ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-}
-
-.plano ul li {
-    font-size: 16px;
-    margin: 8px 0;
+    color: #ffffff; /* Mudado do azul para branco */
 }
 
 /* Estilização do preço */
@@ -663,7 +647,7 @@ body.sucesso-page {
     margin: 15px 0;
 }
 
-/* Botão de contratação - Ajustado para seguir o design do catálogo */
+/* Botão de contratação */
 .botao {
     display: block;
     width: 100%;
@@ -718,4 +702,48 @@ body.sucesso-page {
         min-width: 300px;
         max-width: 320px;
     }
+}
+
+/* =========================== */
+/* FAQ - CAIXA DE DIÁLOGO */
+/* =========================== */
+.faq-item {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-left: 4px solid #00ccff;
+}
+
+.faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* =========================== */
+/* MELHORANDO A ROLAGEM DO CARROSSEL */
+/* =========================== */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    justify-content: center;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+}
+
+.plano {
+    scroll-snap-align: center;
 }

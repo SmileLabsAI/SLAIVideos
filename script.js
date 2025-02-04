@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCarousel() {
         const cardWidth = planos[0].offsetWidth + 20; // Considera margens
-        const scrollPosition = index * cardWidth;
+        const scrollPosition = index * cardWidth - (carousel.offsetWidth / 2 - cardWidth / 2);
         carousel.scrollTo({
             left: scrollPosition,
             behavior: "smooth",
