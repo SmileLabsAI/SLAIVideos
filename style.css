@@ -721,20 +721,24 @@ body.sucesso-page {
     }
 }
 
-/* =========================== */
-/* FAQ - REMOVENDO FAIXA CINZA DAS PERGUNTAS */
-/* =========================== */
+/* FAQ */
 #faq {
     padding: 40px 20px;
     max-width: 800px;
     margin: auto;
-    text-align: left; /* Mantém tudo alinhado à esquerda */
+    text-align: left; /* Mantém o título centralizado e o conteúdo alinhado à esquerda */
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Mantém tudo alinhado à esquerda */
 }
 
 .faq-item {
     width: 100%;
     max-width: 800px;
-    margin: 10px auto;
+    margin-bottom: 10px;
     text-align: left;
 }
 
@@ -761,10 +765,3 @@ body.sucesso-page {
     width: 100%;
     text-align: left;
 }
-
-.faq-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Mantém tudo alinhado à esquerda */
-}
-
