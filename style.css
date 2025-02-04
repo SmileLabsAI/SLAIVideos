@@ -768,3 +768,46 @@ body.sucesso-page {
     width: 100%;
     text-align: left;
 }
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px;
+}
+
+.plano {
+    flex: 0 0 100%;
+    text-align: center;
+    max-width: 300px;
+}
+
+button.anterior, button.proximo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button.anterior { left: 5px; }
+button.proximo { right: 5px; }
+
+button.anterior:hover, button.proximo:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
