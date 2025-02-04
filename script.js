@@ -120,43 +120,27 @@ function logoutUser() {
 }
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector(".carousel");
-    const prevButton = document.querySelector(".anterior");
-    const nextButton = document.querySelector(".proximo");
+    const planos = document.querySelectorAll(".plano");
+    const anterior = document.querySelector(".anterior");
+    const proximo = document.querySelector(".proximo");
 
     let index = 0;
-    const planos = document.querySelectorAll(".plano");
-    const totalPlanos = planos.length;
+    const total = planos.length;
 
-    function updateCarousel() {
-        const cardWidth = planos[0].offsetWidth + 20; // Considera margens
-        const scrollPosition = index * cardWidth - (carousel.offsetWidth / 2 - cardWidth / 2);
+    function mostrarPlano(i) {
         carousel.scrollTo({
-            left: scrollPosition,
+            left: planos[i].offsetLeft - carousel.offsetLeft,
             behavior: "smooth",
         });
     }
 
-    nextButton.addEventListener("click", function () {
-        index++;
-        if (index >= totalPlanos) {
-            index = 0; // Retorna ao primeiro plano
-        }
-        updateCarousel();
+    proximo.addEventListener("click", function () {
+        index = (index + 1) % total; // Loop infinito para avançar
+        mostrarPlano(index);
     });
 
-    prevButton.addEventListener("click", function () {
-        index--;
-        if (index < 0) {
-            index = totalPlanos - 1; // Volta para o último plano
-        }
-        updateCarousel();
-    });
-
-    // Ajusta a rolagem para o item mais próximo quando o usuário desliza manualmente
-    carousel.addEventListener("scroll", function () {
-        let closestIndex = Math.round(carousel.scrollLeft / (planos[0].offsetWidth + 20));
-        if (closestIndex !== index) {
-            index = closestIndex;
-        }
+    anterior.addEventListener("click", function () {
+        index = (index - 1 + total) % total; // Loop infinito para voltar
+        mostrarPlano(index);
     });
 });

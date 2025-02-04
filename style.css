@@ -524,7 +524,7 @@ body.sucesso-page {
     margin: 10px;
     flex: 1 1 280px;
     max-width: 360px;
-    height: 500px; /* Dobro da altura para formato mais vertical */
+    height: 500px; /* Formato mais vertical */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -538,7 +538,7 @@ body.sucesso-page {
     margin-bottom: 20px;
 }
 
-/* Título do pacote - Mantendo a cor azul padrão do site */
+/* Título do pacote - Cor azul padrão */
 .members-pack h3 {
     font-size: 24px;
     font-weight: bold;
@@ -553,7 +553,7 @@ body.sucesso-page {
     margin-bottom: 15px;
 }
 
-/* Botão do pacote - Ajustado para seguir o design do catálogo */
+/* Botão do pacote */
 .members-pack button {
     background-color: #E50914;
     color: white;
@@ -570,7 +570,7 @@ body.sucesso-page {
     background-color: #B20710;
 }
 
-/* Responsividade para telas menores */
+/* Responsividade para telas menores na área de membros */
 @media (max-width: 768px) {
     .members-packages-container {
         flex-direction: column;
@@ -612,8 +612,9 @@ body.sucesso-page {
     justify-content: center;
     gap: 20px;
     scroll-snap-type: x mandatory;
-    scroll-padding: 50%;
+    /* scroll-padding: 50%;  (opcional, se necessário) */
     width: 100%;
+    position: relative;
 }
 
 /* Estilo de cada plano */
@@ -636,7 +637,7 @@ body.sucesso-page {
     scroll-snap-align: center;
 }
 
-/* Corrigindo a cor do título */
+/* Corrigindo a cor do título dos planos */
 .plano h3 {
     font-size: 22px;
     font-weight: bold;
@@ -652,7 +653,7 @@ body.sucesso-page {
     margin: 15px 0;
 }
 
-/* Botão de contratação */
+/* Botão de contratação ("Assine Agora") */
 .botao {
     display: block;
     width: 100%;
@@ -665,14 +666,20 @@ body.sucesso-page {
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.3s ease-in-out;
-    text-decoration: none; /* REMOVE QUALQUER SUBLINHADO */
+    text-decoration: none;
 }
-/* Aplica para qualquer link dentro do botão */
+
+/* Link dentro do botão */
 .botao a {
     color: white;
-    text-decoration: none !important; /* Remove sublinhado */
-    display: block; /* Garante que o link ocupe todo o botão */
+    text-decoration: none !important;
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
 }
+
+/* Hover no botão */
 .botao:hover {
     background-color: #B20710;
 }
@@ -703,13 +710,24 @@ body.sucesso-page {
     background: rgba(255, 255, 255, 0.4);
 }
 
+/* Responsividade para o carrossel em telas menores */
+@media (max-width: 768px) {
+    .carousel-container {
+        width: 95%;
+    }
+    .plano {
+        min-width: 300px;
+        max-width: 320px;
+    }
+}
+
 /* =========================== */
-/* FAQ - CAIXA DE DIÁLOGO */
+/* FAQ - REMOVENDO FAIXA CINZA DAS PERGUNTAS */
 /* =========================== */
 .faq-item {
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: none !important; /* Remove as linhas entre as perguntas */
+    margin-bottom: 10px; /* Aproxima mais as perguntas */
+    padding-bottom: 5px;
+    border-bottom: none !important;
 }
 
 .faq-question {
@@ -717,35 +735,19 @@ body.sucesso-page {
     font-weight: bold;
     font-size: 18px;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
     transition: background 0.3s ease-in-out;
 }
 
 .faq-question:hover {
-    background: rgba(255, 255, 255, 0.2);
+    color: #E50914; /* Destaque no hover */
 }
 
 .faq-answer {
     display: none;
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 16px;
     line-height: 1.6;
     background: rgba(255, 255, 255, 0.15);
     padding: 15px;
     border-radius: 5px;
-}
-
-/* =========================== */
-/* RESPONSIVIDADE PARA MOBILE */
-/* =========================== */
-@media (max-width: 768px) {
-    .carousel-container {
-        width: 95%;
-    }
-
-    .plano {
-        min-width: 300px;
-        max-width: 320px;
-    }
 }
