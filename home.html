@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smile Labs - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="home-page">
+<!-- Navbar -->
+<div class="navbar">
+  <div class="navbar-left">
+    <img
+            src="https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/main/imagens/LogoSemfundo.png"
+            alt="Smile Labs"
+    />
+  </div>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="catalog.html">Catalog</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="members.html">Members Area</a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="cadastro.html">Sign In</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- Menu Mobile -->
+<div class="mobile-menu">
+  <a href="home.html">Home</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="members.html">Members Area</a>
+  <a href="login.html">Login</a>
+  <a href="cadastro.html">Sign In</a>
+</div>
+
+<!-- Conteúdo Principal -->
+<div class="conteudo">
+  <!-- Seção Quem Somos -->
+  <section id="quem-somos" style="padding: 40px 20px; text-align: center;">
+    <h1>Quem Somos</h1>
+    <p style="max-width: 800px; margin: 20px auto; line-height: 1.6;">
+      A Smile Labs é referência em vídeos institucionais e conteúdos exclusivos. Nossa missão é transformar a comunicação por meio de vídeos de alta qualidade e inovadores, trazendo soluções criativas para nossos clientes e parceiros.
+    </p>
+  </section>
+
+  <!-- Seção Vídeo Institucional -->
+  <section id="video-institucional" style="padding: 40px 20px; text-align: center;">
+    <h2>Nosso Vídeo Institucional</h2>
+    <!-- Incorporando vídeo do YouTube -->
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/M_sut2OsFsw?si=W3OHR2VfZKC1Spco"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+            style="border-radius: 8px; margin-top: 20px; max-width: 100%;">
+    </iframe>
+  </section>
+
+
+  <!-- Seção Pacotes para Área de Membros -->
+  <section id="pacotes" style="padding: 40px 20px; text-align: center;">
+    <h2>Planos de Membros</h2>
+    <div class="videos-container" style="justify-content: center; padding-top: 20px;">
+      <!-- Pacote Mensal -->
+      <div class="pack">
+        <img src="https://via.placeholder.com/150x100?text=Mensal" alt="Plano Mensal" />
+        <h3>Plano Mensal</h3>
+        <p>R$29,90</p>
+        <p style="font-size: 12px;">Acesso por 1 mês</p>
+        <a href="https://exemplo.com/compra-mensal" target="_blank">
+          <button>Assine Agora</button>
+        </a>
+      </div>
+      <!-- Pacote Trimestral -->
+      <div class="pack">
+        <img src="https://via.placeholder.com/150x100?text=Trimestral" alt="Plano Trimestral" />
+        <h3>Plano Trimestral</h3>
+        <p>R$79,90</p>
+        <p style="font-size: 12px;">Acesso por 3 meses</p>
+        <a href="https://exemplo.com/compra-trimestral" target="_blank">
+          <button>Assine Agora</button>
+        </a>
+      </div>
+      <!-- Pacote Semestral -->
+      <div class="pack">
+        <img src="https://via.placeholder.com/150x100?text=Semestral" alt="Plano Semestral" />
+        <h3>Plano Semestral</h3>
+        <p>R$149,90</p>
+        <p style="font-size: 12px;">Acesso por 6 meses</p>
+        <a href="https://exemplo.com/compra-semestral" target="_blank">
+          <button>Assine Agora</button>
+        </a>
+      </div>
+      <!-- Pacote Anual -->
+      <div class="pack">
+        <img src="https://via.placeholder.com/150x100?text=Anual" alt="Plano Anual" />
+        <h3>Plano Anual</h3>
+        <p>R$249,90</p>
+        <p style="font-size: 12px;">Acesso por 12 meses</p>
+        <a href="https://exemplo.com/compra-anual" target="_blank">
+          <button>Assine Agora</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção FAQ -->
+  <section id="faq" style="padding: 40px 20px; max-width: 800px; margin: auto;">
+    <h2 style="text-align: center; margin-bottom: 30px;">Perguntas Frequentes</h2>
+
+    <!-- FAQ Item 1 -->
+    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
+      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
+        O que é a Smile Labs?
+      </div>
+      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
+        A Smile Labs é uma empresa especializada na produção de vídeos institucionais e conteúdos exclusivos para empresas e profissionais que buscam inovação e qualidade.
+      </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
+      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
+        Como faço para me tornar um membro?
+      </div>
+      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
+        Basta escolher um dos nossos planos na seção “Planos de Membros” e clicar em “Assine Agora”. Você será redirecionado para o processo de pagamento.
+      </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
+      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
+        Posso cancelar minha assinatura a qualquer momento?
+      </div>
+      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
+        Sim. Você pode cancelar sua assinatura quando desejar através da sua área de membros.
+      </div>
+    </div>
+
+    <!-- FAQ Item 4 -->
+    <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px;">
+      <div class="faq-question" style="cursor: pointer; font-weight: bold;" onclick="toggleFaq(this)">
+        Quais formas de pagamento são aceitas?
+      </div>
+      <div class="faq-answer" style="display: none; margin-top: 10px; font-size: 14px; line-height: 1.5;">
+        Aceitamos diversos métodos de pagamento, incluindo cartão de crédito, boleto e outros métodos disponíveis na plataforma de pagamento.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  &copy; <span id="currentYear"></span> Smile Labs. All rights reserved.
+</footer>
+
+<!-- Scripts -->
+<script src="script.js"></script>
+<script>
+  // Atualiza o ano no rodapé
+  document.getElementById('currentYear').textContent = String(new Date().getFullYear());
+
+  // Função para alternar (mostrar/ocultar) a resposta do FAQ
+  function toggleFaq(element) {
+    // Procura o elemento seguinte com a classe 'faq-answer'
+    const answer = element.nextElementSibling;
+    if (answer.style.display === "none" || answer.style.display === "") {
+      answer.style.display = "block";
+    } else {
+      answer.style.display = "none";
+    }
+  }
+</script>
+</body>
+</html>
