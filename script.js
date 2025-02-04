@@ -137,17 +137,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     nextButton.addEventListener("click", function () {
-        if (index < totalPlanos - 1) {
-            index++;
-            updateCarousel();
+        index++;
+        if (index >= totalPlanos) {
+            index = 0; // Retorna ao primeiro plano
         }
+        updateCarousel();
     });
 
     prevButton.addEventListener("click", function () {
-        if (index > 0) {
-            index--;
-            updateCarousel();
+        index--;
+        if (index < 0) {
+            index = totalPlanos - 1; // Volta para o último plano
         }
+        updateCarousel();
     });
 
     // Ajusta a rolagem para o item mais próximo quando o usuário desliza manualmente
