@@ -509,21 +509,21 @@ body.sucesso-page {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
+    gap: 25px;
+    padding: 50px 20px;
     background-color: #141414;
 }
 
 /* Estilo para cada pacote individual */
 .members-pack {
-    background: #1e1e1e;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     text-align: center;
-    padding: 20px;
+    padding: 30px;
     margin: 10px;
-    flex: 1 1 250px; /* Permite que o card se ajuste responsivamente */
-    max-width: 300px;
+    flex: 1 1 280px;
+    max-width: 340px;
 }
 
 /* Imagem do pacote */
@@ -531,27 +531,29 @@ body.sucesso-page {
     width: 100%;
     height: auto;
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* Título do pacote */
 .members-pack h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ccff;
+    margin-bottom: 12px;
 }
 
 /* Informações do pacote */
 .members-pack p {
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
-/* Botão do pacote */
+/* Botão do pacote - Ajustado para seguir o design do catálogo */
 .members-pack button {
-    background-color: #e50914;
+    background-color: #E50914; /* Vermelho Netflix */
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
@@ -560,7 +562,7 @@ body.sucesso-page {
 }
 
 .members-pack button:hover {
-    background-color: #b20710;
+    background-color: #B20710;
 }
 
 /* Responsividade para telas menores */
@@ -574,20 +576,26 @@ body.sucesso-page {
         max-width: none;
     }
 }
-/* Estilo da seção de planos */
+
+/* =========================== */
+/* SEÇÃO DE PLANOS - CARROSSEL */
+/* =========================== */
 .carousel-container {
     position: relative;
-    width: 80%;
+    width: 90%;
     margin: auto;
     text-align: center;
-    padding: 40px 0;
+    padding: 50px 0;
 }
 
 /* Título dos planos */
 .titulo-planos {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     color: #ffffff;
-    margin-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
 }
 
 /* Container do carrossel */
@@ -595,28 +603,36 @@ body.sucesso-page {
     display: flex;
     overflow: hidden;
     scroll-behavior: smooth;
-    width: 100%;
     justify-content: center;
+    gap: 20px;
 }
 
 /* Estilo de cada plano */
 .plano {
-    min-width: 300px;
-    max-width: 320px;
+    min-width: 350px;
+    max-width: 380px;
     background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    padding: 25px;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 12px;
     color: #ffffff;
-    text-align: left;
+    text-align: center;
     transition: 0.5s;
     flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.plano img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .plano h3 {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #00ccff;
 }
 
 .plano ul {
@@ -626,39 +642,35 @@ body.sucesso-page {
 }
 
 .plano ul li {
-    font-size: 14px;
-    margin: 5px 0;
+    font-size: 16px;
+    margin: 8px 0;
 }
 
 /* Estilização do preço */
 .preco {
-    font-size: 18px;
-    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ccff;
     margin: 15px 0;
 }
 
-.preco span {
-    font-size: 24px;
-    font-weight: bold;
-    color: #00ccff;
-}
-
-/* Botão de contratação */
+/* Botão de contratação - Ajustado para seguir o design do catálogo */
 .botao {
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 12px;
     border: none;
-    background: #007bff;
+    background-color: #E50914; /* Vermelho Netflix */
     color: white;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
+    transition: background 0.3s ease-in-out;
 }
 
 .botao:hover {
-    background: #0056b3;
+    background-color: #B20710;
 }
 
 /* Botões de navegação do carrossel */
@@ -669,7 +681,7 @@ body.sucesso-page {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
     font-size: 24px;
     border-radius: 5px;
@@ -685,4 +697,16 @@ body.sucesso-page {
 
 .anterior:hover, .proximo:hover {
     background: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .carousel-container {
+        width: 95%;
+    }
+
+    .plano {
+        min-width: 300px;
+        max-width: 320px;
+    }
 }
