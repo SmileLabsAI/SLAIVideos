@@ -811,30 +811,3 @@ button.proximo { right: 5px; }
 button.anterior:hover, button.proximo:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
-.password-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.password-container input {
-    width: 100%;
-    padding: 10px;
-    padding-right: 40px; /* Criando espaço para o ícone dentro do input */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #666;
-}
-
-.toggle-password:hover {
-    color: #333;
-}
