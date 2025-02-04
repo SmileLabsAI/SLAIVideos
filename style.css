@@ -667,7 +667,12 @@ body.sucesso-page {
     transition: background 0.3s ease-in-out;
     text-decoration: none; /* REMOVE QUALQUER SUBLINHADO */
 }
-
+/* Aplica para qualquer link dentro do botão */
+.botao a {
+    color: white;
+    text-decoration: none !important; /* Remove sublinhado */
+    display: block; /* Garante que o link ocupe todo o botão */
+}
 .botao:hover {
     background-color: #B20710;
 }
@@ -704,6 +709,7 @@ body.sucesso-page {
 .faq-item {
     margin-bottom: 20px;
     padding-bottom: 15px;
+    border-bottom: none !important; /* Remove as linhas entre as perguntas */
 }
 
 .faq-question {
