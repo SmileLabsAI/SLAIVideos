@@ -72,6 +72,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // --> Adicionando código para ocultar o botão "Sign In" caso o usuário esteja logado
+    const signInButton = document.querySelector('.nav-links li a[href="signin.html"]');
+    const signInButtonMobile = document.querySelector('.mobile-menu a[href="signin.html"]');
+    if (isLoggedIn) {
+        if (signInButton) signInButton.style.display = "none";
+        if (signInButtonMobile) signInButtonMobile.style.display = "none";
+    }
+
     // 📌 Se clicar em "Members" e não estiver logado, redireciona para "login.html"
     [membersLink, membersLinkMobile].forEach(link => {
         if (link) {
@@ -118,6 +126,7 @@ function logoutUser() {
     console.log("🔴 Usuário fez logout.");
     window.location.href = "index.html";
 }
+
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector(".carousel");
     const planos = document.querySelectorAll(".plano");
