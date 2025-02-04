@@ -746,12 +746,15 @@ body.sucesso-page {
     cursor: pointer;
     padding: 15px;
     font-weight: bold;
-    background-color: #f5f5f5;
     border-radius: 5px;
-    border: 1px solid #ddd;
-    width: auto; /* Deixa o tamanho apenas do conteúdo */
-    display: inline-block; /* Faz com que o tamanho da pergunta seja ajustado ao texto */
+    border: none; /* Remove a borda se necessário */
+    width: auto; /* Mantém o tamanho ajustado ao conteúdo */
+    display: inline-block;
     transition: all 0.3s ease-in-out;
+    background: transparent; /* Torna o fundo transparente */
+    color: white; /* Garante que o texto fique visível */
+}
+
 }
 
 .faq-answer {
