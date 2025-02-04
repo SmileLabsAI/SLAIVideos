@@ -815,14 +815,16 @@ button.anterior:hover, button.proximo:hover {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .password-container input {
     width: 100%;
     padding: 10px;
-    padding-right: 40px; /* Espaço para o ícone */
+    padding-right: 40px; /* Criando espaço para o ícone dentro do input */
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 .toggle-password {

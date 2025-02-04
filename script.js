@@ -153,17 +153,21 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarPlano(index);
     });
 });
-function togglePassword() {
-    const passwordInput = document.getElementById("password");
-    const toggleIcon = document.querySelector(".toggle-password");
+// 👁️ Toggle Password - Apenas se o campo existir
+const passwordInput = document.getElementById("password");
+const toggleIcon = document.querySelector(".toggle-password");
 
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        toggleIcon.classList.remove("fa-eye");
-        toggleIcon.classList.add("fa-eye-slash"); // Ícone de "olho fechado"
-    } else {
-        passwordInput.type = "password";
-        toggleIcon.classList.remove("fa-eye-slash");
-        toggleIcon.classList.add("fa-eye"); // Ícone de "olho aberto"
-    }
+if (passwordInput && toggleIcon) {
+    toggleIcon.addEventListener("click", function () {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleIcon.classList.remove("fa-eye");
+            toggleIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            toggleIcon.classList.remove("fa-eye-slash");
+            toggleIcon.classList.add("fa-eye");
+        }
+    });
 }
+
