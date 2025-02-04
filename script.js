@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --> Adicionando código para ocultar o botão "Sign In" caso o usuário esteja logado
-    const signInButton = document.querySelector('.nav-links li a[href="signin.html"]');
-    const signInButtonMobile = document.querySelector('.mobile-menu a[href="signin.html"]');
+    const signInButton = document.querySelector('.nav-links li a[href="cadastro.html"]');
+    const signInButtonMobile = document.querySelector('.mobile-menu a[href="cadastro.html"]');
     if (isLoggedIn) {
         if (signInButton) signInButton.style.display = "none";
         if (signInButtonMobile) signInButtonMobile.style.display = "none";
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const navbarLogo = document.querySelector('.navbar-left img');
     if (navbarLogo) {
         navbarLogo.addEventListener('click', function () {
-            window.location.href = "catalog.html";
+            window.location.href = "home.html";
         });
     }
 });
