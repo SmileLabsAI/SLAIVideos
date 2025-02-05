@@ -135,37 +135,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let index = 0;
     const totalPlans = plans.length;
-    const planWidth = plans[0].offsetWidth + 20; // Inclui margem
+    const planWidth = plans[0].offsetWidth;
 
     function updateCarousel() {
-        carousel.style.transition = "transform 0.5s ease-in-out";
         carousel.style.transform = `translateX(${-index * planWidth}px)`;
     }
 
     function nextPlan() {
-        if (index < totalPlans - 1) {
-            index++;
-        } else {
-            index = 0; // Volta ao primeiro item sem espaço vazio
-            carousel.style.transition = "none"; // Remove a animação para evitar espaço vazio
-            updateCarousel();
-            setTimeout(() => {
-                carousel.style.transition = "transform 0.5s ease-in-out"; // Restaura a transição
-            }, 50);
+        index++;
+        if (index >= totalPlans) {
+            index = 0; // Reinicia no primeiro item
         }
         updateCarousel();
     }
 
     function prevPlan() {
-        if (index > 0) {
-            index--;
-        } else {
-            index = totalPlans - 1; // Volta ao último item sem espaço vazio
-            carousel.style.transition = "none";
-            updateCarousel();
-            setTimeout(() => {
-                carousel.style.transition = "transform 0.5s ease-in-out";
-            }, 50);
+        index--;
+        if (index < 0) {
+            index = totalPlans - 1; // Volta para o último item
         }
         updateCarousel();
     }
@@ -173,14 +160,14 @@ document.addEventListener("DOMContentLoaded", function () {
     nextButton.addEventListener("click", nextPlan);
     prevButton.addEventListener("click", prevPlan);
 
-    // Adiciona swipe para mobile
-    let touchStartX = 0, touchEndX = 0;
-
-    carousel.addEventListener("touchstart", (e) => touchStartX = e.touches[0].clientX);
-    carousel.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        if (touchEndX < touchStartX) nextPlan();
-        else prevPlan();
+    // Adiciona scroll infinito no mobile
+    carousel.addEventListener("scroll", function () {
+        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+            carousel.scrollLeft = 0; // Volta ao início
+        }
+        if (carousel.scrollLeft === 0) {
+            carousel.scrollLeft = carousel.scrollWidth; // Volta ao final
+        }
     });
 
     updateCarousel();

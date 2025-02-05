@@ -807,8 +807,8 @@ button.anterior, button.proximo {
     z-index: 10;
 }
 
-button.anterior { left: 5px; }
-button.proximo { right: 5px; }
+button.anterior { left: 3px; }
+button.proximo { right: 3px; }
 
 button.anterior:hover, button.proximo:hover {
     background-color: rgba(0, 0, 0, 0.8);
