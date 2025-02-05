@@ -129,46 +129,40 @@ function logoutUser() {
 
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.querySelector(".carousel");
-    const plans = document.querySelectorAll(".members-pack");
+    const plans = document.querySelectorAll(".plano"); // Certifique-se que a classe está correta
     const prevButton = document.querySelector(".anterior");
     const nextButton = document.querySelector(".proximo");
 
     let index = 0;
     const totalPlans = plans.length;
-    const planWidth = plans[0].offsetWidth;
+
+    // Pega a largura real do elemento considerando margem
+    const planWidth = plans[0].getBoundingClientRect().width + 20; // Considerando gap de 20px
 
     function updateCarousel() {
+        // Calcula a posição correta do carrossel
         carousel.style.transform = `translateX(${-index * planWidth}px)`;
     }
 
     function nextPlan() {
-        index++;
-        if (index >= totalPlans) {
-            index = 0; // Reinicia no primeiro item
+        if (index < totalPlans - 1) {
+            index++;
+            updateCarousel();
         }
-        updateCarousel();
     }
 
     function prevPlan() {
-        index--;
-        if (index < 0) {
-            index = totalPlans - 1; // Volta para o último item
+        if (index > 0) {
+            index--;
+            updateCarousel();
         }
-        updateCarousel();
     }
 
     nextButton.addEventListener("click", nextPlan);
     prevButton.addEventListener("click", prevPlan);
 
-    // Adiciona scroll infinito no mobile
-    carousel.addEventListener("scroll", function () {
-        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
-            carousel.scrollLeft = 0; // Volta ao início
-        }
-        if (carousel.scrollLeft === 0) {
-            carousel.scrollLeft = carousel.scrollWidth; // Volta ao final
-        }
-    });
+    // Remove o evento de scroll infinito, pois pode estar interferindo
+    carousel.removeEventListener("scroll", function () {});
 
     updateCarousel();
 });
