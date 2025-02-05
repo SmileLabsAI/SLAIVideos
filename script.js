@@ -146,7 +146,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (index < totalPlans - 1) {
             index++;
         } else {
-            index = 0; // Volta ao primeiro item
+            index = 0; // Volta ao primeiro item sem espaço vazio
+            carousel.style.transition = "none"; // Remove a animação para evitar espaço vazio
+            updateCarousel();
+            setTimeout(() => {
+                carousel.style.transition = "transform 0.5s ease-in-out"; // Restaura a transição
+            }, 50);
         }
         updateCarousel();
     }
@@ -155,7 +160,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (index > 0) {
             index--;
         } else {
-            index = totalPlans - 1; // Volta ao último item
+            index = totalPlans - 1; // Volta ao último item sem espaço vazio
+            carousel.style.transition = "none";
+            updateCarousel();
+            setTimeout(() => {
+                carousel.style.transition = "transform 0.5s ease-in-out";
+            }, 50);
         }
         updateCarousel();
     }
