@@ -549,7 +549,7 @@ body.sucesso-page {
 
 /* Informações do pacote */
 .members-pack p {
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 15px;
 }
 
@@ -588,7 +588,7 @@ body.sucesso-page {
 .carousel-container {
     position: relative;
     width: 90%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: auto;
     text-align: center;
     padding: 50px 0;
@@ -597,61 +597,79 @@ body.sucesso-page {
 /* Ajuste do container do carrossel */
 .carousel-wrapper {
     width: 100%;
-    overflow: hidden;
+    overflow: hidden; /* Garante que nenhum item extra apareça */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0; /* Remove espaçamento extra */
+    flex-shrink: 0; /* Evita que o container do carrossel encolha */
 }
 
-/* Ajuste para manter os planos em um tamanho confortável */
+/* Personalização da barra de rolagem */
+.carousel-wrapper::-webkit-scrollbar {
+    height: 5px;
+}
+
+.carousel-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.carousel-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Carrossel */
 .carousel {
     display: flex;
-    gap: 20px;
+    flex-wrap: nowrap; /* Impede quebra de linha */
+    gap: 0; /* Remove espaços extras */
     transition: transform 0.4s ease-in-out;
     will-change: transform;
-    overflow: hidden;
-    justify-content: center;
 }
 
-/* Ajuste do tamanho do plano para evitar que fique muito fino ou muito largo */
+/* Planos dentro do carrossel */
 .plano {
-    flex: 1 1 280px;  /* Ajuste de tamanho flexível */
-    max-width: 320px; /* Limite para não ficar muito grande */
-    min-width: 280px; /* Evita que fique muito estreito */
+    flex: 0 0 auto;
+    flex-shrink: 0; /* Impede que os containers diminuam de tamanho */
+    width: 350px;
+    max-width: 350px;
     background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
+    padding: 40px;
     border-radius: 12px;
     color: #ffffff;
     text-align: center;
     transition: 0.5s;
-    flex-shrink: 0;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    height: 500px;
+    height: 520px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     scroll-snap-align: center;
 }
 
-/* Corrigindo a cor do título dos planos */
+/* Ajuste do título */
 .plano h3 {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Ajuste de texto para evitar quebras */
+/* Ajuste do texto */
 .plano p {
     font-size: 14px;
     line-height: 1.6;
-    word-wrap: break-word;
+    white-space: normal;
 }
 
 /* Estilização do preço */
 .preco {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #ffffff;
     margin: 15px 0;
@@ -661,11 +679,11 @@ body.sucesso-page {
 .botao {
     display: block;
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
     background-color: #E50914;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -673,80 +691,90 @@ body.sucesso-page {
     text-decoration: none;
 }
 
-/* Botões de navegação */
+/* =========================== */
+/* BOTÕES DE NAVEGAÇÃO FIXOS FORA DO CARROSSEL */
+/* =========================== */
 .anterior, .proximo {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     border: none;
     color: white;
-    padding: 10px 15px;
+    padding: 15px;
     cursor: pointer;
     font-size: 24px;
-    border-radius: 5px;
-    z-index: 1000;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background 0.3s ease-in-out;
 }
 
-.anterior { left: 10px; }
-.proximo { right: 10px; }
+/* Botão esquerdo */
+.anterior {
+    left: 10px;
+}
+
+/* Botão direito */
+.proximo {
+    right: 10px;
+}
 
 .anterior:hover, .proximo:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* =========================== */
 /* Responsividade */
 /* =========================== */
 @media (max-width: 1024px) {
-    .carousel {
-        gap: 15px;
-    }
-
-    .plano {
-        flex: 1 1 300px;
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 768px) {
-    .carousel-container {
-        width: 100%;
-        padding: 20px 0;
+    .carousel-wrapper {
+        padding: 0;
     }
 
     .carousel {
         flex-wrap: nowrap;
+        min-width: max-content;
+        justify-content: flex-start;
+    }
+
+    .plano {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        padding: 0;
+    }
+
+    .carousel {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
 
     .plano {
-        min-width: 85%;
-        max-width: 85%;
-        margin: auto;
-    }
-
-    .titulo-planos {
-        font-size: 22px;
-    }
-}
-
-
-/* Ajuste de largura no modo mobile para os pacotes */
-@media (max-width: 768px) {
-    .members-pack {
         min-width: 90%;
         max-width: 90%;
         margin: auto;
     }
+
+    /* Ajustando os botões de navegação para mobile */
+    .anterior, .proximo {
+        top: 50%;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .anterior {
+        left: 5px;
+    }
+
+    .proximo {
+        right: 5px;
+    }
 }
-
-
-
-
-
 
 
 /* FAQ */

@@ -128,42 +128,54 @@ function logoutUser() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const carouselWrapper = document.querySelector(".carousel-wrapper");
     const carousel = document.querySelector(".carousel");
     const plans = document.querySelectorAll(".plano");
     const prevButton = document.querySelector(".anterior");
     const nextButton = document.querySelector(".proximo");
+    const carouselWrapper = document.querySelector(".carousel-wrapper");
+
+    if (!carousel || !plans.length || !prevButton || !nextButton || !carouselWrapper) {
+        console.error("Erro: Elementos do carrossel não encontrados!");
+        return;
+    }
 
     let index = 0;
     const totalPlans = plans.length;
 
     function getPlanWidth() {
-        return plans[0].offsetWidth + 20; // Considerando gap de 20px
+        return plans[0].getBoundingClientRect().width; // Pega a largura real do elemento
     }
 
     function updateCarousel() {
         const planWidth = getPlanWidth();
+        const totalWidth = totalPlans * planWidth;
+        carousel.style.width = `${totalWidth}px`; // Ajusta a largura exata do carrossel
         carousel.style.transform = `translateX(${-index * planWidth}px)`;
+        carousel.style.transition = "transform 0.4s ease-in-out";
     }
 
-    function nextPlan() {
-        if (index < totalPlans - 1) {
-            index++;
-            updateCarousel();
-        }
+    function nextPlan(event) {
+        event.preventDefault();
+        index = (index + 1) % totalPlans; // Loop para o início ao final
+        updateCarousel();
     }
 
-    function prevPlan() {
-        if (index > 0) {
-            index--;
-            updateCarousel();
-        }
+    function prevPlan(event) {
+        event.preventDefault();
+        index = (index - 1 + totalPlans) % totalPlans; // Volta para o último item
+        updateCarousel();
     }
 
     nextButton.addEventListener("click", nextPlan);
     prevButton.addEventListener("click", prevPlan);
 
     window.addEventListener("resize", updateCarousel);
+
+    // Ajusta CSS para remover espaço extra e impedir compressão
+    carouselWrapper.style.overflow = "hidden";
+    carousel.style.display = "flex";
+    carousel.style.gap = "0";
+    carousel.style.flexWrap = "nowrap";
 
     updateCarousel();
 });
