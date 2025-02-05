@@ -715,11 +715,10 @@ body.sucesso-page {
 /* Responsividade para o carrossel em telas menores */
 @media (max-width: 768px) {
     .carousel-container {
-        width: 95%;
+        width: max-content%;
     }
     .plano {
-        min-width: 300px;
-        max-width: 320px;
+        felx: 0 0 auto;
     }
 }
 
@@ -784,7 +783,7 @@ body.sucesso-page {
     overflow-x: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    gap: 20px;
+    gap: 0px;
     padding: 10px;
 }
 
