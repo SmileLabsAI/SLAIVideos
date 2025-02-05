@@ -813,3 +813,30 @@ button.proximo { right: 5px; }
 button.anterior:hover, button.proximo:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+
+/* Ajuste de largura no modo mobile Container dos Planos */
+@media (max-width: 768px) {
+    .carousel {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .members-pack {
+        min-width: 90%;  /* Ajusta para ocupar mais espaço no mobile */
+        max-width: 90%;
+        margin: auto;
+    }
+
+    .carousel-container {
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .titulo-planos {
+        font-size: 22px; /* Ajuste do tamanho do título */
+    }
+}
