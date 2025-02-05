@@ -128,19 +128,21 @@ function logoutUser() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    const carouselWrapper = document.querySelector(".carousel-wrapper");
     const carousel = document.querySelector(".carousel");
-    const plans = document.querySelectorAll(".plano"); // Certifique-se que a classe está correta
+    const plans = document.querySelectorAll(".plano");
     const prevButton = document.querySelector(".anterior");
     const nextButton = document.querySelector(".proximo");
 
     let index = 0;
     const totalPlans = plans.length;
 
-    // Pega a largura real do elemento considerando margem
-    const planWidth = plans[0].getBoundingClientRect().width + 20; // Considerando gap de 20px
+    function getPlanWidth() {
+        return plans[0].offsetWidth + 20; // Considerando gap de 20px
+    }
 
     function updateCarousel() {
-        // Calcula a posição correta do carrossel
+        const planWidth = getPlanWidth();
         carousel.style.transform = `translateX(${-index * planWidth}px)`;
     }
 
@@ -161,8 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nextButton.addEventListener("click", nextPlan);
     prevButton.addEventListener("click", prevPlan);
 
-    // Remove o evento de scroll infinito, pois pode estar interferindo
-    carousel.removeEventListener("scroll", function () {});
+    window.addEventListener("resize", updateCarousel);
 
     updateCarousel();
 });

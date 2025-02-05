@@ -520,11 +520,11 @@ body.sucesso-page {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     text-align: left;
-    padding: 40px; /* Mais altura */
+    padding: 40px;
     margin: 10px;
     flex: 1 1 280px;
     max-width: 360px;
-    height: 500px; /* Formato mais vertical */
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -538,7 +538,7 @@ body.sucesso-page {
     margin-bottom: 20px;
 }
 
-/* Título do pacote - Cor azul padrão */
+/* Título do pacote */
 .members-pack h3 {
     font-size: 24px;
     font-weight: bold;
@@ -588,43 +588,39 @@ body.sucesso-page {
 .carousel-container {
     position: relative;
     width: 90%;
+    max-width: 1200px;
     margin: auto;
     text-align: center;
     padding: 50px 0;
 }
 
-/* Título dos planos */
-.titulo-planos {
-    font-size: 24px;
-    font-weight: bold;
-    color:#ffffff;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-    text-align: center;
+/* Ajuste do container do carrossel */
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Container do carrossel */
+/* Ajuste para manter os planos em um tamanho confortável */
 .carousel {
     display: flex;
-    overflow: hidden;
-    scroll-behavior: smooth;
-    justify-content: center;
     gap: 20px;
-    scroll-snap-type: x mandatory;
-    /* scroll-padding: 50%;  (opcional, se necessário) */
-    width: 100%;
-    position: relative;
-    align-items: flex-start;
+    transition: transform 0.4s ease-in-out;
+    will-change: transform;
+    overflow: hidden;
+    justify-content: center;
 }
 
-/* Estilo de cada plano */
+/* Ajuste do tamanho do plano para evitar que fique muito fino ou muito largo */
 .plano {
-    min-width: 350px;
-    max-width: 380px;
+    flex: 1 1 280px;  /* Ajuste de tamanho flexível */
+    max-width: 320px; /* Limite para não ficar muito grande */
+    min-width: 280px; /* Evita que fique muito estreito */
     background: rgba(255, 255, 255, 0.1);
     padding: 25px;
-    margin: 10px;
     border-radius: 12px;
     color: #ffffff;
     text-align: center;
@@ -636,7 +632,6 @@ body.sucesso-page {
     flex-direction: column;
     justify-content: space-between;
     scroll-snap-align: center;
-    align-self: flex-start;
 }
 
 /* Corrigindo a cor do título dos planos */
@@ -647,6 +642,13 @@ body.sucesso-page {
     color: #ffffff;
 }
 
+/* Ajuste de texto para evitar quebras */
+.plano p {
+    font-size: 14px;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
 /* Estilização do preço */
 .preco {
     font-size: 20px;
@@ -655,7 +657,7 @@ body.sucesso-page {
     margin: 15px 0;
 }
 
-/* Botão de contratação ("Assine Agora") */
+/* Botão de contratação */
 .botao {
     display: block;
     width: 100%;
@@ -671,58 +673,84 @@ body.sucesso-page {
     text-decoration: none;
 }
 
-/* Link dentro do botão */
-.botao a {
-    color: white;
-    text-decoration: none !important;
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    text-align: center;
-}
-
-/* Hover no botão */
-.botao:hover {
-    background-color: #B20710;
-}
-
-/* Botões de navegação do carrossel */
+/* Botões de navegação */
 .anterior, .proximo {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
     padding: 10px 15px;
     cursor: pointer;
     font-size: 24px;
     border-radius: 5px;
+    z-index: 1000;
 }
 
-.anterior {
-    left: 10px;
-}
-
-.proximo {
-    right: 10px;
-}
+.anterior { left: 10px; }
+.proximo { right: 10px; }
 
 .anterior:hover, .proximo:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.8);
 }
 
-/* Responsividade para o carrossel em telas menores */
+/* =========================== */
+/* Responsividade */
+/* =========================== */
+@media (max-width: 1024px) {
+    .carousel {
+        gap: 15px;
+    }
+
+    .plano {
+        flex: 1 1 300px;
+        max-width: 300px;
+    }
+}
+
 @media (max-width: 768px) {
     .carousel-container {
-        width: max-content%;
+        width: 100%;
+        padding: 20px 0;
     }
+
+    .carousel {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
     .plano {
-        felx: 0 0 auto;
+        min-width: 85%;
+        max-width: 85%;
+        margin: auto;
+    }
+
+    .titulo-planos {
+        font-size: 22px;
     }
 }
 
+
+/* Ajuste de largura no modo mobile para os pacotes */
+@media (max-width: 768px) {
+    .members-pack {
+        min-width: 90%;
+        max-width: 90%;
+        margin: auto;
+    }
+}
+
+
+
+
+
+
+
 /* FAQ */
+
 #faq {
     padding: 40px 20px;
     max-width: 800px;
@@ -768,74 +796,4 @@ body.sucesso-page {
     margin-top: 5px;
     width: 100%;
     text-align: left;
-}
-.carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    gap: 0px;
-    padding: 10px;
-}
-
-.plano {
-    flex: 0 0 100%;
-    text-align: center;
-    max-width: 300px;
-}
-
-button.anterior, button.proximo {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-button.anterior { left: 3px; }
-button.proximo { right: 3px; }
-
-button.anterior:hover, button.proximo:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-
-/* Ajuste de largura no modo mobile Container dos Planos */
-@media (max-width: 768px) {
-    .carousel {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .members-pack {
-        min-width: 90%;  /* Ajusta para ocupar mais espaço no mobile */
-        max-width: 90%;
-        margin: auto;
-    }
-
-    .carousel-container {
-        width: 100%;
-        padding: 20px 0;
-    }
-
-    .titulo-planos {
-        font-size: 22px; /* Ajuste do tamanho do título */
-    }
 }
