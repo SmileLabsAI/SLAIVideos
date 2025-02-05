@@ -519,7 +519,7 @@ body.sucesso-page {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-    text-align: center;
+    text-align: left;
     padding: 40px; /* Mais altura */
     margin: 10px;
     flex: 1 1 280px;
@@ -542,14 +542,14 @@ body.sucesso-page {
 .members-pack h3 {
     font-size: 24px;
     font-weight: bold;
-    color: #00ccff;
+    color: #E50914;
     margin-bottom: 12px;
     text-transform: uppercase;
 }
 
 /* Informações do pacote */
 .members-pack p {
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 15px;
 }
 
@@ -597,7 +597,7 @@ body.sucesso-page {
 .titulo-planos {
     font-size: 24px;
     font-weight: bold;
-    color: #ffffff;
+    color:#ffffff;
     text-transform: uppercase;
     margin-bottom: 30px;
     letter-spacing: 1px;
@@ -615,6 +615,7 @@ body.sucesso-page {
     /* scroll-padding: 50%;  (opcional, se necessário) */
     width: 100%;
     position: relative;
+    align-items: flex-start;
 }
 
 /* Estilo de cada plano */
@@ -635,6 +636,7 @@ body.sucesso-page {
     flex-direction: column;
     justify-content: space-between;
     scroll-snap-align: center;
+    align-self: flex-start;
 }
 
 /* Corrigindo a cor do título dos planos */
