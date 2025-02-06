@@ -1519,3 +1519,35 @@ h1, h2, h3 {
         font-size: 10px;
     }
 }
+
+/* Adicionando com maior especificidade */
+.login-box h2.login-title,
+.login-title {
+    color: #ff7f50 !important; /* Forçando a cor laranja */
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Removendo qualquer estilo que possa estar sobrescrevendo */
+.login-box h2 {
+    color: #ff7f50;
+}
+
+/* Ajuste específico para o título Membership Plans */
+.plans-section .section-title {
+    font-size: 30px; /* Reduzido de 32px para 30px */
+    margin-bottom: 20px; /* Reduzido de 30px para 20px para aproximar do carrossel */
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+    .plans-section .section-title {
+        font-size: 22px; /* Reduzido proporcionalmente para mobile */
+        margin-bottom: 15px;
+    }
+}

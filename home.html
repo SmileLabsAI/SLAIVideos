@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smile Labs - Home</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ... outros estilos ... */
+    section {
+      margin-bottom: 50px; /* Reduzido de 70px para 50px */
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      margin-bottom: 40px;
+      padding-top: 20px;
+    }
+
+    /* Ajuste específico para o título do Membership Plans */
+    .plans-section .section-title {
+      font-size: 30px !important; /* Forçando o tamanho */
+      margin-bottom: 20px !important; /* Forçando o espaçamento */
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Ajuste para mobile */
+    @media (max-width: 768px) {
+      section {
+        margin-bottom: 30px; /* Reduzido proporcionalmente para mobile */
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+      }
+
+      .plans-section .section-title {
+        font-size: 22px !important;
+        margin-bottom: 15px !important;
+      }
+    }
+  </style>
 </head>
 <body class="home-page">
 <!-- Navbar -->
@@ -60,7 +101,7 @@
 
 <!-- Seção de Planos (Carrossel) -->
 <section id="packages">
-    <h2 class="titulo-planos">Membership Plans</h2>
+    <h2 class="section-title">Membership Plans</h2>
     <div class="carousel-container">
         <button class="carousel-button prev">&lt;</button>
         <div class="carousel-track-container">

@@ -16,7 +16,10 @@
             font-family: Arial, sans-serif;
         }
         body {
-            background: url('https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/DALL%C2%B7E%202025-01-28%2023.17.15%20-%20A%20futuristic%20digital%20artwork%20representing%20Smile%20Labs%20AI%2C%20showcasing%20a%20high-tech%20holographic%203D%20dental%20scan%20with%20enhanced%20neon%20blue%2C%20purple%2C%20and%20metall.webp') no-repeat center center/cover;
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/AlbedoBase_XL_An_abstract_highresolution_wallpaper_featuring_a_1.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
             display: flex;
             flex-direction: column;
@@ -124,34 +127,37 @@
 <div class="background-overlay"></div>
 
 <div class="login-container">
-    <h2>Entrar</h2>
+    <h2 class="login-title">LOG IN</h2>
     <form id="login-form" method="post">
         <label for="email">E-mail</label>
         <input type="email" id="email" required>
-        <label for="password">Senha</label>
+        <label for="password">Password</label>
         <div class="password-container">
             <input type="password" id="password" required>
         </div>
-        <button type="submit" class="btn-login">Login</button>
+
+        <button type="submit" class="btn-login">LOG IN</button>
     </form>
 
-    <button class="btn-continue" onclick="window.location.href='about.html'">Continuar</button>
+    <button class="btn-continue" onclick="window.location.href='about.html'">Continue</button>
 
     <div class="social-login">
         <button id="google-login">
             <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
-            Entrar com Google
+            Log In with Google
         </button>
     </div>
 
-    <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-    <p><a href="termos.html">Termos e Condições</a></p>
-    <p><a href="politica-privacidade.html">Política de Privacidade</a></p>
+    <p>Don't have an account? <a href="cadastro.html">Sign Up</a></p>
+    <p><a href="termos.html">Terms and Conditions</a></p>
+    <p><a href="politica-privacidade.html">Privacy Policy</a></p>
 </div>
 
+
 <footer class="footer">
-    <p>© 2025 SLAI Videos - Todos os direitos reservados.</p>
+    <p>© 2025 SLAI Videos - All rights reserved.</p>
 </footer>
+
 
 <script>
     // ... (seu JavaScript) ...
