@@ -1330,23 +1330,23 @@ h1, h2, h3 {
 }
 
 .carousel-track-container {
-    width: calc(100% - 120px);
+    width: calc(100% - 85px);
     overflow: hidden;
     margin: 0 auto;
     position: relative;
     padding: 20px 0;
     height: 520px;
-    -webkit-tap-highlight-color: transparent; /* Remove highlight ao tocar */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1); /* Suaviza movimento */
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
     gap: 20px;
     padding-right: 60px;
     background: transparent;
     height: 100%;
-    transform: translate3d(0, 0, 0); /* Force hardware acceleration */
+    transform: translate3d(0, 0, 0);
 }
 
 .carousel-slide {
