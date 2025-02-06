@@ -106,42 +106,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Seleção dos elementos do carrossel
     const track = document.querySelector('.carousel-track');
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const nextButton = document.querySelector('.carousel-button.next');
     const prevButton = document.querySelector('.carousel-button.prev');
     const container = document.querySelector('.carousel-track-container');
 
+    // Verificação de segurança
     if (!track || !slides.length || !nextButton || !prevButton || !container) return;
 
     let currentIndex = 0;
 
+    // Função principal de atualização do carrossel
     function updateCarousel() {
         const containerWidth = container.offsetWidth;
         const slideWidth = slides[0].offsetWidth;
         const gap = window.innerWidth <= 768 ? 1 : 20;
         
-        // Calcula o offset total disponível
+        // Cálculos de posicionamento e centralização
         const totalWidth = slides.length * (slideWidth + gap);
-        
-        // Adiciona margem extra para o último slide
         const extraMargin = 30;
-        
-        // Calcula o centro do container
         const centerOffset = (containerWidth - slideWidth) / 2;
-        
-        // Calcula o offset para centralizar o slide atual
         let offset = (currentIndex * (slideWidth + gap)) - centerOffset;
         
-        // Limita o offset para não ultrapassar os limites
+        // Limitadores de movimento
         const maxOffset = totalWidth - containerWidth + extraMargin;
         offset = Math.max(0, Math.min(offset, maxOffset));
         
-        // Aplica a transformação com transição suave
+        // Aplicação da transformação
         track.style.transition = 'transform 0.5s ease-in-out';
         track.style.transform = `translateX(-${offset}px)`;
 
-        // Atualiza estado dos botões
+        // Atualização dos botões
         const isFirstSlide = currentIndex <= 0;
         const isLastSlide = currentIndex >= slides.length - 1;
 
