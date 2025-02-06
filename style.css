@@ -172,6 +172,25 @@ body {
         padding: 13px 15px;
         width: 100%;
     }
+
+    .pack-title {
+        font-size: 15px; /* Reduzido em 1px */
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    /* Mantendo outros estilos */
+    .catalog-grid {
+        width: 100%;
+        padding: 0 15px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .pack-card {
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
 }
 
 @media (max-width: 480px) {
@@ -186,6 +205,10 @@ body {
 
     .carousel-slide:last-child .plano {
         padding: 11px 13px;
+    }
+
+    .pack-title {
+        font-size: 15px; /* Mantendo consistência */
     }
 }
 
