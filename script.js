@@ -113,102 +113,98 @@ document.addEventListener('DOMContentLoaded', function () {
     const prevButton = document.querySelector('.carousel-button.prev');
     const container = document.querySelector('.carousel-track-container');
 
-    // Verificação de segurança
     if (!track || !slides.length || !nextButton || !prevButton || !container) return;
 
     let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    let touchStartTime = 0;
 
-    // Função principal de atualização do carrossel
+    // Melhorado sistema de touch
+    track.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+        touchStartTime = Date.now();
+        track.style.transition = 'none';
+        e.preventDefault(); // Previne comportamento padrão
+    }, { passive: false });
+
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+        track.style.transform = `translateX(${-currentIndex * (slides[0].offsetWidth + 20) + diff}px)`;
+        e.preventDefault(); // Previne scroll da página
+    }, { passive: false });
+
+    track.addEventListener('touchend', (e) => {
+        isDragging = false;
+        const touchEndTime = Date.now();
+        const touchDuration = touchEndTime - touchStartTime;
+        const diff = currentX - startX;
+        const threshold = 50; // Sensibilidade do swipe
+
+        track.style.transition = 'transform 0.5s ease-in-out';
+
+        // Melhorada lógica de detecção de swipe
+        if (Math.abs(diff) > threshold && touchDuration < 300) {
+            if (diff > 0 && currentIndex > 0) {
+                currentIndex--;
+            } else if (diff < 0 && currentIndex < slides.length - 1) {
+                currentIndex++;
+            }
+        }
+
+        updateCarousel();
+        e.preventDefault();
+    }, { passive: false });
+
     function updateCarousel() {
         const containerWidth = container.offsetWidth;
         const slideWidth = slides[0].offsetWidth;
         const gap = window.innerWidth <= 768 ? 1 : 20;
         
-        // Cálculos de posicionamento e centralização
         const totalWidth = slides.length * (slideWidth + gap);
         const extraMargin = 30;
         const centerOffset = (containerWidth - slideWidth) / 2;
         let offset = (currentIndex * (slideWidth + gap)) - centerOffset;
         
-        // Limitadores de movimento
         const maxOffset = totalWidth - containerWidth + extraMargin;
         offset = Math.max(0, Math.min(offset, maxOffset));
         
-        // Aplicação da transformação
-        track.style.transition = 'transform 0.5s ease-in-out';
         track.style.transform = `translateX(-${offset}px)`;
 
-        // Atualização dos botões
-        const isFirstSlide = currentIndex <= 0;
-        const isLastSlide = currentIndex >= slides.length - 1;
-
-        prevButton.disabled = isFirstSlide;
-        nextButton.disabled = isLastSlide;
-
-        prevButton.style.opacity = isFirstSlide ? '0.5' : '1';
-        nextButton.style.opacity = isLastSlide ? '0.5' : '1';
+        // Atualiza estado dos botões
+        prevButton.disabled = currentIndex <= 0;
+        nextButton.disabled = currentIndex >= slides.length - 1;
+        prevButton.style.opacity = currentIndex <= 0 ? '0.5' : '1';
+        nextButton.style.opacity = currentIndex >= slides.length - 1 ? '0.5' : '1';
     }
 
-    function moveToSlide(targetIndex) {
-        // Garante que o índice está dentro dos limites
-        currentIndex = Math.max(0, Math.min(targetIndex, slides.length - 1));
-        updateCarousel();
-    }
-
-    function moveNext() {
+    // Botões de navegação
+    nextButton.addEventListener('click', () => {
         if (currentIndex < slides.length - 1) {
-            moveToSlide(currentIndex + 1);
+            currentIndex++;
+            updateCarousel();
         }
-    }
+    });
 
-    function movePrev() {
+    prevButton.addEventListener('click', () => {
         if (currentIndex > 0) {
-            moveToSlide(currentIndex - 1);
+            currentIndex--;
+            updateCarousel();
         }
-    }
-
-    // Event Listeners para botões com mesmo comportamento do touch
-    nextButton.addEventListener('click', moveNext);
-    prevButton.addEventListener('click', movePrev);
-
-    // Touch events mantidos iguais
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].clientX;
-        track.style.transition = 'none'; // Remove transição durante o toque
     });
 
-    track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].clientX;
-        track.style.transition = 'transform 0.5s ease-in-out'; // Restaura transição
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const difference = touchStartX - touchEndX;
-
-        if (Math.abs(difference) > swipeThreshold) {
-            if (difference > 0 && !nextButton.disabled) {
-                moveNext();
-            } else if (difference < 0 && !prevButton.disabled) {
-                movePrev();
-            }
-        }
-    }
-
-    // Resize handler mantido
+    // Ajuste para resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            updateCarousel();
-        }, 250);
+        resizeTimeout = setTimeout(updateCarousel, 250);
     });
 
-    // Inicialização
     updateCarousel();
 });
 
