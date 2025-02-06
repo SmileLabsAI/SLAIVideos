@@ -128,9 +128,8 @@ function logoutUser() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleciona os elementos usando as classes
     const carousel = document.querySelector(".carousel");
-    const plans = document.querySelectorAll(".members-pack");
+    const plans = document.querySelectorAll(".plano");
     const prevButton = document.querySelector(".anterior");
     const nextButton = document.querySelector(".proximo");
     const carouselWrapper = document.querySelector(".carousel-wrapper");
@@ -141,146 +140,86 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     let index = 0;
-    const totalPlans = plans.length;
-    const gap = 20; // espaçamento entre os containers
+    const gap = 20;
 
-    // Função que retorna a largura de cada item do carrossel (incluindo o gap)
     function getPlanWidth() {
-        if (!plans.length) return 0;
-        const planRect = plans[0].getBoundingClientRect();
-        return planRect.width + gap;
+        return plans[0] ? plans[0].offsetWidth + gap : 0;
     }
 
-    // Atualiza o posicionamento do carrossel para desktop,
-    // garantindo que não ultrapasse o primeiro ou o último item,
-    // deixando uma margem igual ao gap.
+    function getMaxIndex() {
+        const planWidth = getPlanWidth();
+        return Math.max(0, plans.length - Math.floor(carouselWrapper.offsetWidth / planWidth));
+    }
+
     function updateCarousel() {
         const planWidth = getPlanWidth();
-
-        // Limita o index para não ultrapassar os limites
-        if (index > totalPlans - 1) {
-            index = totalPlans - 1;
-        }
-        if (index < 0) {
-            index = 0;
-        }
-
-        /*
-           Para desktop, vamos calcular a translação da seguinte forma:
-           - Quando o primeiro item está visível, queremos que a margem à esquerda seja igual a gap.
-           - À medida que avançamos, a translação será: margem_inicial - (index * planWidth)
-           - Porém, precisamos impedir que a translação ultrapasse o limite onde o último item
-             ainda deixa gap à direita. Para isso, calculamos o valor máximo de translação.
-        */
-        // Valor máximo de translação (lado direito)
-        const maxTranslateX = -(carousel.scrollWidth - carouselWrapper.clientWidth - gap);
-
-        // Calcula a translação desejada
-        let translateX = gap - index * planWidth;
-
-        // Garante que não ultrapasse os limites
-        if (translateX < maxTranslateX) {
-            translateX = maxTranslateX;
-        }
-        if (translateX > gap) {
-            translateX = gap;
-        }
-
+        index = Math.max(0, Math.min(index, getMaxIndex())); // Garante que index nunca seja menor que 0
+        let translateX = -index * planWidth;
         carousel.style.transform = `translateX(${translateX}px)`;
         carousel.style.transition = "transform 0.4s ease-in-out";
     }
 
-    // Para mobile, centraliza o item atual, mas sem ultrapassar os limites
     function centerPlanMobile() {
         const planWidth = getPlanWidth();
-        // O máximo scroll é calculado a partir do scrollWidth do carrossel, descontando a largura do wrapper e considerando a margem final
-        const maxScroll = carousel.scrollWidth - carouselWrapper.clientWidth - gap;
+        const maxScrollLeft = carouselWrapper.scrollWidth - carouselWrapper.clientWidth;
 
-        // Calcula a posição de scroll para centralizar o item atual
-        let scrollPosition = index * planWidth - (carouselWrapper.clientWidth / 2) + (planWidth / 2);
+        let scrollPosition = index * planWidth;
+        scrollPosition = Math.max(0, Math.min(scrollPosition, maxScrollLeft)); // Garante que nunca role para um valor menor que 0
 
-        // Impede que o scroll ultrapasse o início ou o fim
-        if (scrollPosition < gap) {
-            scrollPosition = gap;
-            index = 0;
-        }
-        if (scrollPosition > maxScroll) {
-            scrollPosition = maxScroll;
-            index = totalPlans - 1;
-        }
-
-        carousel.scrollTo({ left: scrollPosition, behavior: "smooth" });
+        carouselWrapper.scrollLeft = scrollPosition;
     }
 
-    // Função para o botão "próximo"
     function nextPlan(event) {
-        event.preventDefault();
-        if (window.innerWidth <= 768) {
-            // Mobile: se não estiver no último item, avança
-            if (index < totalPlans - 1) {
-                index++;
-            }
-            centerPlanMobile();
-        } else {
-            // Desktop: se não estiver no último item, avança
-            if (index < totalPlans - 1) {
-                index++;
-            }
-            updateCarousel();
+        event?.preventDefault();
+        if (index < getMaxIndex()) {
+            index++;
+            window.innerWidth <= 768 ? centerPlanMobile() : updateCarousel();
         }
     }
 
-    // Função para o botão "anterior"
     function prevPlan(event) {
-        event.preventDefault();
-        if (window.innerWidth <= 768) {
-            // Mobile: se não estiver no primeiro item, retrocede
-            if (index > 0) {
-                index--;
-            }
-            centerPlanMobile();
-        } else {
-            // Desktop: se não estiver no primeiro item, retrocede
-            if (index > 0) {
-                index--;
-            }
-            updateCarousel();
+        event?.preventDefault();
+        if (index > 0) {
+            index--;
+            window.innerWidth <= 768 ? centerPlanMobile() : updateCarousel();
         }
     }
 
     nextButton.addEventListener("click", nextPlan);
     prevButton.addEventListener("click", prevPlan);
 
-    // Atualiza a posição se a janela for redimensionada
-    window.addEventListener("resize", function() {
-        if (window.innerWidth <= 768) {
-            centerPlanMobile();
-        } else {
-            updateCarousel();
+    window.addEventListener("resize", function () {
+        window.innerWidth <= 768 ? centerPlanMobile() : updateCarousel();
+    });
+
+    updateCarousel(); // Garante que o carrossel inicie corretamente
+
+    let startX = 0, endX = 0, threshold = 50;
+
+    carouselWrapper.addEventListener("touchstart", function (e) {
+        startX = e.touches[0].clientX;
+    });
+
+    carouselWrapper.addEventListener("touchmove", function (e) {
+        endX = e.touches[0].clientX;
+    });
+
+    carouselWrapper.addEventListener("touchend", function () {
+        const diffX = startX - endX;
+        if (Math.abs(diffX) >= threshold) {
+            diffX > 0 ? nextPlan() : prevPlan();
         }
     });
 
-    // Inicializa o carrossel conforme o tamanho da tela
-    if (window.innerWidth <= 768) {
-        centerPlanMobile();
-    } else {
-        updateCarousel();
-    }
+    prevButton.style.position = "absolute";
+    prevButton.style.left = "10px";
+    prevButton.style.top = "50%";
+    prevButton.style.transform = "translateY(-50%)";
+    prevButton.style.zIndex = "10";
+
+    nextButton.style.position = "absolute";
+    nextButton.style.right = "10px";
+    nextButton.style.top = "50%";
+    nextButton.style.transform = "translateY(-50%)";
+    nextButton.style.zIndex = "10";
 });
-function centerPlanMobile() {
-    const planWidth = getPlanWidth();
-    const maxScroll = carouselWrapper.scrollWidth - carouselWrapper.clientWidth - gap;
-    let scrollPosition = index * planWidth - (carouselWrapper.clientWidth / 2) + (planWidth / 2);
-
-    if (scrollPosition < gap) {
-        scrollPosition = gap;
-        index = 0;
-    }
-    if (scrollPosition > maxScroll) {
-        scrollPosition = maxScroll;
-        index = totalPlans - 1;
-    }
-
-    carouselWrapper.scrollTo({ left: scrollPosition, behavior: "smooth" });
-}
-

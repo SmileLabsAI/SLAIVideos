@@ -505,7 +505,7 @@ body.sucesso-page {
 /* =========================== */
 /* CONTAINER DOS PACOTES - ÁREA DE MEMBROS */
 /* =========================== */
-.members-packages-container {
+.plano-packages-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -515,31 +515,31 @@ body.sucesso-page {
 }
 
 /* Estilo para cada pacote individual */
-.members-pack {
+.plano {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     text-align: left;
-    padding: 40px; /* Mais altura */
+    padding: 40px;
     margin: 10px;
     flex: 1 1 280px;
     max-width: 360px;
-    height: 500px; /* Formato mais vertical */
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 /* Imagem do pacote */
-.members-pack img {
+.plano img {
     width: 100%;
     height: auto;
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
-/* Título do pacote - Cor azul padrão */
-.members-pack h3 {
+/* Título do pacote */
+.plano h3 {
     font-size: 24px;
     font-weight: bold;
     color: #E50914;
@@ -548,13 +548,14 @@ body.sucesso-page {
 }
 
 /* Informações do pacote */
-.members-pack p {
-    font-size: 14px;
+.plano p {
+    font-size: 12px;
     margin-bottom: 15px;
+    text-align: left;
 }
 
 /* Botão do pacote */
-.members-pack button {
+.plano button {
     background-color: #E50914;
     color: white;
     border: none;
@@ -566,17 +567,17 @@ body.sucesso-page {
     transition: background-color 0.3s ease-in-out;
 }
 
-.members-pack button:hover {
+.plano button:hover {
     background-color: #B20710;
 }
 
-/* Responsividade para telas menores na área de membros */
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
-    .members-packages-container {
+    .plano-packages-container {
         flex-direction: column;
         align-items: center;
     }
-    .members-pack {
+    .plano {
         width: 90%;
         max-width: none;
     }
@@ -612,7 +613,6 @@ body.sucesso-page {
     justify-content: center;
     gap: 20px;
     scroll-snap-type: x mandatory;
-    /* scroll-padding: 50%;  (opcional, se necessário) */
     width: 100%;
     position: relative;
     align-items: flex-start;
@@ -644,7 +644,7 @@ body.sucesso-page {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #E50914;
 }
 
 /* Estilização do preço */
@@ -715,7 +715,7 @@ body.sucesso-page {
 /* Responsividade para o carrossel em telas menores */
 @media (max-width: 768px) {
     .carousel-container {
-        width: max-content 100%;
+        width: max-content%;
     }
     .plano {
         felx: 0 0 auto;
@@ -778,7 +778,7 @@ button.anterior:hover, button.proximo:hover {
         align-items: center;
     }
 
-    .members-pack {
+    .plano {
         min-width: 90%;  /* Ajusta para ocupar mais espaço no mobile */
         max-width: 90%;
         margin: auto;
@@ -793,6 +793,7 @@ button.anterior:hover, button.proximo:hover {
         font-size: 22px; /* Ajuste do tamanho do título */
     }
 }
+
 .carousel-wrapper {
     width: 100%;
     overflow: hidden;
@@ -831,6 +832,7 @@ button.anterior:hover, button.proximo:hover {
 .proximo {
     right: 10px;
 }
+
 
 /* FAQ */
 
