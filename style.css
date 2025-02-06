@@ -1336,15 +1336,17 @@ h1, h2, h3 {
     position: relative;
     padding: 20px 0;
     height: 520px;
+    -webkit-tap-highlight-color: transparent; /* Remove highlight ao tocar */
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1); /* Suaviza movimento */
     gap: 20px;
     padding-right: 60px;
     background: transparent;
     height: 100%;
+    transform: translate3d(0, 0, 0); /* Force hardware acceleration */
 }
 
 .carousel-slide {
@@ -1550,4 +1552,11 @@ h1, h2, h3 {
         font-size: 22px; /* Reduzido proporcionalmente para mobile */
         margin-bottom: 15px;
     }
+}
+
+/* Previne scroll da página durante swipe */
+.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
 }

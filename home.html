@@ -45,6 +45,58 @@
         margin-bottom: 15px !important;
       }
     }
+
+    /* Ajustes para melhor resposta ao touch */
+    .carousel-track-container {
+      touch-action: pan-y pinch-zoom; /* Permite apenas scroll vertical */
+      -webkit-overflow-scrolling: touch; /* Melhora scroll no iOS */
+      overflow: hidden;
+      user-select: none; /* Previne seleção de texto */
+    }
+
+    .carousel-track {
+      touch-action: none; /* Desativa comportamentos padrão de touch */
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      cursor: grab;
+    }
+
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .carousel-slide {
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Ajustes para mobile */
+    @media (max-width: 768px) {
+      .carousel-track-container {
+        width: calc(100% - 85px);
+        padding: 15px 0;
+        height: 460px;
+        left: -2px;
+        overflow: visible; /* Permite que o efeito de hover seja visível */
+      }
+
+      .carousel-track {
+        gap: 1px;
+        padding-right: 8px;
+        will-change: transform; /* Melhora performance da animação */
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+
+      .carousel-slide {
+        flex: 0 0 90%;
+        min-width: 90%;
+        transform: translateZ(0); /* Force hardware acceleration */
+      }
+    }
   </style>
 </head>
 <body class="home-page">
@@ -103,7 +155,7 @@
 <section id="packages">
     <h2 class="section-title">Membership Plans</h2>
     <div class="carousel-container">
-        <button class="carousel-button prev">&lt;</button>
+        <button class="carousel-button prev" aria-label="Previous slide">&lt;</button>
         <div class="carousel-track-container">
             <div class="carousel-track">
                 <!-- Plano Mensal -->
@@ -182,7 +234,7 @@
                 </div>
             </div>
         </div>
-        <button class="carousel-button next">&gt;</button>
+        <button class="carousel-button next" aria-label="Next slide">&gt;</button>
     </div>
 </section>
 
