@@ -105,6 +105,114 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = "home.html";
         });
     }
+
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const container = document.querySelector('.carousel-track-container');
+
+    if (!track || !slides.length || !nextButton || !prevButton || !container) return;
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const containerWidth = container.offsetWidth;
+        const slideWidth = slides[0].offsetWidth;
+        const gap = window.innerWidth <= 768 ? 1 : 20;
+        
+        // Calcula o offset total disponível
+        const totalWidth = slides.length * (slideWidth + gap);
+        
+        // Adiciona margem extra para o último slide
+        const extraMargin = 30;
+        
+        // Calcula o centro do container
+        const centerOffset = (containerWidth - slideWidth) / 2;
+        
+        // Calcula o offset para centralizar o slide atual
+        let offset = (currentIndex * (slideWidth + gap)) - centerOffset;
+        
+        // Limita o offset para não ultrapassar os limites
+        const maxOffset = totalWidth - containerWidth + extraMargin;
+        offset = Math.max(0, Math.min(offset, maxOffset));
+        
+        // Aplica a transformação com transição suave
+        track.style.transition = 'transform 0.5s ease-in-out';
+        track.style.transform = `translateX(-${offset}px)`;
+
+        // Atualiza estado dos botões
+        const isFirstSlide = currentIndex <= 0;
+        const isLastSlide = currentIndex >= slides.length - 1;
+
+        prevButton.disabled = isFirstSlide;
+        nextButton.disabled = isLastSlide;
+
+        prevButton.style.opacity = isFirstSlide ? '0.5' : '1';
+        nextButton.style.opacity = isLastSlide ? '0.5' : '1';
+    }
+
+    function moveToSlide(targetIndex) {
+        // Garante que o índice está dentro dos limites
+        currentIndex = Math.max(0, Math.min(targetIndex, slides.length - 1));
+        updateCarousel();
+    }
+
+    function moveNext() {
+        if (currentIndex < slides.length - 1) {
+            moveToSlide(currentIndex + 1);
+        }
+    }
+
+    function movePrev() {
+        if (currentIndex > 0) {
+            moveToSlide(currentIndex - 1);
+        }
+    }
+
+    // Event Listeners para botões com mesmo comportamento do touch
+    nextButton.addEventListener('click', moveNext);
+    prevButton.addEventListener('click', movePrev);
+
+    // Touch events mantidos iguais
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        track.style.transition = 'none'; // Remove transição durante o toque
+    });
+
+    track.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].clientX;
+        track.style.transition = 'transform 0.5s ease-in-out'; // Restaura transição
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const difference = touchStartX - touchEndX;
+
+        if (Math.abs(difference) > swipeThreshold) {
+            if (difference > 0 && !nextButton.disabled) {
+                moveNext();
+            } else if (difference < 0 && !prevButton.disabled) {
+                movePrev();
+            }
+        }
+    }
+
+    // Resize handler mantido
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateCarousel();
+        }, 250);
+    });
+
+    // Inicialização
+    updateCarousel();
 });
 
 // Função para validar se o token JWT ainda é válido
@@ -126,100 +234,3 @@ function logoutUser() {
     console.log("🔴 Usuário fez logout.");
     window.location.href = "index.html";
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector(".carousel");
-    const plans = document.querySelectorAll(".plano");
-    const prevButton = document.querySelector(".anterior");
-    const nextButton = document.querySelector(".proximo");
-    const carouselWrapper = document.querySelector(".carousel-wrapper");
-
-    if (!carousel || !plans.length || !prevButton || !nextButton || !carouselWrapper) {
-        console.error("Erro: Elementos do carrossel não encontrados!");
-        return;
-    }
-
-    let index = 0;
-    const gap = 20;
-
-    function getPlanWidth() {
-        return plans[0] ? plans[0].offsetWidth + gap : 0;
-    }
-
-    function getMaxIndex() {
-        const planWidth = getPlanWidth();
-        return Math.max(0, plans.length - Math.floor(carouselWrapper.offsetWidth / planWidth));
-    }
-
-    function updateCarousel() {
-        const planWidth = getPlanWidth();
-        index = Math.max(0, Math.min(index, getMaxIndex())); // Garante que index nunca seja menor que 0
-        let translateX = -index * planWidth;
-        carousel.style.transform = `translateX(${translateX}px)`;
-        carousel.style.transition = "transform 0.4s ease-in-out";
-    }
-
-    function centerPlanMobile() {
-        const planWidth = getPlanWidth();
-        const maxScrollLeft = carouselWrapper.scrollWidth - carouselWrapper.clientWidth;
-
-        let scrollPosition = index * planWidth;
-        scrollPosition = Math.max(0, Math.min(scrollPosition, maxScrollLeft)); // Garante que nunca role para um valor menor que 0
-
-        carouselWrapper.scrollLeft = scrollPosition;
-    }
-
-    function nextPlan(event) {
-        event?.preventDefault();
-        if (index < getMaxIndex()) {
-            index++;
-            window.innerWidth <= 768 ? centerPlanMobile() : updateCarousel();
-        }
-    }
-
-    function prevPlan(event) {
-        event?.preventDefault();
-        if (index > 0) {
-            index--;
-            window.innerWidth <= 768 ? centerPlanMobile() : updateCarousel();
-        }
-    }
-
-    nextButton.addEventListener("click", nextPlan);
-    prevButton.addEventListener("click", prevPlan);
-
-    window.addEventListener("resize", function () {
-        window.innerWidth <= 768 ? centerPlanMobile() : updateCarousel();
-    });
-
-    updateCarousel(); // Garante que o carrossel inicie corretamente
-
-    let startX = 0, endX = 0, threshold = 50;
-
-    carouselWrapper.addEventListener("touchstart", function (e) {
-        startX = e.touches[0].clientX;
-    });
-
-    carouselWrapper.addEventListener("touchmove", function (e) {
-        endX = e.touches[0].clientX;
-    });
-
-    carouselWrapper.addEventListener("touchend", function () {
-        const diffX = startX - endX;
-        if (Math.abs(diffX) >= threshold) {
-            diffX > 0 ? nextPlan() : prevPlan();
-        }
-    });
-
-    prevButton.style.position = "absolute";
-    prevButton.style.left = "10px";
-    prevButton.style.top = "50%";
-    prevButton.style.transform = "translateY(-50%)";
-    prevButton.style.zIndex = "10";
-
-    nextButton.style.position = "absolute";
-    nextButton.style.right = "10px";
-    nextButton.style.top = "50%";
-    nextButton.style.transform = "translateY(-50%)";
-    nextButton.style.zIndex = "10";
-});

@@ -8,9 +8,22 @@
     font-family: Arial, sans-serif;
 }
 
+:root {
+    --cor-principal: #d2e7f8;
+    --cor-secundaria: #ff9c5a;
+    --cor-fundo: #ffffff;
+    --cor-texto: #444444;
+    --cor-cards: #f7fbff;
+    --cor-navbar: #d2e7f8;
+    --azul-vibrante: #bdd7ee;
+    --azul-neutro: #bbd5ec;
+    --cinza-sofisticado: #c4c3c8;
+    --tom-quente: #fcf4e9;
+}
+
 body {
-    background-color: #141414;
-    color: white;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Rodapé fixo no fim */
@@ -24,7 +37,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px; /* Mesmo padding desktop/mobile */
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--cor-navbar);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left {
@@ -46,7 +60,7 @@ body {
     display: inline;
 }
 .nav-links li a {
-    color: white;
+    color: var(--cor-texto);
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
@@ -54,7 +68,8 @@ body {
     transition: color 0.3s ease-in-out;
 }
 .nav-links li a:hover {
-    color: #e50914; /* Netflix red */
+    color: var(--cor-secundaria);
+    background-color: transparent;
 }
 
 /* =========================== */
@@ -75,7 +90,7 @@ body {
     position: absolute;
     top: 70px;
     right: 20px;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: var(--cor-navbar);
     width: 200px;
     border-radius: 5px;
     z-index: 1000;
@@ -83,15 +98,16 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 }
 .mobile-menu a {
-    color: white;
+    color: var(--cor-texto);
     padding: 12px 20px;
     text-decoration: none;
     font-size: 18px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.3s;
+    transition: color 0.3s;
 }
 .mobile-menu a:hover {
-    background-color: #e50914;
+    color: var(--cor-secundaria);
+    background-color: transparent;
 }
 .mobile-menu.open {
     display: flex;
@@ -110,6 +126,67 @@ body {
     .navbar {
         padding: 15px 20px; /* Ajuste opcional */
     }
+
+    /* Novo estilo para links do menu mobile */
+    .menu-mobile a {
+        transition: color 0.3s ease; /* Suaviza a transição da cor */
+    }
+
+    .menu-mobile a:hover,
+    .menu-mobile a:active,
+    .menu-mobile a.active {
+        color: #ff7f50; /* Cor laranja igual ao desktop */
+        text-decoration: none;
+    }
+
+    /* Efeito ao clicar */
+    .menu-mobile a:active {
+        transform: scale(0.98); /* Leve efeito de pressionar */
+    }
+
+    /* Mantém a cor laranja quando a seção está ativa */
+    .menu-mobile a[href="#home"].active,
+    .menu-mobile a[href="#about"].active,
+    .menu-mobile a[href="#packages"].active,
+    .menu-mobile a[href="#faq"].active {
+        color: #ff7f50;
+    }
+
+    .plano .info p {
+        font-size: 11px;
+        white-space: nowrap;
+        margin: 3px 0;
+        line-height: 1.2;
+    }
+
+    /* Ajuste específico para o texto "into Your Clinic" */
+    .plano .info p:last-child {
+        white-space: normal; /* Remove nowrap para este texto específico */
+        display: block; /* Força quebra de linha */
+        text-align: left;
+        margin-top: 2px;
+    }
+
+    /* Ajuste específico para o último plano (Annual) */
+    .carousel-slide:last-child .plano {
+        padding: 13px 15px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .plano .info p {
+        font-size: 10px;
+    }
+
+    .plano .info p:last-child {
+        font-size: 10px;
+        margin-top: 1px;
+    }
+
+    .carousel-slide:last-child .plano {
+        padding: 11px 13px;
+    }
 }
 
 /* =========================== */
@@ -120,13 +197,13 @@ body {
 }
 
 footer.footer {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #b3b3b3;
+    background-color: var(--cor-navbar);
+    color: var(--cor-texto);
     text-align: left;
     font-size: 10px;
     padding: 10px;
     width: 100%;
-    border-top: 2px solid #141414;
+    border-top: 2px solid var(--azul-neutro);
 }
 
 /* =========================== */
@@ -186,11 +263,11 @@ footer.footer {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    border: none;
+    border: 1px solid var(--azul-neutro);
     border-radius: 5px;
     font-size: 14px;
-    background-color: #2c2c2c;
-    color: white;
+    background-color: var(--cor-cards);
+    color: var(--cor-texto);
 }
 .form-group textarea {
     resize: vertical;
@@ -201,7 +278,7 @@ footer.footer {
 .btn-enviar {
     width: 100%;
     padding: 10px;
-    background-color: #e50914;
+    background-color: var(--cor-secundaria);
     color: white;
     border: none;
     border-radius: 5px;
@@ -212,14 +289,14 @@ footer.footer {
     text-align: center;
 }
 .btn-enviar:hover {
-    background-color: #b20710;
+    background-color: #e88c4a;
 }
 
 /* =========================== */
 /* CATÁLOGO (PACKS E THUMBNAILS) */
 /* =========================== */
 body.catalog-page {
-    background-color: #121212;
+    background-color: var(--cor-fundo);
 }
 body.catalog-page .videos-container {
     display: flex;
@@ -231,9 +308,9 @@ body.catalog-page .videos-container {
 
 /* Packs menores (desktop = 150px wide; mobile ~2 colunas) */
 body.catalog-page .pack {
-    background: #1e1e1e;
+    background: var(--cor-cards);
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 10px;
     margin: 0;
@@ -260,7 +337,7 @@ body.catalog-page .pack img {
 }
 /* Botão estilo Netflix */
 body.catalog-page .pack button {
-    background-color: #E50914;
+    background-color: var(--cor-secundaria);
     color: white;
     border: none;
     padding: 10px 15px;
@@ -271,7 +348,7 @@ body.catalog-page .pack button {
     transition: background-color 0.3s ease-in-out;
 }
 body.catalog-page .pack button:hover {
-    background-color: #B20710;
+    background-color: #e88c4a;
 }
 
 /* =========================== */
@@ -287,6 +364,7 @@ body.members-page .members-container {
 
     /* Centraliza texto do h1 e p */
     text-align: center;
+    background-color: var(--cor-fundo);
 }
 /* Título e parágrafo */
 body.members-page .members-container h1 {
@@ -309,7 +387,7 @@ body.sucesso-page {
     align-items: center;
     min-height: 100vh;
     text-align: center;
-    background-color: #141414; /* Fundo estilo Netflix */
+    background-color: var(--cor-fundo);
     padding: 20px;
 }
 
@@ -333,10 +411,10 @@ body.sucesso-page {
 
 /* Centraliza a mensagem corretamente */
 .sucesso-container {
-    background: rgba(0, 0, 0, 0.85);
+    background: var(--cor-cards);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     width: 90%;
     margin-top: 100px; /* Evita sobreposição com a navbar */
@@ -344,7 +422,7 @@ body.sucesso-page {
 
 /* Títulos e texto */
 .sucesso-container h2 {
-    color: #e50914; /* Vermelho Netflix */
+    color: var(--cor-secundaria);
     font-size: 26px;
     font-weight: bold;
     margin-bottom: 15px;
@@ -352,7 +430,7 @@ body.sucesso-page {
 
 .sucesso-container p {
     font-size: 18px;
-    color: white;
+    color: var(--cor-texto);
     margin-bottom: 20px;
     line-height: 1.5;
 }
@@ -363,7 +441,7 @@ body.sucesso-page {
     padding: 14px 26px;
     font-size: 18px;
     font-weight: bold;
-    background: #e50914; /* Vermelho Netflix */
+    background: var(--cor-secundaria);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -373,7 +451,7 @@ body.sucesso-page {
 }
 
 .btn-home:hover {
-    background: #b20710; /* Vermelho mais escuro */
+    background: #e88c4a;
 }
 
 /* =========================== */
@@ -423,15 +501,15 @@ body.sucesso-page {
 .social-login button {
     width: 100%; /* Igual aos outros botões */
     padding: 10px; /* Mesmo padding dos outros botões */
-    border: none;
+    border: 1px solid var(--azul-neutro);
     border-radius: 5px;
     font-size: 14px; /* Mesmo tamanho de fonte */
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    color: black;
+    background-color: var(--cor-cards);
+    color: var(--cor-texto);
     cursor: pointer;
     transition: background 0.3s;
     text-align: center;
@@ -446,7 +524,7 @@ body.sucesso-page {
 }
 
 .social-login button:hover {
-    background-color: #f0f0f0;
+    background-color: var(--tom-quente);
 }
 /* =========================== */
 /* BOTÃO GOOGLE - CADASTRO */
@@ -456,12 +534,12 @@ body.sucesso-page {
     width: 100%; /* Mesma largura dos outros botões */
     height: 40px; /* Altura padrão dos botões */
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--azul-neutro);
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
-    background-color: white; /* Fundo branco para seguir o padrão do Google */
-    color: black;
+    background-color: var(--cor-cards);
+    color: var(--cor-texto);
     cursor: pointer;
     display: flex; /* Alinha ícone e texto corretamente */
     align-items: center;
@@ -482,7 +560,7 @@ body.sucesso-page {
 /* Efeito de hover no botão */
 .social-login button:hover,
 #google-login:hover {
-    background-color: #f0f0f0;
+    background-color: var(--tom-quente);
 }
 
 /* =========================== */
@@ -516,9 +594,9 @@ body.sucesso-page {
 
 /* Estilo para cada pacote individual */
 .plano {
-    background: rgba(255, 255, 255, 0.08);
+    background-color: var(--cor-cards);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: left;
     padding: 40px;
     margin: 10px;
@@ -528,6 +606,13 @@ body.sucesso-page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 1px solid var(--azul-neutro);
+    transition: transform 0.3s ease;
+}
+
+.plano:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Imagem do pacote */
@@ -540,11 +625,10 @@ body.sucesso-page {
 
 /* Título do pacote */
 .plano h3 {
-    font-size: 24px;
+    color: var(--cor-secundaria);
+    font-size: 22px;
     font-weight: bold;
-    color: #E50914;
-    margin-bottom: 12px;
-    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 /* Informações do pacote */
@@ -556,19 +640,19 @@ body.sucesso-page {
 
 /* Botão do pacote */
 .plano button {
-    background-color: #E50914;
-    color: white;
+    background-color: var(--cor-secundaria);
+    color: #ffffff;
     border: none;
     padding: 12px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
 .plano button:hover {
-    background-color: #B20710;
+    background-color: #e88c4a;
 }
 
 /* Responsividade para telas menores */
@@ -592,13 +676,14 @@ body.sucesso-page {
     margin: auto;
     text-align: center;
     padding: 50px 0;
+    background-color: var(--cor-fundo);
 }
 
 /* Título dos planos */
 .titulo-planos {
     font-size: 24px;
     font-weight: bold;
-    color:#ffffff;
+    color: var(--cor-texto);
     text-transform: uppercase;
     margin-bottom: 30px;
     letter-spacing: 1px;
@@ -608,35 +693,15 @@ body.sucesso-page {
 /* Container do carrossel */
 .carousel {
     display: flex;
-    overflow: hidden;
-    scroll-behavior: smooth;
-    justify-content: center;
     gap: 20px;
-    scroll-snap-type: x mandatory;
-    width: 100%;
-    position: relative;
-    align-items: flex-start;
+    transform: translateX(0);
+    transition: transform 0.4s ease-in-out;
 }
 
 /* Estilo de cada plano */
 .plano {
-    min-width: 350px;
-    max-width: 380px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    margin: 10px;
-    border-radius: 12px;
-    color: #ffffff;
-    text-align: center;
-    transition: 0.5s;
-    flex-shrink: 0;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    scroll-snap-align: center;
-    align-self: flex-start;
+    flex: 0 0 auto;
+    width: 300px; /* ou o tamanho que você definiu */
 }
 
 /* Corrigindo a cor do título dos planos */
@@ -644,14 +709,14 @@ body.sucesso-page {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #E50914;
+    color: var(--cor-secundaria);
 }
 
 /* Estilização do preço */
 .preco {
     font-size: 20px;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--cor-texto);
     margin: 15px 0;
 }
 
@@ -661,13 +726,13 @@ body.sucesso-page {
     width: 100%;
     padding: 12px;
     border: none;
-    background-color: #E50914;
-    color: white;
+    background-color: var(--cor-secundaria);
+    color: #ffffff;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-    transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
     text-decoration: none;
 }
 
@@ -683,7 +748,7 @@ body.sucesso-page {
 
 /* Hover no botão */
 .botao:hover {
-    background-color: #B20710;
+    background-color: #e88c4a;
 }
 
 /* Botões de navegação do carrossel */
@@ -691,7 +756,7 @@ body.sucesso-page {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
+    background-color: var(--cor-secundaria);
     border: none;
     color: white;
     padding: 10px 15px;
@@ -709,19 +774,80 @@ body.sucesso-page {
 }
 
 .anterior:hover, .proximo:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background-color: #e88c4a;
 }
 
 /* Responsividade para o carrossel em telas menores */
 @media (max-width: 768px) {
-    .carousel-container {
-        width: max-content%;
+    .carousel-track-container {
+        width: calc(100% - 85px);
+        padding: 15px 0;
+        height: 460px;
+        left: -2px;
     }
+
+    .carousel-track {
+        gap: 1px;
+        padding-right: 8px;
+    }
+
+    .carousel-slide {
+        flex: 0 0 90%; /* Aumentado para acomodar o Annual Plan */
+        min-width: 90%;
+    }
+
     .plano {
-        felx: 0 0 auto;
+        padding: 13px 11px;
+        min-height: 421px;
+        height: auto;
+        width: 100%;
+    }
+
+    .plano .info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .plano .info p {
+        font-size: 11px;
+        white-space: nowrap;
+        margin: 3px 0;
+        line-height: 1.2;
+    }
+
+    /* Ajuste específico para o último plano (Annual) */
+    .carousel-slide:last-child .plano {
+        padding: 13px 15px; /* Padding lateral maior */
+        width: 100%;
     }
 }
 
+@media (max-width: 480px) {
+    .carousel-track-container {
+        height: 440px;
+        left: -1px;
+        width: calc(100% - 82px);
+    }
+
+    .carousel-slide {
+        flex: 0 0 87%; /* Ajustado proporcionalmente */
+        min-width: 87%;
+    }
+
+    .plano {
+        padding: 11px 9px;
+        min-height: 422px;
+    }
+
+    .plano .info p {
+        font-size: 10px;
+    }
+
+    .carousel-slide:last-child .plano {
+        padding: 11px 13px;
+    }
+}
 
 .carousel-wrapper {
     position: relative;
@@ -767,7 +893,6 @@ button.anterior:hover, button.proximo:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-
 /* Ajuste de largura no modo mobile Container dos Planos */
 @media (max-width: 768px) {
     .carousel {
@@ -779,7 +904,7 @@ button.anterior:hover, button.proximo:hover {
     }
 
     .plano {
-        min-width: 90%;  /* Ajusta para ocupar mais espaço no mobile */
+        min-width: 90%;
         max-width: 90%;
         margin: auto;
     }
@@ -790,7 +915,7 @@ button.anterior:hover, button.proximo:hover {
     }
 
     .titulo-planos {
-        font-size: 22px; /* Ajuste do tamanho do título */
+        font-size: 22px;
     }
 }
 
@@ -803,14 +928,13 @@ button.anterior:hover, button.proximo:hover {
 .carousel {
     display: flex;
     gap: 20px;
+    transform: translateX(0);
     transition: transform 0.4s ease-in-out;
-    will-change: transform;
 }
 
 .plano {
-    min-width: 300px; /* Define um tamanho fixo para os itens */
-    max-width: 300px;
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    width: 300px; /* ou o tamanho que você definiu */
 }
 
 .anterior, .proximo {
@@ -825,14 +949,18 @@ button.anterior:hover, button.proximo:hover {
     z-index: 10;
 }
 
-.anterior {
-    left: 10px;
+.anterior { left: 10px; }
+.proximo { right: 10px; }
+
+button.anterior:hover, button.proximo:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.proximo {
-    right: 10px;
+/* Garante que o primeiro plano seja visível inicialmente */
+.carousel-container {
+    overflow: hidden;
+    position: relative;
 }
-
 
 /* FAQ */
 
@@ -858,27 +986,536 @@ button.anterior:hover, button.proximo:hover {
 
 .faq-question {
     cursor: pointer;
-    padding: 10px 0; /* Reduz o padding para não parecer um bloco */
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: var(--cor-principal);
+    color: var(--cor-texto);
     font-weight: bold;
     border: none;
     width: 100%;
     display: block; /* Garante que ocupe a largura sem afetar a posição */
-    background: transparent;
-    color: white;
     transition: color 0.3s ease-in-out;
 }
 
 .faq-question:hover {
-    color: red; /* Retorna o efeito vermelho ao passar o mouse */
+    color: var(--cor-secundaria);
 }
 
 .faq-answer {
     display: none;
-    padding: 10px;
-    background-color: #333;
-    color: white;
+    padding: 15px;
     border-radius: 5px;
-    margin-top: 5px;
+    background-color: var(--cor-cards);
     width: 100%;
     text-align: left;
+}
+
+/* Estilo dos títulos */
+h1, h2, h3 {
+    color: var(--cor-texto);
+}
+
+/* Estilo do Footer */
+.footer {
+    background-color: var(--cor-navbar);
+    color: var(--cor-texto);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Títulos e elementos destacados */
+.plano h3,
+.sucesso-container h2,
+.titulo-destaque,
+.preco-destaque {
+    color: var(--cor-secundaria);
+}
+
+/* Botões e elementos interativos */
+.btn-primary,
+.btn-action,
+.btn-destaque,
+.btn-comprar,
+.btn-enviar,
+.btn-submit,
+.btn-home,
+.anterior,
+.proximo {
+    background-color: var(--cor-secundaria);
+    color: white;
+}
+
+/* Hovers */
+.btn-primary:hover,
+.btn-action:hover,
+.btn-destaque:hover,
+.btn-comprar:hover,
+.btn-enviar:hover,
+.btn-submit:hover,
+.btn-home:hover,
+.anterior:hover,
+.proximo:hover,
+.nav-links li a:hover {
+    background-color: #e88c4a; /* Versão mais escura do laranja para hover */
+}
+
+/* Links e textos destacados */
+.texto-destaque,
+.link-destaque:hover,
+.preco-valor {
+    color: var(--cor-secundaria);
+}
+
+/* Bordas e elementos de destaque */
+.borda-destaque,
+.elemento-destaque {
+    border-color: var(--cor-secundaria);
+}
+
+/* Estilos da página About */
+.about-container h1,
+.about-container h2,
+.about-container h3,
+.about-title,
+.about-subtitle {
+    color: var(--cor-secundaria);
+}
+
+.about-highlight,
+.about-link,
+.about-feature {
+    color: var(--cor-secundaria);
+}
+
+.about-button,
+.about-cta {
+    background-color: var(--cor-secundaria);
+    color: white;
+}
+
+.about-button:hover,
+.about-cta:hover {
+    background-color: #e88c4a;
+}
+
+.about-border,
+.about-section {
+    border-color: var(--cor-secundaria);
+}
+
+/* Estilos específicos da página About */
+.about-text {
+    text-align: justify;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.about-subtitle {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: var(--cor-secundaria);
+}
+
+.about-list {
+    padding-left: 20px; /* Alinha os pontos com o texto */
+    margin-bottom: 20px;
+}
+
+.about-list li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    list-style-position: outside; /* Garante que os pontos fiquem alinhados */
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* Estilo para a frase revolucionária dividida */
+.about-revolutionary-text {
+    color: var(--cor-texto); /* Cor preta para a primeira frase */
+    font-size: 16px; /* Voltando ao tamanho padrão */
+    font-weight: normal; /* Removendo o bold */
+    margin-bottom: 10px; /* Espaço entre as frases */
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.about-join-text {
+    color: var(--cor-secundaria); /* Cor laranja para a segunda frase */
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* NAVBAR - Estilos Globais */
+.navbar {
+    background-color: var(--cor-navbar);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Links da Navbar (Desktop e Mobile) */
+.nav-links li a,
+.mobile-menu a,
+.navbar-left a,
+.navbar-right a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Hover para todos os links da navbar */
+.nav-links li a:hover,
+.mobile-menu a:hover,
+.navbar-left a:hover,
+.navbar-right a:hover {
+    color: var(--cor-secundaria);
+    background-color: transparent;
+}
+
+/* Menu Mobile */
+.mobile-menu {
+    background-color: var(--cor-navbar);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.mobile-menu a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+}
+
+/* Navbar em páginas específicas */
+.sucesso-page .navbar,
+.members-page .navbar,
+.catalog-page .navbar {
+    background-color: var(--cor-navbar);
+}
+
+.sucesso-page .navbar a:hover,
+.members-page .navbar a:hover,
+.catalog-page .navbar a:hover {
+    color: var(--cor-secundaria);
+    background-color: transparent;
+}
+
+/* Estilos específicos da página de login */
+.login-container button {
+    width: 75%;
+    padding: 7px;
+    background-color: var(--cor-secundaria) !important; /* Forçando a cor laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+}
+
+.login-container button:hover {
+    background-color: #e88c4a !important; /* Versão mais escura do laranja para hover */
+}
+
+/* Botão de login com Google */
+.social-login button {
+    width: 75%;
+    padding: 7px;
+    height: 30px;
+    border: 1px solid var(--azul-neutro);
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: var(--cor-texto);
+    font-weight: bold;
+    margin-top: 5px;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Links de cadastro e termos */
+.login-container a {
+    color: var(--cor-secundaria); /* Mudando links de vermelho para laranja */
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    color: #e88c4a; /* Versão mais escura do laranja para hover */
+}
+
+/* Botões da página de login */
+.btn-login,
+.btn-continue {
+    width: 75%;
+    padding: 7px;
+    background-color: var(--cor-secundaria) !important; /* Forçando a cor laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+}
+
+.btn-login:hover,
+.btn-continue:hover {
+    background-color: #e88c4a !important; /* Versão mais escura do laranja para hover */
+}
+
+/* Botão Google */
+#google-login {
+    width: 75%; /* Mesmo tamanho dos outros botões da página */
+    padding: 7px;
+    height: 30px; /* Altura original */
+    background-color: white !important; /* Forçando fundo branco */
+    color: var(--cor-texto);
+    border: 1px solid var(--azul-neutro);
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    position: relative;
+}
+
+/* Ícone do Google */
+#google-login img {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: 15px;
+}
+
+#google-login:hover {
+    background-color: #f0f0f0 !important; /* Hover suave mantendo tom claro */
+}
+
+/* Estilos do Carrossel */
+#packages {
+    padding: 40px 0;
+}
+
+.titulo-planos {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 2em;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    padding: 20px 0; /* Espaço para os containers não cortarem */
+}
+
+.carousel-track-container {
+    width: calc(100% - 120px);
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 0;
+    height: 520px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 20px;
+    padding-right: 60px;
+    background: transparent;
+    height: 100%;
+}
+
+.carousel-slide {
+    flex: 0 0 290px;
+    min-width: 290px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    height: 100%;
+}
+
+/* Estilos dos Planos */
+.plano {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plano:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+    flex-grow: 1;
+}
+
+.info h3 {
+    color: #ff7f50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.info p {
+    margin: 10px 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.footer-plano {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.preco {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.botao {
+    display: inline-block;
+    background-color: #ff7f50;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.botao:hover {
+    background-color: #ff6b3d;
+}
+
+/* Botões de Navegação */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff7f50;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-button:hover {
+    opacity: 0.8;
+}
+
+.carousel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.carousel-button.prev {
+    left: 15px;
+}
+
+.carousel-button.next {
+    right: 15px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .carousel-slide {
+        flex: 0 0 85%;
+        min-width: 85%;
+    }
+
+    /* Ajustes no container do plano para mobile */
+    .plano {
+        padding: 13px 11px;
+        min-height: 421px;
+        height: auto;
+        width: 100%;
+    }
+
+    .plano h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .plano .info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .plano .info p {
+        margin: 3px 0;
+        line-height: 1.2;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .plano .footer-plano {
+        margin-top: 10px;
+    }
+
+    .plano .preco {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .plano .botao {
+        padding: 8px 20px;
+        margin-top: 5px;
+        font-size: 11px;
+    }
+
+    .carousel-track {
+        gap: 2.5px;
+        padding-right: 12px;
+    }
+
+    .carousel-track-container {
+        width: calc(100% - 88px);
+        padding: 15px 0;
+        height: 460px;
+        left: -2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .plano {
+        padding: 11px 9px;
+        min-height: 422px;
+    }
+
+    .plano .info p {
+        font-size: 10px;
+    }
 }

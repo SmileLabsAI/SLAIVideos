@@ -126,28 +126,27 @@
 <div class="login-container">
     <h2>Entrar</h2>
     <form id="login-form" method="post">
-        <!-- Campo de E-mail -->
         <label for="email">E-mail</label>
         <input type="email" id="email" required>
         <label for="password">Senha</label>
         <div class="password-container">
             <input type="password" id="password" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" class="btn-login">Login</button>
     </form>
 
-    <button onclick="window.location.href='about.html'">Continuar</button>
+    <button class="btn-continue" onclick="window.location.href='about.html'">Continuar</button>
 
     <div class="social-login">
-        <button id="login-google" style="background-color: #f0f0f0; color: black; border: 1px solid #4285f4;">
+        <button id="google-login">
             <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
             Entrar com Google
         </button>
     </div>
 
     <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-    <p><a href="termos.html" style="color: #b3b3b3;">Termos e Condições</a></p>
-    <p><a href="politica-privacidade.html" style="color: #b3b3b3;">Política de Privacidade</a></p>
+    <p><a href="termos.html">Termos e Condições</a></p>
+    <p><a href="politica-privacidade.html">Política de Privacidade</a></p>
 </div>
 
 <footer class="footer">
