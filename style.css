@@ -520,11 +520,11 @@ body.sucesso-page {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     text-align: left;
-    padding: 40px;
+    padding: 40px; /* Mais altura */
     margin: 10px;
     flex: 1 1 280px;
     max-width: 360px;
-    height: 500px;
+    height: 500px; /* Formato mais vertical */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -538,7 +538,7 @@ body.sucesso-page {
     margin-bottom: 20px;
 }
 
-/* Título do pacote */
+/* Título do pacote - Cor azul padrão */
 .members-pack h3 {
     font-size: 24px;
     font-weight: bold;
@@ -549,7 +549,7 @@ body.sucesso-page {
 
 /* Informações do pacote */
 .members-pack p {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 15px;
 }
 
@@ -588,102 +588,82 @@ body.sucesso-page {
 .carousel-container {
     position: relative;
     width: 90%;
-    max-width: 1400px;
     margin: auto;
     text-align: center;
     padding: 50px 0;
 }
 
-/* Ajuste do container do carrossel */
-.carousel-wrapper {
-    width: 100%;
-    overflow: hidden; /* Garante que nenhum item extra apareça */
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0; /* Remove espaçamento extra */
-    flex-shrink: 0; /* Evita que o container do carrossel encolha */
+/* Título dos planos */
+.titulo-planos {
+    font-size: 24px;
+    font-weight: bold;
+    color:#ffffff;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
-/* Personalização da barra de rolagem */
-.carousel-wrapper::-webkit-scrollbar {
-    height: 5px;
-}
-
-.carousel-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-.carousel-wrapper::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-/* Carrossel */
+/* Container do carrossel */
 .carousel {
     display: flex;
-    flex-wrap: nowrap; /* Impede quebra de linha */
-    gap: 0; /* Remove espaços extras */
-    transition: transform 0.4s ease-in-out;
-    will-change: transform;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    justify-content: center;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    /* scroll-padding: 50%;  (opcional, se necessário) */
+    width: 100%;
+    position: relative;
+    align-items: flex-start;
 }
 
-/* Planos dentro do carrossel */
+/* Estilo de cada plano */
 .plano {
-    flex: 0 0 auto;
-    flex-shrink: 0; /* Impede que os containers diminuam de tamanho */
-    width: 350px;
-    max-width: 350px;
+    min-width: 350px;
+    max-width: 380px;
     background: rgba(255, 255, 255, 0.1);
-    padding: 40px;
+    padding: 25px;
+    margin: 10px;
     border-radius: 12px;
     color: #ffffff;
     text-align: center;
     transition: 0.5s;
+    flex-shrink: 0;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    height: 520px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     scroll-snap-align: center;
+    align-self: flex-start;
 }
 
-/* Ajuste do título */
+/* Corrigindo a cor do título dos planos */
 .plano h3 {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Ajuste do texto */
-.plano p {
-    font-size: 14px;
-    line-height: 1.6;
-    white-space: normal;
 }
 
 /* Estilização do preço */
 .preco {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     color: #ffffff;
     margin: 15px 0;
 }
 
-/* Botão de contratação */
+/* Botão de contratação ("Assine Agora") */
 .botao {
     display: block;
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     border: none;
     background-color: #E50914;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
@@ -691,30 +671,39 @@ body.sucesso-page {
     text-decoration: none;
 }
 
-/* =========================== */
-/* BOTÕES DE NAVEGAÇÃO FIXOS FORA DO CARROSSEL */
-/* =========================== */
+/* Link dentro do botão */
+.botao a {
+    color: white;
+    text-decoration: none !important;
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+}
+
+/* Hover no botão */
+.botao:hover {
+    background-color: #B20710;
+}
+
+/* Botões de navegação do carrossel */
 .anterior, .proximo {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
-    padding: 15px;
+    padding: 10px 15px;
     cursor: pointer;
     font-size: 24px;
-    border-radius: 50%;
-    z-index: 10;
-    transition: background 0.3s ease-in-out;
+    border-radius: 5px;
 }
 
-/* Botão esquerdo */
 .anterior {
     left: 10px;
 }
 
-/* Botão direito */
 .proximo {
     right: 10px;
 }
@@ -723,59 +712,125 @@ body.sucesso-page {
     background: rgba(255, 255, 255, 0.4);
 }
 
-/* =========================== */
-/* Responsividade */
-/* =========================== */
-@media (max-width: 1024px) {
-    .carousel-wrapper {
-        padding: 0;
+/* Responsividade para o carrossel em telas menores */
+@media (max-width: 768px) {
+    .carousel-container {
+        width: max-content 100%;
     }
-
-    .carousel {
-        flex-wrap: nowrap;
-        min-width: max-content;
-        justify-content: flex-start;
-    }
-
     .plano {
-        flex: 0 0 80%;
-        max-width: 80%;
+        felx: 0 0 auto;
     }
 }
 
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 0px;
+    padding: 10px;
+}
+
+.plano {
+    flex: 0 0 100%;
+    text-align: center;
+    max-width: 300px;
+}
+
+button.anterior, button.proximo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button.anterior { left: 3px; }
+button.proximo { right: 3px; }
+
+button.anterior:hover, button.proximo:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Ajuste de largura no modo mobile Container dos Planos */
 @media (max-width: 768px) {
-    .carousel-wrapper {
-        padding: 0;
-    }
-
     .carousel {
+        flex-wrap: nowrap;
         overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .plano {
-        min-width: 90%;
+    .members-pack {
+        min-width: 90%;  /* Ajusta para ocupar mais espaço no mobile */
         max-width: 90%;
         margin: auto;
     }
 
-    /* Ajustando os botões de navegação para mobile */
-    .anterior, .proximo {
-        top: 50%;
-        padding: 10px;
-        font-size: 20px;
+    .carousel-container {
+        width: 100%;
+        padding: 20px 0;
     }
 
-    .anterior {
-        left: 5px;
-    }
-
-    .proximo {
-        right: 5px;
+    .titulo-planos {
+        font-size: 22px; /* Ajuste do tamanho do título */
     }
 }
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
 
+.carousel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.4s ease-in-out;
+    will-change: transform;
+}
+
+.plano {
+    min-width: 300px; /* Define um tamanho fixo para os itens */
+    max-width: 300px;
+    flex-shrink: 0;
+}
+
+.anterior, .proximo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    z-index: 10;
+}
+
+.anterior {
+    left: 10px;
+}
+
+.proximo {
+    right: 10px;
+}
 
 /* FAQ */
 
