@@ -1,211 +1,177 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - SLAI Videos</title>
+    <title>Register - SLAI Videos</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Alterado para utilizar cadastro.js em vez de login.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script defer src="cadastro.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
-        /* Garante que o html e o body ocupem toda a altura da tela */
-        html, body {
-            height: 100%;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
-        /* Define o body como um contêiner flexível com direção de coluna */
         body {
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/SmileLabsAI/SLAIVideos/refs/heads/main/AlbedoBase_XL_An_abstract_highresolution_wallpaper_featuring_a_1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
             display: flex;
             flex-direction: column;
-            background-color: #141414;
-            color: white;
-        }
-
-        /* O conteúdo principal deve expandir para ocupar o espaço disponível */
-        .conteudo {
-            flex: 1;
-            display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px; /* Adiciona padding para melhor espaçamento em telas menores */
+            height: 100vh;
         }
 
         .cadastro-container {
             background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px 15px; /* Reduzido o padding horizontal de 30px para 15px */
+            padding: 30px;
             border-radius: 10px;
             text-align: center;
             width: 270px;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
         }
-
         .cadastro-container h2 {
-            margin-bottom: 20px; /* Aumenta o espaçamento abaixo do título */
+            margin-bottom: 15px;
             font-size: 20px;
+            color: #ff9c5a; /* Title color */
         }
-
         .cadastro-container label {
             display: block;
             font-size: 11px;
             text-align: left;
-            margin: 8px 0 4px 0; /* Ajusta as margens para melhor alinhamento */
-            width: 100%;
+            margin: 4px 15% 4px 15%;
+            color: white; /* Label color */
         }
-
-        /* Classe comum para inputs e botões */
-        .full-width {
-            width: 100%;
-            padding: 8px; /* Padding uniforme */
-            margin-bottom: 10px; /* Margem inferior para espaçamento */
+        .cadastro-container input {
+            width: 75%;
+            padding: 7px;
+            margin-bottom: 6px;
             border: none;
             border-radius: 5px;
             font-size: 12px;
             text-align: center;
-            box-sizing: border-box; /* Inclui padding na largura total */
+            background-color: #e0e0e0; /* Input field background */
         }
-
-        .cadastro-container input {
-            background-color: white; /* Fundo branco para os inputs */
-            color: black; /* Texto preto para melhor legibilidade */
-        }
-
-        .cadastro-container input::placeholder {
-            color: #aaa; /* Cor dos placeholders para melhor contraste */
-        }
-
         .cadastro-container button {
-            background-color: #e50914;
+            width: 75%;
+            padding: 7px;
+            background-color: #ff9c5a; /* Button color */
             color: white;
+            border: none;
+            border-radius: 5px;
             font-size: 12px;
             cursor: pointer;
             transition: background 0.3s;
-            margin-top: 10px; /* Espaçamento uniforme entre botões */
-            box-sizing: border-box; /* Inclui padding na largura total */
+            margin-top: 5px;
         }
-
         .cadastro-container button:hover {
-            background-color: #b20710;
+            background-color: #ff8a3a; /* Button hover color */
         }
-
         .social-login {
-            margin-top: 15px; /* Aumenta o espaçamento superior */
+            margin-top: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
         }
-
         .social-login button {
-            border: 1px solid #ccc;
+            width: 75%;
+            padding: 7px;
+            height: 30px;
+            border: 1px solid #ff9c5a; /* Social button border */
             border-radius: 5px;
-            font-size: 10px;
+            font-size: 11px;
             cursor: pointer;
             display: flex;
             align-items: center;
             background-color: white;
             color: black;
             font-weight: bold;
-            margin-top: 10px; /* Espaçamento uniforme entre botões */
+            margin-top: 5px;
             justify-content: center;
             text-align: center;
             position: relative;
-            box-sizing: border-box; /* Inclui padding na largura total */
-            height: auto; /* Remove altura fixa para permitir que o padding defina a altura */
-            padding: 8px; /* Padding uniforme */
         }
-
         .social-login button img {
-            width: 16px; /* Aumenta o tamanho do ícone para melhor visibilidade */
-            height: 16px;
+            width: 13px; /* Google icon */
+            height: 13px;
             position: absolute;
-            left: 15px; /* Ajusta a posição para alinhamento correto */
+            left: 15px; /* Icon position */
         }
-
         .social-login button:hover {
-            background-color: #f0f0f0;
+            background-color: #f0f0f0; /* Social button hover color */
         }
-
         .cadastro-container p {
             margin-top: 20px;
             font-size: 10px;
+            color: white; /* Text color */
         }
-
-        /* Estilização do rodapé */
-        footer {
-            background-color: #000; /* Mantém o fundo preto */
-            color: white;
-            text-align: center;
-            padding: 10px;
+        .cadastro-container a {
+            color: #ff9c5a; /* Link color */
+            text-decoration: none; /* Remove underline */
         }
-
-        /* Links no rodapé */
-        footer a {
+        .cadastro-container a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
             color: #b3b3b3;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsividade para telas menores */
-        @media (max-width: 400px) {
-            .cadastro-container {
-                width: 90%; /* Ajusta a largura para telas muito pequenas */
-                padding: 20px 10px; /* Ajusta o padding horizontal */
-            }
+            text-align: center;
+            font-size: 14px;
+            padding: 12px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
+<div class="background-overlay"></div>
 
-<!-- Conteúdo Principal -->
-<div class="conteudo">
-    <div class="cadastro-container">
-        <h2>Cadastrar</h2>
-        <form id="cadastro-form">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" class="full-width" placeholder="Digite seu nome" required>
+<div class="cadastro-container">
+    <h2 class="cadastro-title">SIGN IN</h2>
+    <form id="cadastro-form" method="post">
+        <label for="nome">Name</label>
+        <input type="text" id="nome" required placeholder="Enter your name">
+        
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required placeholder="Enter your email">
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" required placeholder="Enter your password">
+        
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" required placeholder="Confirm your password">
+        
+        <button type="submit" class="btn-cadastro">sIGN IN</button>
+        <button type="button" class="btn-voltar" onclick="window.location.href='login.html'">BACK</button>
+    </form>
 
-            <label for="email">E-mail</label>
-            <input type="email" id="email" class="full-width" placeholder="Digite seu e-mail" required>
-
-            <label for="password">Senha</label>
-            <input type="password" id="password" class="full-width" placeholder="Digite sua senha" required>
-
-            <label for="confirm-password">Confirmar Senha</label>
-            <input type="password" id="confirm-password" class="full-width" placeholder="Confirme sua senha" required>
-
-            <button type="submit" class="full-width">Cadastrar</button>
-            <button type="button" onclick="window.location.href='index.html'" class="full-width">Voltar</button>
-        </form>
-
-        <div class="social-login">
-            <button id="google-login">
-                <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
-                Sign In Google
-            </button>
-        </div>
-
-        <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
-        <p><a href="termos.html">Termos e Condições</a></p>
-        <p><a href="politica-privacidade.html">Política de Privacidade</a></p>
+    <div class="social-login">
+        <button id="google-cadastro">
+            <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google Logo">
+            Sign In with Google
+        </button>
     </div>
+
+    <p>Already have an account? <a href="login.html">Log in</a></p>
+    <p><a href="termos.html">Terms and Conditions</a></p>
+    <p><a href="politica-privacidade.html">Privacy Policy</a></p>
 </div>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; <span id="currentYear"></span> SLAI Videos - All rights reserved.</p>
+<footer class="footer">
+    <p>© 2025 SLAI Videos - All rights reserved.</p>
 </footer>
 
 <script>
     // Script para atualizar o ano automaticamente no rodapé
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
