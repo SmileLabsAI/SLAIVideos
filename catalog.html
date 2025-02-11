@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SLAI Videos - Catalog</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Adicionando estilos para o layout do catálogo */
+        .videos-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha */
+            justify-content: flex-start; /* Alinha os itens à esquerda */
+            padding: 20px; /* Espaçamento interno */
+        }
+
+        .pack {
+            background-color: var(--cor-cards); /* Usando a cor definida no CSS */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 10px; /* Margem entre os packs */
+            flex: 0 1 calc(45% - 20px); /* Largura do pack em desktop (mais largo) */
+            transition: transform 0.3s; /* Efeito de transição */
+        }
+
+        .pack:hover {
+            transform: scale(1.05); /* Efeito de hover */
+        }
+
+        .pack img {
+            width: 100%; /* Largura total do container */
+            height: auto; /* Altura automática para manter a proporção */
+            aspect-ratio: 16 / 9; /* Mantém a proporção 16:9 */
+            object-fit: cover; /* Cobre o espaço mantendo a proporção */
+            border-top-left-radius: 8px; /* Arredondar os cantos superiores */
+            border-top-right-radius: 8px; /* Arredondar os cantos superiores */
+        }
+
+        .pack h3, .pack p {
+            margin: 10px 0; /* Margem para manter o texto espaçado */
+            white-space: nowrap; /* Impede que o texto quebre a linha */
+            overflow: hidden; /* Esconde o texto que não cabe */
+            text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+        }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 768px) {
+            .pack {
+                flex: 0 1 100%; /* Largura total em dispositivos móveis */
+            }
+        }
+    </style>
 </head>
 <body class="catalog-page">
 
