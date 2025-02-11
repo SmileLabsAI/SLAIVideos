@@ -327,6 +327,7 @@ body.catalog-page .videos-container {
     justify-content: center;
     gap: 20px;
     padding: 30px 0;
+    flex-direction: column;
 }
 
 /* Mantendo layout original para desktop */
@@ -387,8 +388,8 @@ body.catalog-page .pack {
 }
 @media (max-width: 768px) {
     body.catalog-page .pack {
-        width: 45%;
-        max-width: 200px;
+        width: 80%;
+        max-width: 310px;
         margin: 0 auto;
     }
 }
